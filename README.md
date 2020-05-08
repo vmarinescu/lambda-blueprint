@@ -44,7 +44,7 @@ Runs all unit-tests (test-files with `unit`-suffix) in the project.
 npm run test:int
 ```
 
-Runs all int-tests (test-files with `int`-suffix)   in the project.
+Runs all int-tests (test-files with `int`-suffix)   in the project. Depends on [dynamodb-local](https://hub.docker.com/r/amazon/dynamodb-local).
 
 ```bash
 npm run test:e2e
