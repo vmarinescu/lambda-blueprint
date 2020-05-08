@@ -1,0 +1,84 @@
+{
+  "name": "serverless-blueprint",
+  "private": true,
+  "keywords": [
+    "monorepo",
+    "serverless",
+    "aws",
+    "javascript",
+    "typescript"
+  ],
+  "scripts": {
+    "compile": "lerna bootstrap",
+    "cleanup": "lerna run cleanup && rm -rf dist node_modules",
+    "test:unit": "lerna run test:unit",
+    "test:int": "lerna run test:int",
+    "test:e2e": "lerna run test:e2e",
+    "prettier": "prettier --write '{cdk,domains,libs}/**/*.{js,ts,json,yaml}'",
+    "tslint": "tslint -e '**/dist/**' -e '**/node_modules/**' --fix '{cdk,domains,libs}/**/*.{js,ts}'",
+    "deploy:test": "cdk deploy  '*' -c ENV=test",
+    "remove:test": "cdk destroy '*' -c ENV=test",
+    "deploy:prod": "cdk deploy  '*' -c ENV=prod",
+    "remove:prod": "cdk destroy '*' -c ENV=prod",
+    "prebundle": "npm run compile",
+    "bundle": "TODO"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.672.0"
+  },
+  "devDependencies": {
+    "typescript": "^3.8.3",
+    "//1": [
+      "---------------> devDependencies for Mono-Repo"
+    ],
+    "lerna": "^3.20.2",
+    "//2": [
+      "---------------> devDependencies for IaC"
+    ],
+    "@aws-cdk/core": "^1.38.0",
+    "@aws-cdk/aws-ssm": "^1.38.0",
+    "@aws-cdk/aws-lambda": "^1.38.0",
+    "@aws-cdk/aws-dynamodb": "^1.38.0",
+    "@aws-cdk/aws-apigateway": "^1.38.0",
+    "aws-cdk": "^1.38.0",
+    "//3": [
+      "---------------> devDependencies for bundler"
+    ],
+    "webpack-cli": "^3.3.11",
+    "webpack": "^4.43.0",
+    "//4": [
+      "---------------> devDependencies for linting"
+    ],
+    "prettier": "^2.0.5",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.3.0",
+    "tslint": "^6.1.2",
+    "//5": [
+      "---------------> devDependencies for testing"
+    ],
+    "dotenv": "^8.2.0",
+    "ts-jest": "^25.5.0",
+    "jest": "^25.5.0",
+    "//6": [
+      "---------------> devDependencies for types"
+    ],
+    "@types/aws-lambda": "^8.10.51",
+    "@types/jest": "^25.2.1",
+    "@types/node": "^13.13.5",
+    "@types/uuid": "^7.0.3",
+    "//7": [
+      "---------------> devDependencies for ..."
+    ],
+    "lint-staged": "^10.2.2",
+    "husky": "^4.2.5"
+  },
+  "lint-staged": {
+    "*.{js,ts}": "tslint --fix",
+    "*.{js,ts,json,yaml}": "prettier --write"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}

@@ -1,0 +1,3 @@
+export enum Key {
+  RESERVATION_TABLE = "RESERVATION_TABLE",
+}
