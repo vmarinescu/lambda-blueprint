@@ -17,12 +17,12 @@ This project provides the following scripts:
 npm install
 ```
 
-Installs all devDependencies. Only after running this npm-script, all other npm-scripts are available to you.
+Installs all devDependencies. Only after running this script, all other scripts are available to you.
 
 ```bash
 npm run compile
 ```
-Installs all runDependencies in all domains and compiles all domains, in dependency-order.
+Installs all runDependencies in all domains, and then compiles all domains.
 
 ```bash
 npm run bundler

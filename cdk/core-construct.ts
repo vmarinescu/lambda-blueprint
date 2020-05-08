@@ -12,18 +12,5 @@ export class CoreConstruct extends cdk.Construct {
     super(scope, `${env}-Core-Construct`);
 
     this.restApi = new apigateway.RestApi(scope, `${env}-Foo-API`, {});
-    const apiKey = this.restApi.addApiKey(`${env}-API-Key`);
-
-    this.restApi.addUsagePlan(`${env}-Usage-Plan`, {
-      apiKey: apiKey,
-      apiStages: [{
-        stage: this.restApi.deploymentStage,
-      }],
-      // Throttle to lambda-limits.
-      throttle: {
-        rateLimit:  1000,
-        burstLimit: 1000,
-      },
-    });
   }
 }
