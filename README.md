@@ -45,7 +45,6 @@ npm run test:int
 ```
 
 Runs all int-tests (test-files with `int`-suffix)   in the project.
-Uses [dotenv](https://www.npmjs.com/package/dotenv) to run `.env`-file for all int-tests. Uses [dynamodb-local](https://hub.docker.com/r/amazon/dynamodb-local) to run dynamodb for all int-tests.
 
 ```bash
 npm run test:e2e
@@ -54,7 +53,7 @@ npm run test:e2e
 Runs all e2e-tests (test-files with `e2e`-suffix)   in the project.
 
 **Tip:**
-To run *-tests for a specific domain, simply go into its package and run the same test-commands there.
+To run `*-tests` for a specific domain, simply cd into its package and run the same test-commands there.
 
 ---
 
@@ -72,7 +71,7 @@ Runs [prettier](https://www.npmjs.com/package/prettier) in the project and autom
 
 ### [git-hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
 
-This project uses [husky](https://www.npmjs.com/package/husky) and [lint-staged](https://www.npmjs.com/package/lint-staged) to run `tslint` and `prettier` on staged files in a `pre-commit` phase, so that only clean code is checked-in.
+This project uses [husky](https://www.npmjs.com/package/husky) and [lint-staged](https://www.npmjs.com/package/lint-staged) to run `tslint` and `prettier` on all staged files in a `pre-commit` phase.
 
 ### [aws-cdk](https://aws.amazon.com/cdk)
 
