@@ -17,12 +17,12 @@ This project provides the following scripts:
 npm install
 ```
 
-Installs all devDependencies.
+Installs all devDependencies. Only after running this npm-script, all other npm-scripts are available to you.
 
 ```bash
 npm run compile
 ```
-Installs all runDependencies in all domains and compiles all domains (in dependency-order).
+Installs all runDependencies in all domains and compiles all domains, in dependency-order.
 
 ```bash
 npm run bundler
@@ -38,22 +38,23 @@ For tests [jest](https://www.npmjs.com/package/jest) and [ts-jest](https://www.n
 npm run test:unit
 ```
 
-Runs all unit-tests (test-files with `unit`-suffix) in the project.
+Runs all unit-tests {test-files with `unit`-suffix} in the project.
 
 ```bash
 npm run test:int
 ```
 
-Runs all int-tests (test-files with `int`-suffix)   in the project. Depends on [dynamodb-local](https://hub.docker.com/r/amazon/dynamodb-local).
+Runs all int-tests {test-files with `int`-suffix}   in the project.
+Depends on [dynamodb-local](https://hub.docker.com/r/amazon/dynamodb-local).
 
 ```bash
 npm run test:e2e
 ```
 
-Runs all e2e-tests (test-files with `e2e`-suffix)   in the project.
+Runs all e2e-tests {test-files with `e2e`-suffix}   in the project.
 
 **Tip:**
-To run `*-tests` for a specific domain, simply cd into its package and run the same test-commands there.
+To run `*-tests` for a specific domain, simply cd into its module and run the same test-scripts there.
 
 ---
 
