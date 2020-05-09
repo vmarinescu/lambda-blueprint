@@ -11,12 +11,12 @@ export class Repository<T = any> {
 
     this.docClient = new DynamoDB.DocumentClient({
       apiVersion: "2012-08-10",
-      ...(endpoint ? { endpoint: endpoint } : {}),
-      // if (endpoint == undefined), let AWS build your endpoint.
+      endpoint: endpoint,
+      // if (endpoint == null), let AWS build the endpoint.
     });
   }
 
-  async putItem(item: T): Promise<void> {
+  async create(item: T): Promise<void> {
     const params = {
       TableName: this.tableName,
       Item: item,
@@ -24,11 +24,11 @@ export class Repository<T = any> {
     try {
       await this.docClient.put(params).promise();
     } catch (error) {
-      throw Error(`Putting item into DynamoDB failed. Reason: ${error}`);
+      throw Error(`Creating item failed. Reason: ${error}`);
     }
   }
 
-  async getItem(keys: Partial<T>): Promise<T | undefined> {
+  async read(keys: Partial<T>): Promise<T | undefined> {
     const params = {
       TableName: this.tableName,
       Key: keys,
@@ -37,7 +37,21 @@ export class Repository<T = any> {
       const found = await this.docClient.get(params).promise();
       return found.Item as T;
     } catch (error) {
-      throw Error(`Getting item from DynamoDB failed. Reason: ${error}`);
+      throw Error(`Reading item failed. Reason: ${error}`);
+    }
+  }
+
+  async update(keys: Partial<T>, item: T): Promise<void> {}
+
+  async delete(keys: Partial<T>): Promise<void> {
+    const params = {
+      TableName: this.tableName,
+      Key: keys,
+    };
+    try {
+      await this.docClient.delete(params).promise();
+    } catch (error) {
+      throw Error(`Deleting item failed. Reason: ${error}`);
     }
   }
 }

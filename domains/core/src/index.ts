@@ -5,6 +5,7 @@ export * from "./cors-provider";
 export * from "./envs-provider";
 
 export * from "./error-handler";
-export * from "./response-handler";
 
 export * from "./repository";
+
+export * from "./response-builder";

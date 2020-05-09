@@ -1,11 +1,12 @@
 import { APIGatewayProxyResult } from "aws-lambda";
 import { CorsResHeader, withCors } from "../../src/cors-provider";
-import { Key } from "../../src/envs-provider";
 
 const originFoo = "https://foo.example.com";
 const originBar = "https://bar.example.com";
 
-process.env[Key.ALLOWED_ORIGINS] = JSON.stringify([originFoo]);
+jest.mock("../../src/envs-provider", () => ({
+  getEnv: jest.fn(() => { return [originFoo]; }),
+}));
 
 describe("cors-provider", () => {
   it("should allow origin when origin is configured", () => {

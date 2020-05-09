@@ -17,13 +17,19 @@ export function getEnv<T = any>(
   }
 }
 
-export enum Env {
+export const enum Env {
   TEST = "test",
   PROD = "prod",
 }
 
-export enum Key {
-  DYNAMODB_ENDPOINT = "DYNAMODB_ENDPOINT",
-  ALLOWED_ORIGINS   = "ALLOWED_ORIGINS",
+export const enum Key {
   ENV = "ENV",
+
+  DYNAMODB_ENDPOINT = "DYNAMODB_ENDPOINT",
+
+  SQS_ENDPOINT = "SQS_ENDPOINT",
+  SES_ENDPOINT = "SES_ENDPOINT",
+
+  ALLOWED_HEADERS = "ALLOWED_HEADERS",
+  ALLOWED_ORIGINS = "ALLOWED_ORIGINS",
 }

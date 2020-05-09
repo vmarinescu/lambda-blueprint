@@ -54,7 +54,7 @@ npm run test:e2e
 Runs all e2e-tests {test-files with `e2e`-suffix}   in the project.
 
 **Tip:**
-To run `*-tests` for a specific domain, simply cd into its module and run the same test-scripts there.
+To run `*-tests` for a specific domain, simply switch into its module and run the same test-scripts there.
 
 ---
 

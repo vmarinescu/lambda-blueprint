@@ -2,10 +2,10 @@
   "name": "@serverless-blueprint/customer",
   "private": true,
   "scripts": {
-    "cleanup": "rm -rf dist node_modules",
+    "clean": "rm -rf dist node_modules",
     "prepare": "tsc",
     "test:unit": "jest unit --no-cache",
-    "test:int": "jest int --no-cache --testTimeout=10000 --setupFiles dotenv/config",
+    "test:int": "jest int --no-cache --testTimeout=10000",
     "test:e2e": "jest e2e --no-cache --testTimeout=10000"
   },
   "dependencies": {
