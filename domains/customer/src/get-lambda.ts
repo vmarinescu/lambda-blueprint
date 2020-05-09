@@ -1,5 +1,5 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
-import { CorsReqHeader, withCors, handleGetError, toApiGatewayProxyResult } from "@serverless-blueprint/core";
+import { CorsReqHeader, withCors, handleError, buildResponse } from "@serverless-blueprint/core";
 import { Service } from "./service";
 
 export async function entrypoint(
@@ -12,7 +12,7 @@ export async function entrypoint(
 
   return service
     .getCustomer(id)
-    .then ((dto) => toApiGatewayProxyResult(200, dto))
-    .catch((reason) => handleGetError(reason))
+    .then ((dto) => buildResponse(200, dto))
+    .catch((reason) => handleError(reason))
     .then ((result) => withCors(result, event.headers[CorsReqHeader.ORIGIN]));
 }

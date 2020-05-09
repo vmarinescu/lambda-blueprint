@@ -15,11 +15,11 @@ export class Service {
 
   async getCustomer(id: string): Promise<CustomerDto> {
     const keys: Partial<CustomerEntity> = { id: id };
-    const customerEntity = await this.repository.getItem(keys);
+    const customerEntity = await this.repository.read(keys);
 
     if (!customerEntity) throw new Error404();
 
-    // TODO: Maybe modify or exclude some prop before delivery?
+    // TODO: Maybe modify and exclude props before delivery?
     return customerEntity as CustomerDto;
   }
 }
