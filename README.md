@@ -4,7 +4,7 @@ This project was structured as Mono-Repository and was bootstrapped with [lerna]
 
 This project requires the following tools:
 
-- [Node.js](https://nodejs.org/en/download) (v12)
+- [node.js](https://nodejs.org/en/download) (v12)
 
 - [aws-cli](https://docs.aws.amazon.com/cli/index.html)
 - [aws-sam](https://docs.aws.amazon.com/serverless-application-model/index.html)
@@ -17,7 +17,7 @@ This project provides the following scripts:
 npm install
 ```
 
-Installs all devDependencies. Only after running this script, all other scripts are available to you.
+Installs all devDependencies. Once finished, all other scripts in the `package.json` are available to you.
 
 ```bash
 npm run compile
@@ -32,7 +32,7 @@ Runs `compile` in all domains via [PRE-hook](https://docs.npmjs.com/misc/scripts
 
 ---
 
-For tests [jest](https://www.npmjs.com/package/jest) and [ts-jest](https://www.npmjs.com/package/ts-jest) are used.
+This project uses [jest](https://www.npmjs.com/package/jest) and [ts-jest](https://www.npmjs.com/package/ts-jest) for tests.
 
 ```bash
 npm run test:unit
@@ -54,7 +54,7 @@ npm run test:e2e
 Runs all e2e-tests {test-files with `e2e`-suffix}   in the project.
 
 **Tip:**
-To run `*-tests` for a specific domain, simply switch into its module and run the same test-scripts there.
+To run `test:*` for any specific domain, simply switch into its module and run all the same test-scripts there.
 
 ---
 

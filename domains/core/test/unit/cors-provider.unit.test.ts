@@ -4,17 +4,13 @@ import { CorsResHeader, withCors } from "../../src/cors-provider";
 const originFoo = "https://foo.example.com";
 const originBar = "https://bar.example.com";
 
-jest.mock("../../src/envs-provider", () => ({
-  getEnv: jest.fn(() => { return [originFoo]; }),
-}));
-
 describe("cors-provider", () => {
   it("should allow origin when origin is configured", () => {
     const result: APIGatewayProxyResult = {
       statusCode: 200,
       body: "",
     };
-    expect(withCors(result, originFoo)).toEqual({
+    expect(withCors(result, originFoo, [originFoo])).toEqual({
       statusCode: result.statusCode,
       headers: {
         [CorsResHeader.ACCESS_CONTROL_ALLOW_ORIGIN]: originFoo,
@@ -28,7 +24,7 @@ describe("cors-provider", () => {
       statusCode: 200,
       body: "",
     };
-    expect(withCors(result, originBar)).toEqual({
+    expect(withCors(result, originBar, [originFoo])).toEqual({
       statusCode: result.statusCode,
       body: result.body,
     });

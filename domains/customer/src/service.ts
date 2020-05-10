@@ -1,17 +1,15 @@
-import { Error404, getEnv, Repository } from "@serverless-blueprint/core";
+import { Error404, Repository } from "@serverless-blueprint/core";
 import { CustomerDto } from "./dtos/customer-dto";
 import { CustomerEntity } from "./entities/customer-entity";
-import { Key } from "./key";
 
 export class Service {
   private repository: Repository<CustomerEntity>;
 
-  constructor() {
-    const tableName = getEnv<string>(Key.CUSTOMER_TABLE, { required: true })!;
-    this.repository = new Repository(tableName);
+  constructor(repository: Repository<CustomerEntity>) {
+    this.repository = repository;
   }
 
-  async createCustomer(dto: CustomerDto): Promise<void> {}
+  async createCustomer(customerDto: CustomerDto): Promise<void> {}
 
   async getCustomer(id: string): Promise<CustomerDto> {
     const keys: Partial<CustomerEntity> = { id: id };

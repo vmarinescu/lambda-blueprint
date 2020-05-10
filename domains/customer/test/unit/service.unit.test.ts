@@ -1,11 +1,3 @@
-import { Key } from "../../src/key";
-import { Service } from "../../src/service";
-
-jest.mock(""); // TODO
-
-process.env[Key.CUSTOMER_TABLE] = "customer";
-const service = new Service();
-
 describe("service", () => {
   it.todo("should create customer when valid customer has been passed");
 

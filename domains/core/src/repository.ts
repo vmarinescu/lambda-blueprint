@@ -1,18 +1,14 @@
 import DynamoDB from "aws-sdk/clients/dynamodb";
-import { getEnv, Key } from "./envs-provider";
 
 export class Repository<T = any> {
   private tableName: string;
   private docClient: DynamoDB.DocumentClient;
 
-  constructor(tableName: string) {
+  constructor(tableName: string, endpoint?: string) {
     this.tableName = tableName;
-    const endpoint = getEnv<string>(Key.DYNAMODB_ENDPOINT);
-
     this.docClient = new DynamoDB.DocumentClient({
       apiVersion: "2012-08-10",
       endpoint: endpoint,
-      // if (endpoint == null), let AWS build the endpoint.
     });
   }
 

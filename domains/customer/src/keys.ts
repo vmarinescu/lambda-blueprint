@@ -1,3 +1,3 @@
-export const enum Key {
+export const enum Keys {
   CUSTOMER_TABLE = "CUSTOMER_TABLE",
 }

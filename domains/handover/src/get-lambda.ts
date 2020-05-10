@@ -12,15 +12,15 @@ export async function entrypoint(
 
   const dynamoDBEndpoint = getEnv<string>(CoreKey.DYNAMODB_ENDPOINT);
 
-  const customerTable  = getEnv<string>(Keys.CUSTOMER_TABLE, { required: true })!;
+  const handoverTable  = getEnv<string>(Keys.HANDOVER_TABLE, { required: true })!;
   const allowedOrigins = getEnv<string[]>(CoreKey.ALLOWED_ORIGINS) || [];
 
-  const repository = new Repository(customerTable, dynamoDBEndpoint);
+  const repository = new Repository(handoverTable, dynamoDBEndpoint);
   const service    = new Service(repository);
 
   return service
-    .getCustomer(id)
-    .then ((customerDto) => buildResponse(200, customerDto))
+    .getHandover(id)
+    .then ((handoverDto) => buildResponse(200, handoverDto))
     .catch((reason) => handleError(reason))
     .then ((result) =>
       withCors(

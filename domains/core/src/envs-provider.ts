@@ -3,7 +3,7 @@ export interface GetEnvOptions<T> {
 }
 
 export function getEnv<T = any>(
-  key: Key | string,
+  key: string,
   options: GetEnvOptions<T> = { required: false }
 ): T | undefined {
   const value = process.env[key];
@@ -25,11 +25,8 @@ export const enum Env {
 export const enum Key {
   ENV = "ENV",
 
-  DYNAMODB_ENDPOINT = "DYNAMODB_ENDPOINT",
-
-  SQS_ENDPOINT = "SQS_ENDPOINT",
-  SES_ENDPOINT = "SES_ENDPOINT",
-
   ALLOWED_HEADERS = "ALLOWED_HEADERS",
   ALLOWED_ORIGINS = "ALLOWED_ORIGINS",
+
+  DYNAMODB_ENDPOINT = "DYNAMODB_ENDPOINT",
 }

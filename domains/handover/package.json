@@ -1,5 +1,5 @@
 {
-  "name": "@serverless-blueprint/reservation",
+  "name": "@serverless-blueprint/handover",
   "private": true,
   "scripts": {
     "clean": "rm -rf dist node_modules",
