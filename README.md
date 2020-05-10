@@ -30,11 +30,11 @@ Installs all runDependencies in all domains, and then compiles all domains.
 npm run bundler
 ```
 
-Runs `compile` in all domains via [PRE-hook](https://docs.npmjs.com/misc/scripts), and then runs [webpack](https://www.npmjs.com/package/webpack) to bundle every lambda-function.
+Runs `compile` in all domains via a [PRE-hook](https://docs.npmjs.com/misc/scripts), and then runs [webpack](https://www.npmjs.com/package/webpack) to bundle all lambda-functions.
 
 ---
 
-This project uses [jest](https://www.npmjs.com/package/jest) and [ts-jest](https://www.npmjs.com/package/ts-jest) for unit-, int- and e2e-tests.
+This project uses [jest](https://www.npmjs.com/package/jest) for unit-, int- and e2e-tests.
 
 ```bash
 npm run test:unit
@@ -51,13 +51,13 @@ To run `test:*` for any specific domain, simply switch into its module and run a
 npm run tslint
 ```
 
-Runs [tslint](https://www.npmjs.com/package/tslint)     in the project and automatically fixes your prgramming-issues.
+Runs [tslint](https://www.npmjs.com/package/tslint)     in the project and automatically fixes your programming-issues.
 
 ```bash
 npm run prettier
 ```
 
-Runs [prettier](https://www.npmjs.com/package/prettier) in the project and automatically fixes your formatting-issues.
+Runs [prettier](https://www.npmjs.com/package/prettier) in the project and automatically fixes your  formatting-issues.
 
 #### [git-hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
 
@@ -108,6 +108,8 @@ sam local start-api
 ```
 
 `aws-sam` automatically finds any lambda-functions within your `template.yaml` which have HTTP event-sources defined. Then, it mounts them at the defined HTTP paths.
+
+---
 
 ## Further links
 
