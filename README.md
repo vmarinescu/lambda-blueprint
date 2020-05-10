@@ -28,7 +28,7 @@ Installs all runDependencies in all domains, and then compiles all domains.
 npm run bundler
 ```
 
-Runs `compile` in all domains via [PRE-hook](https://docs.npmjs.com/misc/scripts), and then runs [webpack](https://www.npmjs.com/package/webpack) to bundle all lambda-functions. TODO
+Runs `compile` in all domains via [PRE-hook](https://docs.npmjs.com/misc/scripts), and then runs [webpack](https://www.npmjs.com/package/webpack) to bundle every lambda-function.
 
 ---
 
@@ -45,7 +45,6 @@ npm run test:int
 ```
 
 Runs all int-tests {test-files with `int`-suffix}   in the project.
-Depends on [dynamodb-local](https://hub.docker.com/r/amazon/dynamodb-local).
 
 ```bash
 npm run test:e2e
