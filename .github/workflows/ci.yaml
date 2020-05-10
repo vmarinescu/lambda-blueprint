@@ -4,15 +4,17 @@ on: [push]
 
 jobs:
   container-job:
-    runs-on: ubuntu-latest
+    runs-on:   ubuntu-latest
     container: node:12-alpine
     services:
       dynamodb-local:
         image: amazon/dynamodb-local
     steps:
       - uses: actions/checkout@v2
+
       - run: npm install
       - run: npm run build
+
       - run: npm run test:unit
 
       - run: npm run test:int
