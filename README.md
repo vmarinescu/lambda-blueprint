@@ -59,17 +59,17 @@ npm run prettier
 
 Runs [prettier](https://www.npmjs.com/package/prettier) in the project and automatically fixes your formatting-issues.
 
-### [git-hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
+#### [git-hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
 
 This project uses [husky](https://www.npmjs.com/package/husky) and [lint-staged](https://www.npmjs.com/package/lint-staged) to run `tslint` and `prettier` on all staged files in a `pre-commit` phase.
 
 ---
 
-### [aws-cdk](https://aws.amazon.com/cdk)
+#### [aws-cdk](https://aws.amazon.com/cdk)
 
 Cloud-deployments/-removals are done with the `aws-cdk`.
 
-#### `npm run deploy:{ENV}`
+##### `npm run deploy:{ENV}`
 
 ```bash
 npm run deploy:test # Deploys the backend in the test-env.
@@ -79,7 +79,7 @@ npm run deploy:prod # ...
 **Tip:**
 For CI/CD append `approval` flag: `npm run deploy:test -- --require-approval never`. See [here](https://docs.aws.amazon.com/cdk/latest/guide/tools.html).
 
-#### `npm run remove:{ENV}`
+##### `npm run remove:{ENV}`
 
 ```bash
 npm run remove:test # Removes the backend in the test-env.
@@ -91,7 +91,7 @@ For CI/CD append `force` flag: `npm run remove:test -- --force`. See [here](http
 
 ---
 
-### [aws-sam](https://aws.amazon.com/serverless/sam) and aws-cdk?
+#### [aws-sam](https://aws.amazon.com/serverless/sam) and aws-cdk?
 
 For more info how to test locally with `aws-sam` and `aws-cdk` please refer to the following [link](https://docs.aws.amazon.com/cdk/latest/guide/tools.html#sam).
 
