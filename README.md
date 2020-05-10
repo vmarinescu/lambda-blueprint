@@ -19,6 +19,8 @@ npm install
 
 Installs all devDependencies. Once finished, all other scripts in the `package.json` are available to you.
 
+---
+
 ```bash
 npm run compile
 ```
