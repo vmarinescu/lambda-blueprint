@@ -6,11 +6,10 @@ if (!endpoint) {
 }
 
 const options: DynamoDB.ClientConfiguration = {
-  apiVersion: "2012-08-10",
   endpoint: endpoint,
 };
 
-const client = new DynamoDB({
+const dynamodbClient = new DynamoDB({
   ...options,
 });
 
@@ -41,12 +40,12 @@ export async function createTable(tableName: string, hashKey: HashKey): Promise<
     KeySchema: keySchema,
     BillingMode: billingMode,
   };
-  await client.createTable(createTableInput).promise();
+  await dynamodbClient.createTable(createTableInput).promise();
 }
 
 export async function deleteTable(tableName: string): Promise<void> {
   const deleteTableInput: DynamoDB.DeleteTableInput = {
     TableName: tableName,
   };
-  await client.deleteTable(deleteTableInput).promise();
+  await dynamodbClient.deleteTable(deleteTableInput).promise();
 }

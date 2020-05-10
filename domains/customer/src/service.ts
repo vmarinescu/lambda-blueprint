@@ -9,7 +9,11 @@ export class Service {
     this.repository = repository;
   }
 
-  async createCustomer(customerDto: CustomerDto): Promise<void> {}
+  async createCustomer(customerDto: CustomerDto): Promise<void> {
+    // Todo: Transform and validate the customerDto.
+    const customerEntity = customerDto;
+    await this.repository.create(customerEntity);
+  }
 
   async getCustomer(id: string): Promise<CustomerDto> {
     const keys: Partial<CustomerEntity> = { id: id };

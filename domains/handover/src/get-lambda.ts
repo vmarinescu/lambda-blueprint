@@ -1,6 +1,5 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
-import { CorsReqHeader, withCors, getEnv, Key as CoreKey, handleError, buildResponse, Repository } from "@serverless-blueprint/core";
-import { Keys } from "./keys";
+import { CorsReqHeader, withCors, handleError, buildResponse, Repository } from "@serverless-blueprint/core";
 import { Service } from "./service";
 
 export async function entrypoint(
@@ -10,12 +9,7 @@ export async function entrypoint(
 
   const id = event.pathParameters!["id"];
 
-  const dynamoDBEndpoint = getEnv<string>(CoreKey.DYNAMODB_ENDPOINT);
-
-  const handoverTable  = getEnv<string>(Keys.HANDOVER_TABLE, { required: true })!;
-  const allowedOrigins = getEnv<string[]>(CoreKey.ALLOWED_ORIGINS) || [];
-
-  const repository = new Repository(handoverTable, dynamoDBEndpoint);
+  const repository = new Repository();
   const service    = new Service(repository);
 
   return service
@@ -25,8 +19,7 @@ export async function entrypoint(
     .then ((result) =>
       withCors(
         result,
-        event.headers[CorsReqHeader.ORIGIN],
-        allowedOrigins,
+        event.headers[CorsReqHeader.ORIGIN]
       )
     );
 }

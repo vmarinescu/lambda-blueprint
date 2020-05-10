@@ -9,7 +9,11 @@ export class Service {
     this.repository = repository;
   }
 
-  async createHandover(handoverDto: HandoverDto): Promise<void> {}
+  async createHandover(handoverDto: HandoverDto): Promise<void> {
+    // Todo: Transform and validate the handoverDto.
+    const handoverEntity = handoverDto;
+    await this.repository.create(handoverEntity);
+  }
 
   async getHandover(id: string): Promise<HandoverDto> {
     const keys: Partial<HandoverEntity> = { id: id };

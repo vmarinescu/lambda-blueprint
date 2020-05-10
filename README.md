@@ -32,25 +32,13 @@ Runs `compile` in all domains via [PRE-hook](https://docs.npmjs.com/misc/scripts
 
 ---
 
-This project uses [jest](https://www.npmjs.com/package/jest) and [ts-jest](https://www.npmjs.com/package/ts-jest) for tests.
+This project uses [jest](https://www.npmjs.com/package/jest) and [ts-jest](https://www.npmjs.com/package/ts-jest) for unit-, int- and e2e-tests.
 
 ```bash
 npm run test:unit
-```
-
-Runs all unit-tests {test-files with `unit`-suffix} in the project.
-
-```bash
 npm run test:int
-```
-
-Runs all int-tests {test-files with `int`-suffix}   in the project.
-
-```bash
 npm run test:e2e
 ```
-
-Runs all e2e-tests {test-files with `e2e`-suffix}   in the project.
 
 **Tip:**
 To run `test:*` for any specific domain, simply switch into its module and run all the same test-scripts there.
