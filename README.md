@@ -63,6 +63,8 @@ Runs [prettier](https://www.npmjs.com/package/prettier) in the project and autom
 
 This project uses [husky](https://www.npmjs.com/package/husky) and [lint-staged](https://www.npmjs.com/package/lint-staged) to run `tslint` and `prettier` on all staged files in a `pre-commit` phase.
 
+---
+
 ### [aws-cdk](https://aws.amazon.com/cdk)
 
 Cloud-deployments/-removals are done with the `aws-cdk`.
@@ -86,6 +88,8 @@ npm run remove:prod # ...
 
 **Tip:**
 For CI/CD append `force` flag: `npm run remove:test -- --force`. See [here](https://docs.aws.amazon.com/cdk/latest/guide/tools.html).
+
+---
 
 ### [aws-sam](https://aws.amazon.com/serverless/sam) and aws-cdk?
 
