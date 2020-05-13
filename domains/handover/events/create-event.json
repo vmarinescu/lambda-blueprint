@@ -1,6 +1,6 @@
 {
   "httpMethod": "POST",
   "headers": {},
-  "body": {},
+  "body": "{}",
   "path": "/handovers"
 }
