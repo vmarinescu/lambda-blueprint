@@ -13,21 +13,19 @@
     "clean": "lerna run clean && rm -rf dist node_modules",
     "test:int": "lerna run test:int",
     "test:e2e": "lerna run test:e2e",
-    "prettier": "prettier --write '{cdk,domains,libs}/**/*.{js,ts,json,yaml}'",
-    "tslint": "tslint -e '**/dist/**' -e '**/node_modules/**' --fix '{cdk,domains,libs}/**/*.{js,ts}'",
+    "deploy:qa": "cdk deploy  -c ENV=qa",
+    "remove:qa": "cdk destroy -c ENV=qa",
+    "deploy:prod": "cdk deploy  -c ENV=prod",
+    "remove:prod": "cdk destroy -c ENV=prod",
     "test:unit": "lerna run test:unit",
-    "deploy:test": "cdk deploy  '*' -c ENV=test",
-    "remove:test": "cdk destroy '*' -c ENV=test",
-    "deploy:prod": "cdk deploy  '*' -c ENV=prod",
-    "remove:prod": "cdk destroy '*' -c ENV=prod",
     "prebundle": "npm run build",
     "bundle": "TODO"
   },
   "dependencies": {
-    "aws-sdk": "^2.673.0"
+    "aws-sdk": "^2.675.0"
   },
   "devDependencies": {
-    "typescript": "^3.8.3",
+    "typescript": "^3.9.2",
     "//1": [
       "---------------> devDependencies for Mono-Repo"
     ],
@@ -49,10 +47,6 @@
     "//4": [
       "---------------> devDependencies for linting"
     ],
-    "prettier": "^2.0.5",
-    "tslint-config-prettier": "^1.18.0",
-    "tslint-plugin-prettier": "^2.3.0",
-    "tslint": "^6.1.2",
     "//5": [
       "---------------> devDependencies for testing"
     ],
@@ -64,7 +58,7 @@
     ],
     "@types/aws-lambda": "^8.10.51",
     "@types/jest": "^25.2.1",
-    "@types/node": "^13.13.5",
+    "@types/node": "^14.0.1",
     "@types/uuid": "^7.0.3",
     "//7": [
       "---------------> devDependencies for ..."
@@ -73,8 +67,8 @@
     "husky": "^4.2.5"
   },
   "lint-staged": {
-    "*.{js,ts}": "tslint --fix",
-    "*.{js,ts,json,yaml}": "prettier --write"
+    "*.{js,ts}": "",
+    "*.{js,ts,json,yaml}": ""
   },
   "husky": {
     "hooks": {

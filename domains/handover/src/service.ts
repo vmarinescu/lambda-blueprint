@@ -1,27 +1,27 @@
 import { Error404, Repository } from "@serverless-blueprint/core";
-import { HandoverDto } from "./dtos/handover-dto";
-import { HandoverEntity } from "./entities/handover-entity";
+import { CreateHandoverDto } from "./dtos/handover-dto";
+import { Handover } from "./entities/handover-entity";
 
 export class Service {
-  private repository: Repository<HandoverEntity>;
+  private repository: Repository<Handover>;
 
-  constructor(repository: Repository<HandoverEntity>) {
+  constructor(repository: Repository<Handover>) {
     this.repository = repository;
   }
 
-  async createHandover(handoverDto: HandoverDto): Promise<void> {
+  async createHandover(handoverDto: CreateHandoverDto): Promise<void> {
     // Todo: Transform and validate the handoverDto.
     const handoverEntity = handoverDto;
     await this.repository.create(handoverEntity);
   }
 
-  async getHandover(id: string): Promise<HandoverDto> {
-    const keys: Partial<HandoverEntity> = { id: id };
+  async getHandover(id: string): Promise<CreateHandoverDto> {
+    const keys: Partial<Handover> = { id: id };
     const handoverEntity = await this.repository.read(keys);
 
     if (!handoverEntity) throw new Error404();
 
     // TODO: Maybe modify and exclude props before delivery?
-    return handoverEntity as HandoverDto;
+    return handoverEntity as CreateHandoverDto;
   }
 }

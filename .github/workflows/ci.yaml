@@ -3,23 +3,13 @@ name: Node.js CI
 on: [push]
 
 jobs:
-  container-job:
-    runs-on:   ubuntu-latest
-    container: node:12-alpine
-    services:
-      dynamodb-local:
-        image: amazon/dynamodb-local
+  build:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
       - run: npm install
       - run: npm run build
-
       - run: npm run test:unit
-
-      - run: npm run test:int
-        env:
-          DYNAMODB_ENDPOINT: http://dynamodb-local:8000
-      - run: npm run test:e2e
-        env:
-          DYNAMODB_ENDPOINT: http://dynamodb-local:8000

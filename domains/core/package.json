@@ -6,6 +6,6 @@
   "scripts": {
     "clean": "rm -rf dist node_modules",
     "prepare": "tsc",
-    "test:unit": "jest unit --no-cache"
+    "test:unit": "jest unit"
   }
 }

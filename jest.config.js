@@ -6,7 +6,7 @@ module.exports = {
   coverageReporters: [],
   coverageThreshold: {},
   coverageDirectory: "coverage",
-  clearMocks: true,
+  clearMocks: false,
   resetMocks: false,
   verbose: true,
 };
