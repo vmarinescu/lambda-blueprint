@@ -1,4 +1,4 @@
 export interface GetDto {
-  id:   string;
-  name: string;
+  id:   string
+  name: string
 }

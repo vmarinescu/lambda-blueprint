@@ -1,8 +1,8 @@
-import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 
-export async function entrypoint(
+export async function entrypoint (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> {
-  console.debug("Received event: %s", event);
-  return { statusCode: 200, body: "" };
+  console.debug('Received event: %s', event)
+  return { statusCode: 200, body: '' }
 }
