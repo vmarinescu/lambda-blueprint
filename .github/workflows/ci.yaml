@@ -14,5 +14,8 @@ jobs:
       - run: npm run build
       - run: npm run test:unit
       - run: npm run test:int
-#     - run: npm run test:e2e # per NODE_ENV: qa, prod, ...
       - run: npm run bundle
+#     - run: npm run deploy:test
+#     - run: NODE_ENV=test npm run test:e2e
+#     - run: npm run deploy:prod
+#     - run: NODE_ENV=prod npm run test:e2e
