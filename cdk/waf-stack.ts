@@ -1,19 +1,19 @@
-import * as apigateway from '@aws-cdk/aws-apigateway'
-import * as wafv2 from '@aws-cdk/aws-wafv2'
-import * as cdk from '@aws-cdk/core'
+import * as apigateway from "@aws-cdk/aws-apigateway";
+import * as wafv2 from "@aws-cdk/aws-wafv2";
+import * as cdk from "@aws-cdk/core";
 
 export class WafStack extends cdk.Stack {
-  constructor (scope: cdk.App, id: string, props?: cdk.StackProps) {
-    super(scope, id, props)
+  constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
+    super(scope, id, props);
 
-    const testApi = new apigateway.RestApi(this, 'Test-API', {
+    const testApi = new apigateway.RestApi(this, "Test-API", {
       endpointConfiguration: {
-        types: [apigateway.EndpointType.REGIONAL]
-      }
-    })
-    testApi.root.addMethod('GET', new apigateway.MockIntegration())
+        types: [apigateway.EndpointType.REGIONAL],
+      },
+    });
+    testApi.root.addMethod("GET", new apigateway.MockIntegration());
 
-    const webAcl = new wafv2.CfnWebACL(this, 'WebAcl', {
+    const webAcl = new wafv2.CfnWebACL(this, "WebAcl", {
       defaultAction: { allow: {} },
       rules: [
         {
@@ -22,15 +22,15 @@ export class WafStack extends cdk.Stack {
           visibilityConfig: {
             sampledRequestsEnabled:   true,
             cloudWatchMetricsEnabled: true,
-            metricName: 'AWS-AWSManagedRulesAmazonIpReputationList'
+            metricName: "AWS-AWSManagedRulesAmazonIpReputationList",
           },
-          name: 'AWS-AWSManagedRulesAmazonIpReputationList',
+          name: "AWS-AWSManagedRulesAmazonIpReputationList",
           statement: {
             managedRuleGroupStatement: {
-              vendorName: 'AWS',
-              name: 'AWSManagedRulesAmazonIpReputationList'
-            }
-          }
+              vendorName: "AWS",
+              name: "AWSManagedRulesAmazonIpReputationList",
+            },
+          },
         },
         {
           priority: 2,
@@ -38,15 +38,15 @@ export class WafStack extends cdk.Stack {
           visibilityConfig: {
             sampledRequestsEnabled:   true,
             cloudWatchMetricsEnabled: true,
-            metricName: 'AWS-AWSManagedRulesCommonRuleSet'
+            metricName: "AWS-AWSManagedRulesCommonRuleSet",
           },
-          name: 'AWS-AWSManagedRulesCommonRuleSet',
+          name: "AWS-AWSManagedRulesCommonRuleSet",
           statement: {
             managedRuleGroupStatement: {
-              vendorName: 'AWS',
-              name: 'AWSManagedRulesCommonRuleSet'
-            }
-          }
+              vendorName: "AWS",
+              name: "AWSManagedRulesCommonRuleSet",
+            },
+          },
         },
         {
           priority: 3,
@@ -54,37 +54,37 @@ export class WafStack extends cdk.Stack {
           visibilityConfig: {
             sampledRequestsEnabled:   true,
             cloudWatchMetricsEnabled: true,
-            metricName: 'AWS-AWSManagedRulesKnownBadInputsRuleSet'
+            metricName: "AWS-AWSManagedRulesKnownBadInputsRuleSet",
           },
-          name: 'AWS-AWSManagedRulesKnownBadInputsRuleSet',
+          name: "AWS-AWSManagedRulesKnownBadInputsRuleSet",
           statement: {
             managedRuleGroupStatement: {
-              vendorName: 'AWS',
-              name: 'AWSManagedRulesKnownBadInputsRuleSet'
-            }
-          }
-        }
+              vendorName: "AWS",
+              name: "AWSManagedRulesKnownBadInputsRuleSet",
+            },
+          },
+        },
       ],
-      scope: 'REGIONAL',
+      scope: "REGIONAL",
       visibilityConfig: {
         sampledRequestsEnabled:   true,
         cloudWatchMetricsEnabled: true,
-        metricName: 'WebAcl'
-      }
-    })
+        metricName: "WebAcl",
+      },
+    });
 
     // Output of 'testApi.arnForExecuteApi(...)': 'arn:aws:execute-api:region:accout-id:api-id/*/*/*'
     // For webAcls we need the following pattern: 'arn:aws:apigateway:region::/restapis/api-id/stages/stage-name'
     // See here: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webaclassociation.html#cfn-wafv2-webaclassociation-resourcearn
-    const region = cdk.Stack.of(this).region
-    const arn = `arn:aws:apigateway:${region}::/restapis/${testApi.restApiId}/stages/${testApi.deploymentStage.stageName}`
+    const region = cdk.Stack.of(this).region;
+    const arn = `arn:aws:apigateway:${region}::/restapis/${testApi.restApiId}/stages/${testApi.deploymentStage.stageName}`;
 
-    new wafv2.CfnWebACLAssociation(this, 'WebAclAssociation', {
+    new wafv2.CfnWebACLAssociation(this, "WebAclAssociation", {
       webAclArn:   webAcl.attrArn,
-      resourceArn: arn
-    })
+      resourceArn: arn,
+    });
   }
 }
 
-const app = new cdk.App()
-new WafStack(app, 'Waf-Stack')
+const app = new cdk.App();
+new WafStack(app, "Waf-Stack");

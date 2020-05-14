@@ -1,2 +1,2 @@
-import createEvent from '../../events/create-event.json'
-export { createEvent }
+import createEvent from "../../events/create-event.json";
+export { createEvent };

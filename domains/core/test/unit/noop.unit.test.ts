@@ -1,5 +1,5 @@
-describe('', () => {
-  it('', async () => {
-    expect('').toBe('')
-  })
-})
+describe("", () => {
+  it("", async () => {
+    expect("").toBe("");
+  });
+});

@@ -49,7 +49,6 @@
     "//4": [
       "---------------> devDependencies for linting"
     ],
-    "ts-standard": "^8.0.1",
     "//5": [
       "---------------> devDependencies for testing"
     ],
