@@ -19,3 +19,5 @@ jobs:
 #     - run: NODE_ENV=test npm run test:e2e
 #     - run: npm run deploy:prod
 #     - run: NODE_ENV=prod npm run test:e2e
+
+#     ToDo: blue-green deployments?
