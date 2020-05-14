@@ -1,19 +1,11 @@
 {
   "name": "@serverless-blueprint/core",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "ssh://git@github.com/Syy0n/serverless-blueprint.git",
-    "directory": "domains/core"
-  },
   "scripts": {
     "clean": "rm -rf dist node_modules",
     "test:unit": "jest unit",
-    "prepublish": "tsc"
+    "prepare": "tsc"
   }
 }
