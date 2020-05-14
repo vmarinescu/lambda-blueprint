@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@serverless-blueprint/core": "0.0.0",
+    "@hapi/joi": "^17.1.1",
     "uuid": "^8.0.0"
   }
 }
