@@ -19,7 +19,7 @@
     "remove:prod": "cdk destroy -c ENV=prod",
     "test:unit": "lerna run test:unit",
     "prebundle": "npm run build",
-    "bundle": "TODO"
+    "bundle": "lerna run bundle"
   },
   "dependencies": {
     "aws-sdk": "^2.675.0"
