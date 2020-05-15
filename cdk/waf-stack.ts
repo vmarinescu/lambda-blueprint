@@ -73,8 +73,6 @@ export class WafStack extends cdk.Stack {
       },
     });
 
-    // Output of 'testApi.arnForExecuteApi(...)': 'arn:aws:execute-api:region:accout-id:api-id/*/*/*'
-    // For webAcls we need the following pattern: 'arn:aws:apigateway:region::/restapis/api-id/stages/stage-name'
     // See here: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webaclassociation.html#cfn-wafv2-webaclassociation-resourcearn
     const region = cdk.Stack.of(this).region;
     const arn = `arn:aws:apigateway:${region}::/restapis/${testApi.restApiId}/stages/${testApi.deploymentStage.stageName}`;

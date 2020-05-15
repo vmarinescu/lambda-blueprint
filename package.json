@@ -18,7 +18,6 @@
     "deploy:prod": "cdk deploy  -c ENV=prod",
     "remove:prod": "cdk destroy -c ENV=prod",
     "test:unit": "lerna run test:unit",
-    "prebundle": "npm run build",
     "bundle": "lerna run bundle"
   },
   "dependencies": {
