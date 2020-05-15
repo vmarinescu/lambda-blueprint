@@ -4,14 +4,13 @@
   "scripts": {
     "clean": "rm -rf dist node_modules",
     "test:unit": "jest unit",
-    "test:int": "jest int --testTimeout=10000 --setupFiles dotenv/config",
+    "test:int": "jest int --testTimeout=10000",
     "test:e2e": "jest e2e --testTimeout=10000",
-    "prepare": "tsc",
-    "bundle": "webpack --config webpack.js"
+    "bundle": "webpack --config webpack.js",
+    "prepare": "tsc"
   },
   "dependencies": {
     "@serverless-blueprint/core": "0.0.0",
-    "@hapi/joi": "^17.1.1",
     "uuid": "^8.0.0"
   }
 }

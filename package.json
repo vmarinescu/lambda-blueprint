@@ -21,7 +21,7 @@
     "bundle": "lerna run bundle"
   },
   "dependencies": {
-    "aws-sdk": "^2.675.0"
+    "aws-sdk": "^2.677.0"
   },
   "devDependencies": {
     "typescript": "^3.9.2",
@@ -61,7 +61,6 @@
     "@types/jest": "^25.2.1",
     "@types/node": "^14.0.1",
     "@types/uuid": "^7.0.3",
-    "@types/hapi__joi": "^17.1.0",
     "//7": [
       "---------------> devDependencies for ..."
     ],
@@ -74,6 +73,7 @@
   },
   "husky": {
     "hooks": {
+      "commit-msg": "",
       "pre-commit": "lint-staged"
     }
   }
