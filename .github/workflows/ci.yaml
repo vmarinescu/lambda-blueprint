@@ -19,9 +19,9 @@ jobs:
       - run: npm run bundle # Webpack
 
 #     - run: npm run deploy:test
-#     - run: NODE_ENV=test npm run test:e2e
+      - run: NODE_ENV=test npm run test:e2e
 
 #     - run: npm run deploy:prod
-#     - run: NODE_ENV=prod npm run test:e2e
+      - run: NODE_ENV=prod npm run test:e2e
 
 #     ToDo: Canary-Releases?
