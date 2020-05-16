@@ -3,9 +3,9 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf dist node_modules",
-    "test:ut": "jest ut",
-    "test:it": "jest it --testTimeout=10000 --passWithNoTests",
-    "test:e2": "jest e2 --testTimeout=10000 --passWithNoTests",
+    "test:unt": "jest /unt",
+    "test:int": "jest /int --testTimeout=10000 --passWithNoTests",
+    "test:e2e": "jest /e2e --testTimeout=10000 --passWithNoTests",
     "bundle": "webpack --config webpack.js",
     "prepare": "tsc"
   },
