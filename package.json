@@ -22,7 +22,7 @@
     "test": "lerna run test"
   },
   "dependencies": {
-    "aws-sdk": "^2.677.0"
+    "aws-sdk": "^2.678.0"
   },
   "devDependencies": {
     "typescript": "^3.9.2",
@@ -33,14 +33,14 @@
     "//2": [
       "---------------> devDependencies for IaC"
     ],
-    "@aws-cdk/aws-wafv2": "^1.38.0",
-    "@aws-cdk/core": "^1.38.0",
-    "@aws-cdk/aws-ssm": "^1.38.0",
-    "@aws-cdk/aws-events": "^1.38.0",
-    "@aws-cdk/aws-lambda": "^1.38.0",
-    "@aws-cdk/aws-dynamodb": "^1.38.0",
-    "@aws-cdk/aws-apigateway": "^1.38.0",
-    "aws-cdk": "^1.38.0",
+    "@aws-cdk/aws-wafv2": "^1.39.0",
+    "@aws-cdk/core": "^1.39.0",
+    "@aws-cdk/aws-ssm": "^1.39.0",
+    "@aws-cdk/aws-events": "^1.39.0",
+    "@aws-cdk/aws-lambda": "^1.39.0",
+    "@aws-cdk/aws-dynamodb": "^1.39.0",
+    "@aws-cdk/aws-apigateway": "^1.39.0",
+    "aws-cdk": "^1.39.0",
     "//3": [
       "---------------> devDependencies for bundler"
     ],
@@ -53,13 +53,13 @@
       "---------------> devDependencies for testing"
     ],
     "dotenv": "^8.2.0",
-    "ts-jest": "^25.5.0",
-    "jest": "^25.5.0",
+    "ts-jest": "^26.0.0",
+    "jest": "^26.0.0",
     "//6": [
       "---------------> devDependencies for types"
     ],
     "@types/aws-lambda": "^8.10.51",
-    "@types/jest": "^25.2.1",
+    "@types/jest": "^25.2.2",
     "@types/node": "^14.0.1",
     "@types/uuid": "^7.0.3",
     "//7": [
