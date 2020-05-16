@@ -1,7 +1,11 @@
-export interface Customer {
-  id:   string;
-  name: string;
+import * as t from "io-ts";
 
-  createdAt: string;
-  updatedAt: string;
-}
+export const Customer = t.type({
+  id:   t.string,
+  name: t.string,
+
+  createdAt: t.string,
+  updatedAt: t.string,
+});
+
+export type  Customer = t.TypeOf<typeof Customer>;

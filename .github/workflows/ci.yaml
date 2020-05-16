@@ -11,13 +11,18 @@ jobs:
         with:
           node-version: '12.x'
       - run: npm install
+
       - run: npm run build
-      - run: npm run test:unit
+      - run: npm run test
+
       - run: npm run test:int
-      - run: npm run bundle
+
+      - run: npm run bundle # Webpack
+
 #     - run: npm run deploy:test
 #     - run: NODE_ENV=test npm run test:e2e
+
 #     - run: npm run deploy:prod
 #     - run: NODE_ENV=prod npm run test:e2e
 
-#     ToDo: blue-green deployments?
+#     ToDo: Canary-Releases?

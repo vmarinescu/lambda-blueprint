@@ -5,10 +5,10 @@ module.exports = {
   entry: {
     "create-lambda": "./dist/create-lambda.js",
     "get-lambda":    "./dist/get-lambda.js",
-//  "update-lambda": "./dist/update-lambda.js",
-//  "delete-lambda": "./dist/delete-lambda.js",
+    "update-lambda": "./dist/update-lambda.js",
+    "delete-lambda": "./dist/delete-lambda.js",
   },
   output: {
-    filename: "[name]-bundle.js",
+    filename: "[name]-bundle.js", // ---> Output to ./dist
   },
 };

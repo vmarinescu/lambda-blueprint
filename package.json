@@ -2,11 +2,12 @@
   "name": "serverless-blueprint",
   "private": true,
   "keywords": [
-    "monorepo",
-    "serverless",
     "aws",
+    "serverless",
     "javascript",
-    "typescript"
+    "typescript",
+    "monorepo",
+    "ddd"
   ],
   "scripts": {
     "build": "lerna bootstrap",
@@ -17,8 +18,8 @@
     "remove:test": "cdk destroy -c ENV=test",
     "deploy:prod": "cdk deploy  -c ENV=prod",
     "remove:prod": "cdk destroy -c ENV=prod",
-    "test:unit": "lerna run test:unit",
-    "bundle": "lerna run bundle"
+    "bundle": "lerna run bundle",
+    "test": "lerna run test"
   },
   "dependencies": {
     "aws-sdk": "^2.677.0"
@@ -73,7 +74,6 @@
   },
   "husky": {
     "hooks": {
-      "commit-msg": "",
       "pre-commit": "lint-staged"
     }
   }

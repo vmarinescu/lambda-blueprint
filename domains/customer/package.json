@@ -3,14 +3,16 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf dist node_modules",
-    "test:unit": "jest unit",
-    "test:int": "jest int --testTimeout=10000",
-    "test:e2e": "jest e2e --testTimeout=10000",
+    "test": "jest unit",
+    "test:int": "jest int --testTimeout=10000 --passWithNoTests",
+    "test:e2e": "jest e2e --testTimeout=10000 --passWithNoTests",
     "bundle": "webpack --config webpack.js",
     "prepare": "tsc"
   },
   "dependencies": {
     "@serverless-blueprint/core": "0.0.0",
+    "fp-ts": "^2.6.1",
+    "io-ts": "^2.2.2",
     "uuid": "^8.0.0"
   }
 }
