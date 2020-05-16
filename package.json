@@ -12,14 +12,14 @@
   "scripts": {
     "build": "lerna bootstrap",
     "clean": "lerna run clean && rm -rf dist node_modules",
-    "test:int": "lerna run test:int",
-    "test:e2e": "lerna run test:e2e",
+    "test:ut": "lerna run test:ut",
+    "test:it": "lerna run test:it",
+    "test:e2": "lerna run test:e2",
     "deploy:test": "cdk deploy  -c ENV=test",
     "remove:test": "cdk destroy -c ENV=test",
     "deploy:prod": "cdk deploy  -c ENV=prod",
     "remove:prod": "cdk destroy -c ENV=prod",
-    "bundle": "lerna run bundle",
-    "test": "lerna run test"
+    "bundle": "lerna run bundle"
   },
   "dependencies": {
     "aws-sdk": "^2.678.0"
