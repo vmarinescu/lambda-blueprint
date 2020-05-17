@@ -30,12 +30,45 @@ export class CrudRepository<T = any> {
     });
   }
 
-  async create(item: T): Promise<void> {}
+  async create(item: T): Promise<void> {
+    const params = {
+      TableName: this.tableName,
+      Item: item,
+    };
+    try {
+      await this.client.put(params).promise();
+    } catch (error) {
+      // ...
+      throw error;
+    }
+  }
 
-  // @ts-ignore
-  async findBy(keys: Partial<T>): Promise<T> {}
+  async findBy(keys: Partial<T>): Promise<T> {
+    const params = {
+      TableName: this.tableName,
+      Key: keys,
+    };
+    try {
+      const found = await this.client.get(params).promise();
+      return found.Item as T;
+    } catch (error) {
+      // ...
+      throw error;
+    }
+  }
 
   async update(keys: Partial<T>, item: T): Promise<void> {}
 
-  async delete(keys: Partial<T>): Promise<void> {}
+  async delete(keys: Partial<T>): Promise<void> {
+    const params = {
+      TableName: this.tableName,
+      Key: keys,
+    };
+    try {
+      await this.client.delete(params).promise();
+    } catch (error) {
+      // ...
+      throw error;
+    }
+  }
 }
