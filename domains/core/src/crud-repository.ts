@@ -8,32 +8,32 @@ export const TABLE_NAME = "TABLE_NAME";
  * const options = CrudRepositoryOptions.of(process.env);
  */
 export class CrudRepositoryOptions {
-  tableName:       string;
-  dbClientOptions: DynamoDB.Types.ClientConfiguration;
+  tableName:     string;
+  clientOptions: DynamoDB.Types.ClientConfiguration;
 
   static of = (record: Record<string, any>): CrudRepositoryOptions => {
     return {
-      tableName:       record[TABLE_NAME] as string,
-      dbClientOptions: {}, // ...
+      tableName:     record[TABLE_NAME] as string,
+      clientOptions: {}, // ...
     };
   }
 }
 
 export class CrudRepository<T = any> {
   private tableName: string;
-  private dbClient:  DynamoDB.DocumentClient;
+  private client:    DynamoDB.DocumentClient;
 
   constructor(options: CrudRepositoryOptions) {
     this.tableName = options.tableName;
-    this.dbClient  = new DynamoDB.DocumentClient({
-      ...options.dbClientOptions,
+    this.client    = new DynamoDB.DocumentClient({
+      ...options.clientOptions,
     });
   }
 
   async create(item: T): Promise<void> {}
 
   // @ts-ignore
-  async get(keys: Partial<T>): Promise<T> {}
+  async findBy(keys: Partial<T>): Promise<T> {}
 
   async update(keys: Partial<T>, item: T): Promise<void> {}
 
