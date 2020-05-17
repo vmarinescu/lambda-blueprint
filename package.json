@@ -52,6 +52,7 @@
     "//5": [
       "---------------> devDependencies for testing"
     ],
+    "artillery": "^1.6.0",
     "dotenv": "^8.2.0",
     "ts-jest": "^26.0.0",
     "jest": "^26.0.0",
