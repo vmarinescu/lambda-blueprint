@@ -8,13 +8,13 @@ export const TABLE_NAME = "TABLE_NAME";
  * const options = CrudRepositoryOptions.of(process.env);
  */
 export class CrudRepositoryOptions {
-  tableName: string;
-  dbOptions:  DynamoDB.Types.ClientConfiguration;
+  tableName:       string;
+  dbClientOptions: DynamoDB.Types.ClientConfiguration;
 
   static of = (record: Record<string, any>): CrudRepositoryOptions => {
     return {
-      tableName: record[TABLE_NAME] as string,
-      dbOptions: {}, // ...
+      tableName:       record[TABLE_NAME] as string,
+      dbClientOptions: {}, // ...
     };
   }
 }
@@ -26,7 +26,7 @@ export class CrudRepository<T = any> {
   constructor(options: CrudRepositoryOptions) {
     this.tableName = options.tableName;
     this.dbClient  = new DynamoDB.DocumentClient({
-      ...options.dbOptions,
+      ...options.dbClientOptions,
     });
   }
 
