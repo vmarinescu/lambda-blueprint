@@ -1,6 +1,7 @@
 import DynamoDB from "aws-sdk/clients/dynamodb";
 
 export const TABLE_NAME = "TABLE_NAME";
+// ...
 
 /**
  * @example
@@ -8,7 +9,7 @@ export const TABLE_NAME = "TABLE_NAME";
  */
 export class CrudRepositoryOptions {
   tableName: string;
-  dbOptions: DynamoDB.Types.ClientConfiguration;
+  dbOptions:  DynamoDB.Types.ClientConfiguration;
 
   static of = (record: Record<string, any>): CrudRepositoryOptions => {
     return {
@@ -20,11 +21,11 @@ export class CrudRepositoryOptions {
 
 export class CrudRepository<T = any> {
   private tableName: string;
-  private docClient: DynamoDB.DocumentClient;
+  private dbClient:  DynamoDB.DocumentClient;
 
   constructor(options: CrudRepositoryOptions) {
     this.tableName = options.tableName;
-    this.docClient = new DynamoDB.DocumentClient({
+    this.dbClient  = new DynamoDB.DocumentClient({
       ...options.dbOptions,
     });
   }
@@ -32,7 +33,7 @@ export class CrudRepository<T = any> {
   async create(item: T): Promise<void> {}
 
   // @ts-ignore
-  async read(keys: Partial<T>): Promise<T> {}
+  async get(keys: Partial<T>): Promise<T> {}
 
   async update(keys: Partial<T>, item: T): Promise<void> {}
 
