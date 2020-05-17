@@ -3,29 +3,14 @@ import DynamoDB from "aws-sdk/clients/dynamodb";
 export const TABLE_NAME = "TABLE_NAME";
 // ...
 
-/**
- * @example
- * const configuration = CrudRepositoryConfiguration.of(process.env);
- */
-export class CrudRepositoryConfiguration {
-  tableName:           string;
-  clientConfiguration: DynamoDB.Types.ClientConfiguration;
-
-  static of = (record: Record<string, string>): CrudRepositoryConfiguration => {
-    return {
-      tableName:           record[TABLE_NAME],
-      clientConfiguration: {}, // Todo
-    };
-  }
-}
-
 export class CrudRepository<T = any> {
   private tableName: string;
   private client:    DynamoDB.DocumentClient;
 
-  constructor(configuration: CrudRepositoryConfiguration) {
-    this.tableName = configuration.tableName;
-    this.client    = new DynamoDB.DocumentClient(configuration.clientConfiguration);
+  constructor(configService: object) {
+    // Todo
+    this.tableName = "";
+    this.client    = new DynamoDB.DocumentClient({});
   }
 
   async put(item: T): Promise<void> {
