@@ -12,9 +12,9 @@
   "scripts": {
     "build": "lerna bootstrap",
     "clean": "lerna run clean && rm -rf dist node_modules",
-    "test:unt": "lerna run test:unt",
-    "test:int": "lerna run test:int",
-    "test:e2e": "lerna run test:e2e",
+    "test:ut": "lerna run test:ut",
+    "test:it": "lerna run test:it",
+    "test:ee": "lerna run test:ee",
     "deploy:test": "cdk deploy  -c ENV=test",
     "remove:test": "cdk destroy -c ENV=test",
     "deploy:prod": "cdk deploy  -c ENV=prod",
