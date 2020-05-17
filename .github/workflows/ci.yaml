@@ -13,15 +13,17 @@ jobs:
       - run: npm install
 
       - run: npm run test:unit
-      - run: npm run test:intg
 
       - run: npm run build
       - run: npm run bundle # Webpack
 
+#     - run: sam local ...
+      - run: npm run test:int
+
 #     - run: npm run deploy:test
-      - run: ENV=test npm run test:e2e
+      - run: ENV=test npm run test:e2e # when branch is ...
 
 #     - run: npm run deploy:prod
-      - run: ENV=prod npm run test:e2e
+      - run: ENV=prod npm run test:e2e # when branch is ...
 
 #     ToDo: Canary-Releases?

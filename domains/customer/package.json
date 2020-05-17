@@ -2,9 +2,9 @@
   "name": "@serverless-blueprint/customer",
   "private": true,
   "scripts": {
-    "clean": "rm -rf dist node_modules",
     "test:unit": "jest /unit --passWithNoTests",
-    "test:intg": "jest /intg --passWithNoTests",
+    "clean": "rm -rf dist node_modules",
+    "test:int": "jest /int --passWithNoTests",
     "test:e2e": "jest /e2e --passWithNoTests",
     "bundle": "webpack --config webpack.js",
     "prepare": "tsc"
