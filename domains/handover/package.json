@@ -3,9 +3,9 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf dist node_modules",
-    "test:ut": "jest /ut --passWithNoTests --setupFiles dotenv/config",
-    "test:it": "jest /it --passWithNoTests --setupFiles dotenv/config",
-    "test:ee": "jest /ee --passWithNoTests",
+    "test:unit": "jest /unit --passWithNoTests --setupFiles dotenv/config",
+    "test:intg": "jest /intg --passWithNoTests --setupFiles dotenv/config",
+    "test:e2e": "jest /e2e --passWithNoTests",
     "bundle": "webpack --config webpack.js",
     "prepare": "tsc"
   },
