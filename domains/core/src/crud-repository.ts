@@ -25,9 +25,7 @@ export class CrudRepository<T = any> {
 
   constructor(options: CrudRepositoryOptions) {
     this.tableName = options.tableName;
-    this.client    = new DynamoDB.DocumentClient({
-      ...options.clientOptions,
-    });
+    this.client    = new DynamoDB.DocumentClient(options.clientOptions);
   }
 
   async create(item: T): Promise<void> {
