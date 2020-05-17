@@ -33,4 +33,4 @@ jobs:
       - run: ENV=prod npm run test:e2e
         if: github.ref == 'refs/heads/master'
 
-#     ToDo: Canary-Releases?
+#     ToDo: Blue-Green?

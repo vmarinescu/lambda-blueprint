@@ -17,9 +17,11 @@ jobs:
           node-version: '12.x'
       - run: npm install
 
-      - run: npm run test:unit
-
       - run: npm run build
+
+      - run: npm run test:unit
 
 #     - run: sam local ...
 #     - run: npm run test:intg
+
+#     Todo: Tags?
