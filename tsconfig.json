@@ -7,6 +7,7 @@
     "resolveJsonModule": true,
     "emitDecoratorMetadata":  true,
     "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
     "strict": true
   }
 }

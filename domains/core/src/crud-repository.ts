@@ -1,8 +1,21 @@
 import DynamoDB from "aws-sdk/clients/dynamodb";
 
-export interface CrudRepositoryOptions {
+export const TABLE_NAME = "TABLE_NAME";
+
+/**
+ * @example
+ * const options = CrudRepositoryOptions.of(process.env);
+ */
+export class CrudRepositoryOptions {
   tableName: string;
   dbOptions: DynamoDB.Types.ClientConfiguration;
+
+  static of = (record: Record<string, any>): CrudRepositoryOptions => {
+    return {
+      tableName: record[TABLE_NAME] as string,
+      dbOptions: {}, // ...
+    };
+  }
 }
 
 export class CrudRepository<T = any> {
