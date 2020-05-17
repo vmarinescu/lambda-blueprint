@@ -11,10 +11,10 @@ export class CrudRepositoryConfiguration {
   tableName:           string;
   clientConfiguration: DynamoDB.Types.ClientConfiguration;
 
-  static of = (record: Record<string, any>): CrudRepositoryConfiguration => {
+  static of = (record: Record<string, string>): CrudRepositoryConfiguration => {
     return {
-      tableName:           record[TABLE_NAME] as string,
-      clientConfiguration: {}, // ...
+      tableName:           record[TABLE_NAME],
+      clientConfiguration: {}, // Todo
     };
   }
 }
@@ -28,21 +28,21 @@ export class CrudRepository<T = any> {
     this.client    = new DynamoDB.DocumentClient(configuration.clientConfiguration);
   }
 
-  async create(item: T): Promise<void> {
-    const params = {
+  async put(item: T): Promise<void> {
+    const params: DynamoDB.DocumentClient.PutItemInput = {
       TableName: this.tableName,
       Item: item,
     };
     try {
       await this.client.put(params).promise();
     } catch (error) {
-      // ...
+      // Todo
       throw error;
     }
   }
 
-  async findBy(keys: Partial<T>): Promise<T> {
-    const params = {
+  async get(keys: Partial<T>): Promise<T> {
+    const params: DynamoDB.DocumentClient.GetItemInput = {
       TableName: this.tableName,
       Key: keys,
     };
@@ -50,22 +50,36 @@ export class CrudRepository<T = any> {
       const  found = await this.client.get(params).promise();
       return found.Item as T;
     } catch (error) {
-      // ...
+      // Todo
       throw error;
     }
   }
 
-  async update(keys: Partial<T>, item: T): Promise<void> {}
+  async update(keys: Partial<T>, item: T): Promise<void> {
+    const params: DynamoDB.DocumentClient.UpdateItemInput = {
+      TableName: this.tableName,
+      Key: keys,
+      UpdateExpression: "",
+      ExpressionAttributeNames:  {},
+      ExpressionAttributeValues: {}, // Todo
+    };
+    try {
+      await this.client.update(params).promise();
+    } catch (error) {
+      // Todo
+      throw error;
+    }
+  }
 
   async delete(keys: Partial<T>): Promise<void> {
-    const params = {
+    const params: DynamoDB.DocumentClient.DeleteItemInput = {
       TableName: this.tableName,
       Key: keys,
     };
     try {
       await this.client.delete(params).promise();
     } catch (error) {
-      // ...
+      // Todo
       throw error;
     }
   }

@@ -4,9 +4,9 @@
   "scripts": {
     "test:unit": "jest /unit --passWithNoTests",
     "clean": "rm -rf dist node_modules",
+    "bundle": "webpack --config webpack.js",
     "test:int": "jest /int --passWithNoTests",
     "test:e2e": "jest /e2e --passWithNoTests",
-    "bundle": "webpack --config webpack.js",
     "prepare": "tsc"
   },
   "dependencies": {
