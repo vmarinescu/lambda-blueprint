@@ -5,16 +5,16 @@ export const TABLE_NAME = "TABLE_NAME";
 
 /**
  * @example
- * const options = CrudRepositoryOptions.of(process.env);
+ * const configuration = CrudRepositoryConfiguration.of(process.env);
  */
-export class CrudRepositoryOptions {
-  tableName:     string;
-  clientOptions: DynamoDB.Types.ClientConfiguration;
+export class CrudRepositoryConfiguration {
+  tableName:           string;
+  clientConfiguration: DynamoDB.Types.ClientConfiguration;
 
-  static of = (record: Record<string, any>): CrudRepositoryOptions => {
+  static of = (record: Record<string, any>): CrudRepositoryConfiguration => {
     return {
-      tableName:     record[TABLE_NAME] as string,
-      clientOptions: {}, // ...
+      tableName:           record[TABLE_NAME] as string,
+      clientConfiguration: {}, // ...
     };
   }
 }
@@ -23,9 +23,9 @@ export class CrudRepository<T = any> {
   private tableName: string;
   private client:    DynamoDB.DocumentClient;
 
-  constructor(options: CrudRepositoryOptions) {
-    this.tableName = options.tableName;
-    this.client    = new DynamoDB.DocumentClient(options.clientOptions);
+  constructor(configuration: CrudRepositoryConfiguration) {
+    this.tableName = configuration.tableName;
+    this.client    = new DynamoDB.DocumentClient(configuration.clientConfiguration);
   }
 
   async create(item: T): Promise<void> {
