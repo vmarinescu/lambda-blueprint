@@ -5,8 +5,8 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "clean": "rm -rf dist node_modules",
-    "test:unit": "jest /unit --passWithNoTests --setupFiles dotenv/config",
-    "test:intg": "jest /intg --passWithNoTests --setupFiles dotenv/config",
+    "test:unit": "jest /unit --passWithNoTests",
+    "test:intg": "jest /intg --passWithNoTests",
     "test:e2e": "jest /e2e --passWithNoTests",
     "prepare": "tsc"
   }
