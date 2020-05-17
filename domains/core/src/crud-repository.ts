@@ -49,7 +49,7 @@ export class CrudRepository<T = any> {
       Key: keys,
     };
     try {
-      const found = await this.client.get(params).promise();
+      const  found = await this.client.get(params).promise();
       return found.Item as T;
     } catch (error) {
       // ...
