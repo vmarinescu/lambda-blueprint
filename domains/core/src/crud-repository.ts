@@ -1,16 +1,17 @@
 import DynamoDB from "aws-sdk/clients/dynamodb";
 
+// env-vars
 export const TABLE_NAME = "TABLE_NAME";
 // ...
 
 export class CrudRepository<T = any> {
-  private tableName: string;
-  private client:    DynamoDB.DocumentClient;
+  private tableName:      string;
+  private documentClient: DynamoDB.DocumentClient;
 
-  constructor(configService: object) {
+  constructor() {
     // Todo
-    this.tableName = "";
-    this.client    = new DynamoDB.DocumentClient({});
+    this.tableName      = "";
+    this.documentClient = new DynamoDB.DocumentClient({});
   }
 
   async put(item: T): Promise<void> {
@@ -19,7 +20,7 @@ export class CrudRepository<T = any> {
       Item: item,
     };
     try {
-      await this.client.put(params).promise();
+      await this.documentClient.put(params).promise();
     } catch (error) {
       // Todo
       throw error;
@@ -32,7 +33,7 @@ export class CrudRepository<T = any> {
       Key: keys,
     };
     try {
-      const  found = await this.client.get(params).promise();
+      const  found = await this.documentClient.get(params).promise();
       return found.Item as T;
     } catch (error) {
       // Todo
@@ -49,7 +50,7 @@ export class CrudRepository<T = any> {
       ExpressionAttributeValues: {}, // Todo
     };
     try {
-      await this.client.update(params).promise();
+      await this.documentClient.update(params).promise();
     } catch (error) {
       // Todo
       throw error;
@@ -62,7 +63,7 @@ export class CrudRepository<T = any> {
       Key: keys,
     };
     try {
-      await this.client.delete(params).promise();
+      await this.documentClient.delete(params).promise();
     } catch (error) {
       // Todo
       throw error;
