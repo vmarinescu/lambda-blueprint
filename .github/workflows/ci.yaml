@@ -1,9 +1,14 @@
-name: Node.js CI
+name: CI
 
-on: [push]
+on:
+  pull_request:
+  push:
+    branches:
+    - '!master'
+    - '!develop'
 
 jobs:
-  build:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,15 +20,6 @@ jobs:
       - run: npm run test:unit
 
       - run: npm run build
-      - run: npm run bundle # Webpack
 
 #     - run: sam local ...
-      - run: npm run test:int
-
-#     - run: npm run deploy:test
-      - run: ENV=test npm run test:e2e # when branch is ...
-
-#     - run: npm run deploy:prod
-      - run: ENV=prod npm run test:e2e # when branch is ...
-
-#     ToDo: Canary-Releases?
+#     - run: npm run test:intg
