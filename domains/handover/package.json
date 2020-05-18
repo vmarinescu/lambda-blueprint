@@ -3,15 +3,17 @@
   "private": true,
   "scripts": {
     "test:unit": "jest /unit --passWithNoTests",
+    "test:intr": "jest /intr --passWithNoTests",
     "clean": "rm -rf dist node_modules",
     "bundle": "webpack --config webpack.js",
-    "test:int": "jest /int --passWithNoTests",
     "test:e2e": "jest /e2e --passWithNoTests",
     "prepare": "tsc"
   },
+  "devDependencies": {
+    "@serverless-blueprint/test": "0.0.0"
+  },
   "dependencies": {
     "@serverless-blueprint/core": "0.0.0",
-    "got": "^11.1.4",
     "fp-ts": "^2.6.1",
     "io-ts": "^2.2.2",
     "uuid": "^8.0.0"

@@ -1,5 +1,5 @@
 {
-  "name": "@serverless-blueprint/core",
+  "name": "@serverless-blueprint/test",
   "version": "0.0.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",

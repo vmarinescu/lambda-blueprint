@@ -1,4 +1,4 @@
 export * from "./errors/error-400";
 export * from "./errors/error-404";
 
-export * from "./crud-repository";
+export * from "./dynamodb";

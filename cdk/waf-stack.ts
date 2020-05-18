@@ -1,6 +1,6 @@
-import * as apigateway from "@aws-cdk/aws-apigateway";
-import * as wafv2 from "@aws-cdk/aws-wafv2";
-import * as cdk from "@aws-cdk/core";
+import apigateway from "@aws-cdk/aws-apigateway";
+import wafv2 from "@aws-cdk/aws-wafv2";
+import cdk from "@aws-cdk/core";
 
 export class WafStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
@@ -75,7 +75,7 @@ export class WafStack extends cdk.Stack {
 
     // See here: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webaclassociation.html#cfn-wafv2-webaclassociation-resourcearn
     const region = cdk.Stack.of(this).region;
-    const arn = `arn:aws:apigateway:${region}::/restapis/${testApi.restApiId}/stages/${testApi.deploymentStage.stageName}`;
+    const arn    = `arn:aws:apigateway:${region}::/restapis/${testApi.restApiId}/stages/${testApi.deploymentStage.stageName}`;
 
     new wafv2.CfnWebACLAssociation(this, "WebAclAssociation", {
       webAclArn:   webAcl.attrArn,
