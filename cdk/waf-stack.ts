@@ -22,22 +22,6 @@ export class WafStack extends cdk.Stack {
           visibilityConfig: {
             sampledRequestsEnabled:   true,
             cloudWatchMetricsEnabled: true,
-            metricName: "AWS-AWSManagedRulesAmazonIpReputationList",
-          },
-          name: "AWS-AWSManagedRulesAmazonIpReputationList",
-          statement: {
-            managedRuleGroupStatement: {
-              vendorName: "AWS",
-              name: "AWSManagedRulesAmazonIpReputationList",
-            },
-          },
-        },
-        {
-          priority: 2,
-          overrideAction: { none: {} },
-          visibilityConfig: {
-            sampledRequestsEnabled:   true,
-            cloudWatchMetricsEnabled: true,
             metricName: "AWS-AWSManagedRulesCommonRuleSet",
           },
           name: "AWS-AWSManagedRulesCommonRuleSet",
@@ -48,22 +32,7 @@ export class WafStack extends cdk.Stack {
             },
           },
         },
-        {
-          priority: 3,
-          overrideAction: { none: {} },
-          visibilityConfig: {
-            sampledRequestsEnabled:   true,
-            cloudWatchMetricsEnabled: true,
-            metricName: "AWS-AWSManagedRulesKnownBadInputsRuleSet",
-          },
-          name: "AWS-AWSManagedRulesKnownBadInputsRuleSet",
-          statement: {
-            managedRuleGroupStatement: {
-              vendorName: "AWS",
-              name: "AWSManagedRulesKnownBadInputsRuleSet",
-            },
-          },
-        },
+        // ...
       ],
       scope: "REGIONAL",
       visibilityConfig: {

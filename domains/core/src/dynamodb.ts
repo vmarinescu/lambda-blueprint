@@ -2,11 +2,11 @@ import DynamoDB from "aws-sdk/clients/dynamodb";
 
 // env-vars
 export const TABLE_NAME = "TABLE_NAME";
-// ...
+// Todo
 
 export class CrudRepository<T = any> {
-  private tableName:      string;
-  private documentClient: DynamoDB.DocumentClient;
+  private readonly tableName:      string;
+  private readonly documentClient: DynamoDB.DocumentClient;
 
   constructor() {
     // Todo

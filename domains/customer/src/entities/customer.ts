@@ -1,11 +1,13 @@
-import * as t from "io-ts";
+import * as iots from "io-ts";
+import { AuditableEntity } from "@serverless-blueprint/core";
 
-export const Customer = t.type({
-  id:   t.string,
-  name: t.string,
+export const Customer = iots.intersection([
+  AuditableEntity,
+  // ...
+  iots.interface({
+    id:   iots.string,
+    name: iots.string,
+  }),
+]);
 
-  createdAt: t.string,
-  updatedAt: t.string,
-});
-
-export type  Customer = t.TypeOf<typeof Customer>;
+export type  Customer = iots.TypeOf<typeof Customer>;

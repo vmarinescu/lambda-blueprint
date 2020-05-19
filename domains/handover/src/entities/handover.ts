@@ -1,11 +1,13 @@
-import * as t from "io-ts";
+import * as iots from "io-ts";
+import { AuditableEntity } from "@serverless-blueprint/core";
 
-export const Handover = t.type({
-  id:   t.string,
-  name: t.string,
+export const Handover = iots.intersection([
+  AuditableEntity,
+  // ...
+  iots.interface({
+    id:   iots.string,
+    name: iots.string,
+  }),
+]);
 
-  createdAt: t.string,
-  updatedAt: t.string,
-});
-
-export type  Handover = t.TypeOf<typeof Handover>;
+export type  Handover = iots.TypeOf<typeof Handover>;
