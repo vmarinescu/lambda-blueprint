@@ -33,9 +33,10 @@ export class CrudRepository<T = any> {
 
   /**
    * Gets a single item by the given primary key by delegating to AWS.DynamoDB.getItem().
+   * Returns undefined when item has not been found.
    * @param keys
    */
-  async get(keys: Partial<T>): Promise<T> {
+  async get(keys: Partial<T>): Promise<T | undefined> {
     const params: DynamoDB.DocumentClient.GetItemInput = {
       TableName: this.tableName,
       Key: keys,
