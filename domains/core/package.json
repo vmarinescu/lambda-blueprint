@@ -7,9 +7,5 @@
     "test:unit": "jest /unit --passWithNoTests",
     "clean": "rm -rf dist node_modules",
     "prepare": "tsc"
-  },
-  "dependencies": {
-    "fp-ts": "^2.6.1",
-    "io-ts": "^2.2.2"
   }
 }
