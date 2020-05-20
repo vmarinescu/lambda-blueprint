@@ -1,4 +1,4 @@
-import { CrudRepository, Error404, Error500 } from "@serverless-blueprint/core";
+import { CrudRepository, Error404 } from "@serverless-blueprint/core";
 import { pipe } from "fp-ts/lib/pipeable"
 import { fold } from "fp-ts/lib/Either"
 import { v4 as uuidv4 } from "uuid";
@@ -21,16 +21,16 @@ export class Service {
       updatedAt: date.toISOString(),
       ...createDto,
     };
-    await pipe(
+    pipe(
       Handover.decode(handover),
       fold(
         // failure handler
-        async () => {
-          throw new Error500(); // Todo?
+        () => {
+          Promise.reject(); // Todo?
         },
         // success handler
-        async () => {
-          await this.crudRepository.put(handover);
+        () => {
+          return this.crudRepository.put(handover);
         },
       )
     );
@@ -38,12 +38,13 @@ export class Service {
 
   async deleteHandover(id: string): Promise<void> {
     const keys: Partial<Handover> = { id: id };
-    await this.crudRepository.delete(keys);
+    return this.crudRepository.delete(keys);
   }
 
   async getHandover(id: string): Promise<GetDto> {
     const keys: Partial<Handover> = { id: id };
-    const found = await this.crudRepository.get(keys);
+    const found =
+      await this.crudRepository.get(keys).catch((reason) => Promise.reject(reason));
     if (!found) { throw new Error404(); }
 
     const { createdAt, updatedAt, ...getDto } = found;
