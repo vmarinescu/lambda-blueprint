@@ -26,7 +26,7 @@ export class Service {
       fold(
         // failure handler
         async () => {
-          throw new Error500(); // Todo ...
+          throw new Error500(); // Todo?
         },
         // success handler
         async () => {
@@ -34,7 +34,6 @@ export class Service {
         },
       )
     );
-    // Todo ...
   }
 
   async deleteHandover(id: string): Promise<void> {
