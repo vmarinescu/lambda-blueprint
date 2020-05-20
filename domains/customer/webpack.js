@@ -9,6 +9,6 @@ module.exports = {
     "update-lambda": "./dist/update-lambda.js",
   },
   output: {
-    filename: "[name]-bundle.js", // ---> Output to ./dist
+    filename: "[name]-bundle.js",
   },
 };
