@@ -30,9 +30,7 @@ export class Service {
         },
         // success handler
         async () => {
-          await this.crudRepository
-            .put(handover)
-            .catch(() => { throw new Error500(); });
+          await this.crudRepository.put(handover);
         },
       )
     );
@@ -41,13 +39,12 @@ export class Service {
 
   async deleteHandover(id: string): Promise<void> {
     const keys: Partial<Handover> = { id: id };
-    await this.crudRepository.delete(keys).catch(() => { throw new Error500(); });
+    await this.crudRepository.delete(keys);
   }
 
   async getHandover(id: string): Promise<GetDto> {
     const keys: Partial<Handover> = { id: id };
-    const found =
-      await  this.crudRepository.get(keys).catch(() => { throw new Error500(); });
+    const found = await this.crudRepository.get(keys);
     if (!found) { throw new Error404(); }
 
     const { createdAt, updatedAt, ...getDto } = found;
