@@ -1,4 +1,4 @@
-import { CrudRepository, Error500 } from "@serverless-blueprint/core";
+import { CrudRepository, Error404, Error500 } from "@serverless-blueprint/core";
 import { pipe } from "fp-ts/lib/pipeable"
 import { fold } from "fp-ts/lib/Either"
 import { v4 as uuidv4 } from "uuid";
@@ -8,11 +8,9 @@ import { UpdateDto } from "./dtos/update-dto";
 import { Handover } from "./entities/handover";
 
 export class Service {
-  private crudRepository: CrudRepository<Handover>;
-
-  constructor(crudRepository: CrudRepository<Handover>) {
-    this.crudRepository = crudRepository;
-  }
+  constructor(
+    private crudRepository: CrudRepository<Handover>
+  ) {}
 
   async createHandover(createDto: CreateDto): Promise<void> {
     const date = new Date();
@@ -32,17 +30,29 @@ export class Service {
         },
         // success handler
         async () => {
-          await this.crudRepository.put(handover);
+          await this.crudRepository
+            .put(handover)
+            .catch(() => { throw new Error500(); });
         },
       )
     );
     // Todo ...
   }
 
-  async deleteHandover(id: string): Promise<void> {}
+  async deleteHandover(id: string): Promise<void> {
+    const keys: Partial<Handover> = { id: id };
+    await this.crudRepository.delete(keys).catch(() => { throw new Error500(); });
+  }
 
-  // @ts-ignore
-  async getHandover(id: string): Promise<GetDto> {}
+  async getHandover(id: string): Promise<GetDto> {
+    const keys: Partial<Handover> = { id: id };
+    const found =
+      await  this.crudRepository.get(keys).catch(() => { throw new Error500(); });
+    if (!found) { throw new Error404(); }
+
+    const { createdAt, updatedAt, ...getDto } = found;
+    return getDto;
+  }
 
   async updateHandover(id: string, updateDto: UpdateDto): Promise<void> {}
 }

@@ -7,7 +7,7 @@ export const Handover = iots.intersection([
   AuditableEntity,
   // ...
   iots.interface({
-    id:   iots.string,
+    id:   iots.string, // Partition-Key
     name: iots.string,
   }),
 ]);
