@@ -1,21 +1,20 @@
 import DynamoDB from "aws-sdk/clients/dynamodb";
 
-// env-vars
-export const TABLE_NAME = "TABLE_NAME";
-// Todo
+export interface CrudRepositoryOptions {
+  tableName: string;
+}
 
 export class CrudRepository<T = any> {
-  private readonly tableName:      string;
-  private readonly documentClient: DynamoDB.DocumentClient;
+  private tableName:      string;
+  private documentClient: DynamoDB.DocumentClient;
 
-  constructor() {
-    // Todo
-    this.tableName      = "";
+  constructor(options: CrudRepositoryOptions) {
+    this.tableName      = options.tableName;
     this.documentClient = new DynamoDB.DocumentClient({});
   }
 
   /**
-   * Puts a single item by delegating to AWS.DynamoDB.putItem().
+   * Puts a single item with the given primary key by delegating to AWS.DynamoDB.putItem().
    * @param item
    */
   async put(item: T): Promise<void> {
@@ -32,8 +31,7 @@ export class CrudRepository<T = any> {
   }
 
   /**
-   * Gets a single item by the given primary key by delegating to AWS.DynamoDB.getItem().
-   * Returns undefined when the item has not been found.
+   * Gets a single item with the given primary key by delegating to AWS.DynamoDB.getItem().
    * @param keys
    */
   async get(keys: Partial<T>): Promise<T | undefined> {
@@ -51,7 +49,7 @@ export class CrudRepository<T = any> {
   }
 
   /**
-   * Updates a single item by the given primary key by delegating to AWS.DynamoDB.updateItem().
+   * Updates a single item with the given primary key by delegating to AWS.DynamoDB.updateItem().
    * @param keys
    * @param item
    */
@@ -72,7 +70,7 @@ export class CrudRepository<T = any> {
   }
 
   /**
-   * Deletes a single item by the given primary key by delegating to AWS.DynamoDB.deleteItem().
+   * Deletes a single item with the given primary key by delegating to AWS.DynamoDB.deleteItem().
    * @param keys
    */
   async delete(keys: Partial<T>): Promise<void> {
