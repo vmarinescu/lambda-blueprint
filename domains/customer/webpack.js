@@ -1,7 +1,6 @@
 const webpack = require("../../webpack.js");
 
 module.exports = {
-  ...webpack,
   entry: {
     "create-lambda": "./dist/create-lambda.js",
     "delete-lambda": "./dist/delete-lambda.js",
@@ -11,4 +10,5 @@ module.exports = {
   output: {
     filename: "[name]-bundle.js", // ---> To ./dist
   },
+  ...webpack,
 };
