@@ -25,14 +25,10 @@ export class Service {
       Customer.decode(customer),
       fold(
         // failure handler
-        (reason) => {
-          return Promise.reject(reason); // Todo?
-        },
+        (reason) => Promise.reject(reason),
         // success handler
-        () => {
-          return this.crudRepository.put(customer);
-        },
-      )
+        (result) => this.crudRepository.put(customer),
+      ),
     );
   }
 

@@ -25,14 +25,10 @@ export class Service {
       Handover.decode(handover),
       fold(
         // failure handler
-        (reason) => {
-          return Promise.reject(reason); // Todo?
-        },
+        (reason) => Promise.reject(reason),
         // success handler
-        () => {
-          return this.crudRepository.put(handover);
-        },
-      )
+        (result) => this.crudRepository.put(handover),
+      ),
     );
   }
 
