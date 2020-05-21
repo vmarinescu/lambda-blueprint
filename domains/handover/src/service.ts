@@ -26,7 +26,7 @@ export class Service {
 
   async deleteHandover(id: string): Promise<void> {
     const keys: Partial<Handover> = { id: id };
-    return this.crudRepository.delete(keys);
+    return this.crudRepository.delete(keys); // Todo 404?
   }
 
   async getHandover(id: string): Promise<GetDto> {

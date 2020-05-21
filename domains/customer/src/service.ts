@@ -26,7 +26,7 @@ export class Service {
 
   async deleteCustomer(id: string): Promise<void> {
     const keys: Partial<Customer> = { id: id };
-    return this.crudRepository.delete(keys);
+    return this.crudRepository.delete(keys); // Todo 404?
   }
 
   async getCustomer(id: string): Promise<GetDto> {
