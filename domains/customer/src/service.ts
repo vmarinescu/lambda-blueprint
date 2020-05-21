@@ -52,9 +52,9 @@ export class Service {
 
   private async findCustomer(id: string): Promise<Customer> {
     const keys: Partial<Customer> = { id: id };
-    const found = await this.crudRepository.find(keys).catch((reason) => Promise.reject(reason));
-    if (!found) { throw new Error404(); }
-    return found;
+    const item = await this.crudRepository.find(keys).catch((reason) => Promise.reject(reason));
+    if (!item) { throw new Error404(); }
+    return item;
   }
 
   private async saveCustomer(customer: Customer): Promise<void> {
