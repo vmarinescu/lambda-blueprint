@@ -13,10 +13,10 @@ export class CrudRepository<T = any> {
   }
 
   /**
-   * Saves a single item with the given primary key by delegating to AWS.DynamoDB.putItem().
+   * Puts a single item with the given primary key by delegating to AWS.DynamoDB.putItem().
    * @param item
    */
-  async save(item: T): Promise<void> {
+  async put(item: T): Promise<void> {
     const params: DynamoDB.DocumentClient.PutItemInput = {
       TableName: this.tableName,
       Item: item,
@@ -30,10 +30,10 @@ export class CrudRepository<T = any> {
   }
 
   /**
-   * Finds a single item with the given primary key by delegating to AWS.DynamoDB.getItem().
+   * Gets a single item with the given primary key by delegating to AWS.DynamoDB.getItem().
    * @param keys
    */
-  async find(keys: Partial<T>): Promise<T | undefined> {
+  async get(keys: Partial<T>): Promise<T | undefined> {
     const params: DynamoDB.DocumentClient.GetItemInput = {
       TableName: this.tableName,
       Key: keys,
@@ -53,13 +53,23 @@ export class CrudRepository<T = any> {
    * @param item
    */
   async update(keys: Partial<T>, item: T): Promise<void> {
+    const itemKeys = Object.keys(item);
+    if (itemKeys.length < 1) {
+      return;
+    }
+    const itemKey0 = itemKeys .shift();
     const params: DynamoDB.DocumentClient.UpdateItemInput = {
       TableName: this.tableName,
       Key: keys,
-      UpdateExpression: "",
-      ExpressionAttributeNames:  {},
-      ExpressionAttributeValues: {}, // Todo
+      UpdateExpression: `set ${itemKey0} = :${itemKey0}`,
+      // @ts-ignore
+      ExpressionAttributeValues: { [`:${itemKey0}`]: item[itemKey0] },
     };
+    itemKeys.forEach((itemKeyX) => {
+      params.UpdateExpression += `, ${itemKeyX} = :${itemKeyX}`;
+      // @ts-ignore
+      params.ExpressionAttributeValues[`:${itemKeyX}`] = item[itemKeyX];
+    });
     try {
       await this.documentClient.update(params).promise();
     } catch (error) {

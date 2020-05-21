@@ -49,7 +49,7 @@ export class Service {
 
   private async findHandover(id: string): Promise<Handover> {
     const keys: Partial<Handover> = { id: id };
-    const item = await this.crudRepository.find(keys).catch((reason) => Promise.reject(reason));
+    const item = await this.crudRepository.get(keys).catch((reason) => Promise.reject(reason));
     if (!item) { throw new Error404(); }
     return item;
   }
@@ -61,7 +61,7 @@ export class Service {
         // failure handler
         (reason) => Promise.reject(reason),
         // success handler
-        (result) => this.crudRepository.save(result),
+        (result) => this.crudRepository.put(result),
       ),
     );
   }
