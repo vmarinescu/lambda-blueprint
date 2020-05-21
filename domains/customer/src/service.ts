@@ -25,8 +25,8 @@ export class Service {
       Customer.decode(customer),
       fold(
         // failure handler
-        () => {
-          Promise.reject(); // Todo?
+        (reason) => {
+          return Promise.reject(reason); // Todo?
         },
         // success handler
         () => {
@@ -43,8 +43,7 @@ export class Service {
 
   async getCustomer(id: string): Promise<GetDto> {
     const keys: Partial<Customer> = { id: id };
-    const found =
-      await this.crudRepository.get(keys).catch((reason) => Promise.reject(reason));
+    const found = await this.crudRepository.get(keys).catch((reason) => Promise.reject(reason));
     if (!found) { throw new Error404(); }
 
     const { createdAt, updatedAt, ...getDto } = found;

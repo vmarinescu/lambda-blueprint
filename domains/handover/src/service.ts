@@ -25,8 +25,8 @@ export class Service {
       Handover.decode(handover),
       fold(
         // failure handler
-        () => {
-          Promise.reject(); // Todo?
+        (reason) => {
+          return Promise.reject(reason); // Todo?
         },
         // success handler
         () => {
@@ -43,8 +43,7 @@ export class Service {
 
   async getHandover(id: string): Promise<GetDto> {
     const keys: Partial<Handover> = { id: id };
-    const found =
-      await this.crudRepository.get(keys).catch((reason) => Promise.reject(reason));
+    const found = await this.crudRepository.get(keys).catch((reason) => Promise.reject(reason));
     if (!found) { throw new Error404(); }
 
     const { createdAt, updatedAt, ...getDto } = found;
