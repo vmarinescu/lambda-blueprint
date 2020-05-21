@@ -34,7 +34,7 @@ export class Service {
 
   async deleteHandover(id: string): Promise<void> {
     const keys: Partial<Handover> = { id: id };
-    return this.crudRepository.delete(keys);
+    return this.crudRepository.delete(keys);  // tail-call optimization?
   }
 
   async getHandover(id: string): Promise<GetDto> {
