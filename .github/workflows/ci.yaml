@@ -16,7 +16,7 @@ jobs:
 
       - run: pip install aws-sam-cli==0.50.0
       - run: sam --version
-      - run: sam local start-api
+      - run: docker ps
 
       - run: npm install
 
