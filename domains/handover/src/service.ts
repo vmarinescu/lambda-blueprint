@@ -21,7 +21,7 @@ export class Service {
       updatedAt: date.toISOString(),
       ...createDto,
     };
-    pipe(
+    return pipe(
       Handover.decode(handover),
       fold(
         // failure handler
@@ -45,7 +45,6 @@ export class Service {
     const keys: Partial<Handover> = { id: id };
     const found = await this.crudRepository.get(keys).catch((reason) => Promise.reject(reason));
     if (!found) { throw new Error404(); }
-
     const { createdAt, updatedAt, ...getDto } = found;
     return getDto;
   }
