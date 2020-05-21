@@ -2,7 +2,7 @@ import DynamoDB from "aws-sdk/clients/dynamodb";
 
 export interface CrudRepositoryOptions<T> {}
 
-export class CrudRepository<T = any> {
+export class CrudRepository<T = object> {
   private tableName:      string;
   private documentClient: DynamoDB.DocumentClient;
 
