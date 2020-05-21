@@ -33,7 +33,7 @@ export class Service {
   }
 
   async deleteHandover(id: string): Promise<void> {
-    const keys: Partial<Handover> = { id: id };
+    const  keys: Partial<Handover> = { id: id };
     return this.crudRepository.delete(keys);
   }
 

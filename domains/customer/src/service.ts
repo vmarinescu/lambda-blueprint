@@ -33,7 +33,7 @@ export class Service {
   }
 
   async deleteCustomer(id: string): Promise<void> {
-    const keys: Partial<Customer> = { id: id };
+    const  keys: Partial<Customer> = { id: id };
     return this.crudRepository.delete(keys);
   }
 
