@@ -6,7 +6,7 @@ export class CrudRepository<T extends Entity> {
   private tableName:      string;
   private documentClient: DynamoDB.DocumentClient;
 
-  constructor(options: CrudRepositoryOptions<T>) {
+  constructor(options: CrudRepositoryOptions) {
     this.tableName      = "";
     // Todo
     this.documentClient = new DynamoDB.DocumentClient({});
@@ -95,4 +95,4 @@ export class CrudRepository<T extends Entity> {
   }
 }
 
-export interface CrudRepositoryOptions<T> {}
+export interface CrudRepositoryOptions {}
