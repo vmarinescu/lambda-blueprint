@@ -2,7 +2,7 @@ import DynamoDB from "aws-sdk/clients/dynamodb";
 
 export type Entity = { [key: string]: any };
 
-export class CrudRepository<T = Entity> {
+export class CrudRepository<T extends Entity> {
   private tableName:      string;
   private documentClient: DynamoDB.DocumentClient;
 
@@ -54,15 +54,14 @@ export class CrudRepository<T = Entity> {
    */
   async update(keys: Partial<T>, item: T): Promise<void> {
     const itemKeys = Object.keys(item);
-    if (itemKeys.length < 1) {
+    const itemKey0 = itemKeys. shift();
+    if (!itemKey0) {
       return;
     }
-    const itemKey0 = itemKeys .shift();
     const params: DynamoDB.DocumentClient.UpdateItemInput = {
       TableName: this.tableName,
       Key: keys,
       UpdateExpression: `set ${itemKey0} = :${itemKey0}`,
-      // @ts-ignore
       ExpressionAttributeValues: { [`:${itemKey0}`]: item[itemKey0] },
     };
     itemKeys.forEach((itemKeyX) => {
