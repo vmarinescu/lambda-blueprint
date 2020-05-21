@@ -1,6 +1,6 @@
-import * as iots from "io-ts";
+import * as t from "io-ts";
 
-export const AuditableEntity = iots.interface({
-  createdAt: iots.string,
-  updatedAt: iots.string,
+export const AuditableEntity = t.interface({
+  createdAt: t.string,
+  updatedAt: t.string,
 });
