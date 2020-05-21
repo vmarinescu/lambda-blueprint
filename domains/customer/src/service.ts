@@ -21,40 +21,6 @@ export class Service {
       updatedAt: date.toISOString(),
       ...createDto,
     };
-    return this.saveCustomer(customer);
-  }
-
-  async deleteCustomer(id: string): Promise<void> {
-    const keys: Partial<Customer> = { id: id };
-    return this.crudRepository.delete(keys); // Todo 404?
-  }
-
-  async getCustomer(id: string): Promise<GetDto> {
-    const item = await this.findCustomer(id).catch((reason) => Promise.reject(reason));
-    const { createdAt, updatedAt, ...getDto } = item;
-    return getDto;
-  }
-
-  async updateCustomer(id: string, updateDto: UpdateDto): Promise<void> {
-    const item = await this.findCustomer(id).catch((reason) => Promise.reject(reason));
-    const date = new Date();
-
-    const customer: Customer = {
-      ...item,
-      updatedAt: date.toISOString(),
-      ...updateDto,
-    };
-    return this.saveCustomer(customer);
-  }
-
-  private async findCustomer(id: string): Promise<Customer> {
-    const keys: Partial<Customer> = { id: id };
-    const item = await this.crudRepository.get(keys).catch((reason) => Promise.reject(reason));
-    if (!item) { throw new Error404(); }
-    return item;
-  }
-
-  private async saveCustomer(customer: Customer): Promise<void> {
     return pipe(
       Customer.decode(customer),
       fold(
@@ -65,4 +31,19 @@ export class Service {
       ),
     );
   }
+
+  async deleteCustomer(id: string): Promise<void> {
+    const keys: Partial<Customer> = { id: id };
+    return this.crudRepository.delete(keys);
+  }
+
+  async getCustomer(id: string): Promise<GetDto> {
+    const keys: Partial<Customer> = { id: id };
+    const item = await this.crudRepository.get(keys).catch((reason) => Promise.reject(reason));
+    if (!item) { throw new Error404(); }
+    const { createdAt, updatedAt, ...getDto } = item;
+    return getDto;
+  }
+
+  async updateCustomer(id: string, updateDto: UpdateDto): Promise<void> {}
 }

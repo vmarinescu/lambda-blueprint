@@ -57,6 +57,7 @@ export class CrudRepository<T extends Entity> {
     if (!itemKey0) {
       return;
     }
+    // Todo: Recursive?
     const params: DynamoDB.DocumentClient.UpdateItemInput = {
       TableName: this.tableName,
       Key: keys,
@@ -66,7 +67,7 @@ export class CrudRepository<T extends Entity> {
     itemKeys.forEach((itemKeyX) => {
       params.UpdateExpression += `, ${itemKeyX} = :${itemKeyX}`;
       // @ts-ignore
-      params.ExpressionAttributeValues[`:${itemKeyX}`] = item[itemKeyX]; // Todo: recursive?
+      params.ExpressionAttributeValues[`:${itemKeyX}`] = item[itemKeyX];
     });
     try {
       await this.documentClient.update(params).promise();
