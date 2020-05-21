@@ -13,10 +13,10 @@ export class CrudRepository<T = any> {
   }
 
   /**
-   * Puts a single item with the given primary key by delegating to AWS.DynamoDB.putItem().
+   * Saves a single item with the given primary key by delegating to AWS.DynamoDB.putItem().
    * @param item
    */
-  async put(item: T): Promise<void> {
+  async save(item: T): Promise<void> {
     const params: DynamoDB.DocumentClient.PutItemInput = {
       TableName: this.tableName,
       Item: item,
@@ -30,10 +30,10 @@ export class CrudRepository<T = any> {
   }
 
   /**
-   * Gets a single item with the given primary key by delegating to AWS.DynamoDB.getItem().
+   * Finds a single item with the given primary key by delegating to AWS.DynamoDB.getItem().
    * @param keys
    */
-  async get(keys: Partial<T>): Promise<T | undefined> {
+  async find(keys: Partial<T>): Promise<T | undefined> {
     const params: DynamoDB.DocumentClient.GetItemInput = {
       TableName: this.tableName,
       Key: keys,
