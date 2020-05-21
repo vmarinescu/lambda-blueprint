@@ -19,8 +19,6 @@ export class Service {
       id: uuidv4(),
       createdAt: date.toISOString(),
       updatedAt: date.toISOString(),
-      createdBy: "",
-      updatedBy: "",
       ...createDto,
     };
     return this.saveCustomer(customer);
@@ -33,7 +31,7 @@ export class Service {
 
   async getCustomer(id: string): Promise<GetDto> {
     const item = await this.findCustomer(id).catch((reason) => Promise.reject(reason));
-    const { createdAt, updatedAt, createdBy, updatedBy, ...getDto } = item;
+    const { createdAt, updatedAt, ...getDto } = item;
     return getDto;
   }
 
@@ -44,7 +42,6 @@ export class Service {
     const customer: Customer = {
       ...item,
       updatedAt: date.toISOString(),
-      updatedBy: "",
       ...updateDto,
     };
     return this.saveCustomer(customer);

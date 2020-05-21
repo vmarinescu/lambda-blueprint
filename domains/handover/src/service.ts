@@ -19,8 +19,6 @@ export class Service {
       id: uuidv4(),
       createdAt: date.toISOString(),
       updatedAt: date.toISOString(),
-      createdBy: "",
-      updatedBy: "",
       ...createDto,
     };
     return this.saveHandover(handover);
@@ -33,7 +31,7 @@ export class Service {
 
   async getHandover(id: string): Promise<GetDto> {
     const item = await this.findHandover(id).catch((reason) => Promise.reject(reason));
-    const { createdAt, updatedAt, createdBy, updatedBy, ...getDto } = item;
+    const { createdAt, updatedAt, ...getDto } = item;
     return getDto;
   }
 
@@ -44,7 +42,6 @@ export class Service {
     const handover: Handover = {
       ...item,
       updatedAt: date.toISOString(),
-      updatedBy: "",
       ...updateDto,
     };
     return this.saveHandover(handover);
