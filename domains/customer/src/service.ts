@@ -27,7 +27,7 @@ export class Service {
         // failure handler
         (reason) => Promise.reject(reason),
         // success handler
-        (result) => this.crudRepository.put(customer),
+        (result) => this.crudRepository.put(result),
       ),
     );
   }

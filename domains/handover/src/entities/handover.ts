@@ -1,13 +1,13 @@
 import { AuditableEntity } from "@serverless-blueprint/core";
-import * as iots from "io-ts";
+import * as t from "io-ts";
 
-export type  Handover = iots.TypeOf<typeof Handover>;
+export type  Handover = t.TypeOf<typeof Handover>;
 
-export const Handover = iots.intersection([
+export const Handover = t.exact(t.intersection([
   AuditableEntity,
   // ...
-  iots.interface({
-    id:   iots.string, // Partition-Key
-    name: iots.string,
+  t.interface({
+    id:   t.string, // Partition-Key
+    name: t.string,
   }),
-]);
+]));
