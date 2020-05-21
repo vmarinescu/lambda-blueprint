@@ -33,7 +33,7 @@ export class Service {
 
   async getCustomer(id: string): Promise<GetDto> {
     const item = await this.findCustomer(id).catch((reason) => Promise.reject(reason));
-    const { createdAt, updatedAt, ...getDto } = item;
+    const { createdAt, updatedAt, createdBy, updatedBy, ...getDto } = item;
     return getDto;
   }
 

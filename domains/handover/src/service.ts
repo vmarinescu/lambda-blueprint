@@ -33,7 +33,7 @@ export class Service {
 
   async getHandover(id: string): Promise<GetDto> {
     const item = await this.findHandover(id).catch((reason) => Promise.reject(reason));
-    const { createdAt, updatedAt, ...getDto } = item;
+    const { createdAt, updatedAt, createdBy, updatedBy, ...getDto } = item;
     return getDto;
   }
 
