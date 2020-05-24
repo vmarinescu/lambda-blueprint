@@ -68,7 +68,7 @@
     "//7": [
       "---------------> devDependencies for ..."
     ],
-    "lint-staged": "^10.2.4",
+    "lint-staged": "^10.2.6",
     "husky": "^4.2.5"
   },
   "lint-staged": {
