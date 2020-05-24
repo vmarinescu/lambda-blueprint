@@ -3,7 +3,7 @@ import { pipe } from "fp-ts/lib/pipeable"
 import { fold } from "fp-ts/lib/Either"
 import { v4 as uuidv4 } from "uuid";
 import { CreateDto } from "./dtos/create-dto";
-import { GetDto } from "./dtos/get-dto";
+import { CustomerDto } from "./dtos/customer-dto";
 import { UpdateDto } from "./dtos/update-dto";
 import { Customer } from "./entities/customer";
 
@@ -12,7 +12,7 @@ export class Service {
     private crudRepository: CrudRepository<Customer>
   ) {}
 
-  async createCustomer(createDto: CreateDto): Promise<void> {
+  async createCustomer(createDto: CreateDto): Promise<CustomerDto> {
     const date = new Date();
 
     const customer: Customer = {
@@ -21,7 +21,7 @@ export class Service {
       updatedAt: date.toISOString(),
       ...createDto,
     };
-    return pipe(
+    await pipe(
       Customer.decode(customer),
       fold(
         // failure handler
@@ -30,7 +30,8 @@ export class Service {
         (result) => this.crudRepository.put(result),
       ),
     );
-    // Todo ...
+    const { createdAt, updatedAt, ...customerDto } = customer;
+    return customerDto;
   }
 
   async deleteCustomer(id: string): Promise<void> {
@@ -38,13 +39,14 @@ export class Service {
     return this.crudRepository.delete(keys);
   }
 
-  async getCustomer(id: string): Promise<GetDto> {
+  async getCustomer(id: string): Promise<CustomerDto> {
     const keys: Partial<Customer> = { id: id };
     const customer = await this.crudRepository.get(keys).catch((reason: any) => Promise.reject(reason));
     if (!customer) { throw new Error404(); }
-    const { createdAt, updatedAt, ...getDto } = customer;
-    return getDto;
+    const { createdAt, updatedAt, ...customerDto } = customer;
+    return customerDto;
   }
 
-  async updateCustomer(id: string, updateDto: UpdateDto): Promise<void> {}
+  // @ts-ignore
+  async updateCustomer(id: string, updateDto: UpdateDto): Promise<CustomerDto> {}
 }

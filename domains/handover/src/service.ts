@@ -3,7 +3,7 @@ import { pipe } from "fp-ts/lib/pipeable"
 import { fold } from "fp-ts/lib/Either"
 import { v4 as uuidv4 } from "uuid";
 import { CreateDto } from "./dtos/create-dto";
-import { GetDto } from "./dtos/get-dto";
+import { HandoverDto } from "./dtos/handover-dto";
 import { UpdateDto } from "./dtos/update-dto";
 import { Handover } from "./entities/handover";
 
@@ -12,7 +12,7 @@ export class Service {
     private crudRepository: CrudRepository<Handover>
   ) {}
 
-  async createHandover(createDto: CreateDto): Promise<void> {
+  async createHandover(createDto: CreateDto): Promise<HandoverDto> {
     const date = new Date();
 
     const handover: Handover = {
@@ -21,7 +21,7 @@ export class Service {
       updatedAt: date.toISOString(),
       ...createDto,
     };
-    return pipe(
+    await pipe(
       Handover.decode(handover),
       fold(
         // failure handler
@@ -30,7 +30,8 @@ export class Service {
         (result) => this.crudRepository.put(result),
       ),
     );
-    // Todo ...
+    const { createdAt, updatedAt, ...handoverDto } = handover;
+    return handoverDto;
   }
 
   async deleteHandover(id: string): Promise<void> {
@@ -38,13 +39,14 @@ export class Service {
     return this.crudRepository.delete(keys);
   }
 
-  async getHandover(id: string): Promise<GetDto> {
+  async getHandover(id: string): Promise<HandoverDto> {
     const keys: Partial<Handover> = { id: id };
     const handover = await this.crudRepository.get(keys).catch((reason: any) => Promise.reject(reason));
     if (!handover) { throw new Error404(); }
-    const { createdAt, updatedAt, ...getDto } = handover;
-    return getDto;
+    const { createdAt, updatedAt, ...handoverDto } = handover;
+    return handoverDto;
   }
 
-  async updateHandover(id: string, updateDto: UpdateDto): Promise<void> {}
+  // @ts-ignore
+  async updateHandover(id: string, updateDto: UpdateDto): Promise<HandoverDto> {}
 }
