@@ -4,5 +4,5 @@ export async function entrypoint(
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> {
   console.debug("Received event: %s", event);
-  return { statusCode: 204, body: "" };
+  return { statusCode: 200, body: "" };
 }
