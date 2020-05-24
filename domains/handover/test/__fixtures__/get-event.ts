@@ -1,2 +1,2 @@
-import getEvent from "../../events/get-event.json";
+import * as getEvent from "../../events/get-event.json";
 export { getEvent };

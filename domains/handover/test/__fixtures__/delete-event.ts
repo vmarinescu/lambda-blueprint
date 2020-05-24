@@ -1,2 +1,2 @@
-import deleteEvent from "../../events/delete-event.json";
+import * as deleteEvent from "../../events/delete-event.json";
 export { deleteEvent };
