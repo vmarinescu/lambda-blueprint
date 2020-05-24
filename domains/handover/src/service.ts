@@ -40,9 +40,9 @@ export class Service {
 
   async getHandover(id: string): Promise<GetDto> {
     const keys: Partial<Handover> = { id: id };
-    const item = await this.crudRepository.get(keys).catch((reason: any) => Promise.reject(reason));
-    if (!item) { throw new Error404(); }
-    const { createdAt, updatedAt, ...getDto } = item;
+    const handover = await this.crudRepository.get(keys).catch((reason: any) => Promise.reject(reason));
+    if (!handover) { throw new Error404(); }
+    const { createdAt, updatedAt, ...getDto } = handover;
     return getDto;
   }
 

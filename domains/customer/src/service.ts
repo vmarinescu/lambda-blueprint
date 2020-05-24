@@ -40,9 +40,9 @@ export class Service {
 
   async getCustomer(id: string): Promise<GetDto> {
     const keys: Partial<Customer> = { id: id };
-    const item = await this.crudRepository.get(keys).catch((reason: any) => Promise.reject(reason));
-    if (!item) { throw new Error404(); }
-    const { createdAt, updatedAt, ...getDto } = item;
+    const customer = await this.crudRepository.get(keys).catch((reason: any) => Promise.reject(reason));
+    if (!customer) { throw new Error404(); }
+    const { createdAt, updatedAt, ...getDto } = customer;
     return getDto;
   }
 
