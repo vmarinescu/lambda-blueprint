@@ -38,8 +38,8 @@ export class CrudRepository<T extends object> {
       Key: keys,
     };
     try {
-      const  found = await this.documentClient.get(params).promise();
-      return found.Item as T;
+      const  item = await this.documentClient.get(params).promise();
+      return item.Item as T;
     } catch (error) {
       // Todo
       throw error;
