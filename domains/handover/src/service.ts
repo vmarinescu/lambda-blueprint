@@ -30,6 +30,7 @@ export class Service {
         (result) => this.crudRepository.put(result),
       ),
     );
+    // Todo ...
   }
 
   async deleteHandover(id: string): Promise<void> {
@@ -39,7 +40,7 @@ export class Service {
 
   async getHandover(id: string): Promise<GetDto> {
     const keys: Partial<Handover> = { id: id };
-    const item = await this.crudRepository.get(keys).catch((reason) => Promise.reject(reason));
+    const item = await this.crudRepository.get(keys).catch((reason: any) => Promise.reject(reason));
     if (!item) { throw new Error404(); }
     const { createdAt, updatedAt, ...getDto } = item;
     return getDto;

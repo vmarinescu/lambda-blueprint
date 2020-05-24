@@ -30,6 +30,7 @@ export class Service {
         (result) => this.crudRepository.put(result),
       ),
     );
+    // Todo ...
   }
 
   async deleteCustomer(id: string): Promise<void> {
@@ -39,7 +40,7 @@ export class Service {
 
   async getCustomer(id: string): Promise<GetDto> {
     const keys: Partial<Customer> = { id: id };
-    const item = await this.crudRepository.get(keys).catch((reason) => Promise.reject(reason));
+    const item = await this.crudRepository.get(keys).catch((reason: any) => Promise.reject(reason));
     if (!item) { throw new Error404(); }
     const { createdAt, updatedAt, ...getDto } = item;
     return getDto;
