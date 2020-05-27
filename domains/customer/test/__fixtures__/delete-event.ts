@@ -1,2 +1,2 @@
 import * as deleteEvent from "../../events/delete-event.json";
-export { deleteEvent };
+export default deleteEvent;

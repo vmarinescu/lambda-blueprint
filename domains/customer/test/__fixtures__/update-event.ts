@@ -1,2 +1,2 @@
 import * as updateEvent from "../../events/update-event.json";
-export { updateEvent };
+export default updateEvent;
