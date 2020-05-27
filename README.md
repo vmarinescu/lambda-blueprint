@@ -1,1 +1,1 @@
-tbd
+serverless-blueprint for js/ts
