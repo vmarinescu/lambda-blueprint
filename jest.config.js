@@ -1,12 +1,9 @@
 module.exports = {
-  preset: "ts-jest",
-
+  preset:            "ts-jest",
+  testEnvironment:   "node",
   collectCoverage:   true,
   coverageReporters: [],
   coverageThreshold: {},
-  coverageDirectory: "coverage",
-
-  testEnvironment: "node",
-
-  verbose: true,
+  coverageDirectory: "lcov",
+  verbose:           true,
 };
