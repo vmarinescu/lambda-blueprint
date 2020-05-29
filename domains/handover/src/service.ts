@@ -1,4 +1,4 @@
-import { CrudRepository, Error404 } from "@serverless-blueprint/core";
+import { CrudRepository, Error400, Error404 } from "@serverless-blueprint/core";
 import { pipe } from "fp-ts/lib/pipeable"
 import { fold } from "fp-ts/lib/Either"
 import { v4 as uuidv4 } from "uuid";
@@ -25,7 +25,7 @@ export class Service {
       Handover.decode(handover),
       fold(
         // failure handler
-        (reason) => Promise.reject(reason),
+        (reason) => Promise. reject(new Error400()), // Todo
         // success handler
         (result) => this.crudRepository.put(result),
       ),
