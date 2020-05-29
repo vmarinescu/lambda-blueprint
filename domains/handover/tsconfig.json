@@ -1,5 +1,5 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": { "rootDir": "src", "outDir": "dist" },
-  "exclude": ["dist", "test", "cdk-stack.ts"]
+  "exclude": ["dist", "test", "handover-stack.ts"]
 }

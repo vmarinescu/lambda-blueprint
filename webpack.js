@@ -1,4 +1,5 @@
 module.exports = {
-  target: "node",
-  mode:   "production",
+  target:       "node",
+  mode:         "production",
+  optimization: { minimize: false },
 };
