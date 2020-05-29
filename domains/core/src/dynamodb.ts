@@ -12,7 +12,7 @@ export class CrudRepository<T extends object> {
   }
 
   /**
-   * Puts a single item with the given primary key by delegating to AWS.DynamoDB.putItem().
+   * Puts a single item with the given primary key by delegating to AWS.DynamoDB.DocumentClient.put().
    * @param item
    */
   async put(item: T): Promise<void> {
@@ -29,7 +29,7 @@ export class CrudRepository<T extends object> {
   }
 
   /**
-   * Gets a single item with the given primary key by delegating to AWS.DynamoDB.getItem().
+   * Gets a single item with the given primary key by delegating to AWS.DynamoDB.DocumentClient.get().
    * @param keys
    */
   async get(keys: Partial<T>): Promise<T | undefined> {
@@ -47,7 +47,7 @@ export class CrudRepository<T extends object> {
   }
 
   /**
-   * Updates a single item with the given primary key by delegating to AWS.DynamoDB.updateItem().
+   * Updates a single item with the given primary key by delegating to AWS.DynamoDB.DocumentClient.update().
    * @param keys
    * @param item
    */
@@ -78,7 +78,7 @@ export class CrudRepository<T extends object> {
   }
 
   /**
-   * Deletes a single item with the given primary key by delegating to AWS.DynamoDB.deleteItem().
+   * Deletes a single item with the given primary key by delegating to AWS.DynamoDB.DocumentClient.delete().
    * @param keys
    */
   async delete(keys: Partial<T>): Promise<void> {
