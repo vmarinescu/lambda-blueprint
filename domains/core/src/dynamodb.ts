@@ -25,10 +25,10 @@ export class CrudRepository<T extends object> {
     };
     try {
       await this.documentClient.put(params).promise();
-    } catch (reason) {
+    } catch (error) {
       // Todo
-      console.debug(reason);
-      throw reason;
+      console.debug(error);
+      throw error;
     }
   }
 
@@ -44,10 +44,10 @@ export class CrudRepository<T extends object> {
     try {
       const  item = await this.documentClient.get(params).promise();
       return item.Item as T;
-    } catch (reason) {
+    } catch (error) {
       // Todo
-      console.debug(reason);
-      throw reason;
+      console.debug(error);
+      throw error;
     }
   }
 
@@ -76,10 +76,10 @@ export class CrudRepository<T extends object> {
     });
     try {
       await this.documentClient.update(params).promise();
-    } catch (reason) {
+    } catch (error) {
       // Todo
-      console.debug(reason);
-      throw reason;
+      console.debug(error);
+      throw error;
     }
   }
 
@@ -94,10 +94,10 @@ export class CrudRepository<T extends object> {
     };
     try {
       await this.documentClient.delete(params).promise();
-    } catch (reason) {
+    } catch (error) {
       // Todo
-      console.debug(reason);
-      throw reason;
+      console.debug(error);
+      throw error;
     }
   }
 }
