@@ -2,7 +2,7 @@ import * as apigateway from "@aws-cdk/aws-apigateway";
 import * as dynamodb from "@aws-cdk/aws-dynamodb";
 import * as lambda from "@aws-cdk/aws-lambda";
 import * as cdk from "@aws-cdk/core";
-import {DomainStackProps} from "../../cdk/cdk-app";
+import { DomainStackProps } from "../../cdk/cdk-app";
 
 export class CustomerStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props: DomainStackProps) {

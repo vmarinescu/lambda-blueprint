@@ -11,7 +11,7 @@ export interface DomainStackProps extends cdk.StackProps {
 
 const app = new cdk.App();
 
-const apigatewayStack = new ApigatewayStack(app, "Apigateway-Stack-Test");
+const apigatewayStack = new ApigatewayStack(app, "Apigateway-Stack");
 
-new CustomerStack(app, "Customer-Stack-Test", { restApi: apigatewayStack.restApi });
-new HandoverStack(app, "Handover-Stack-Test", { restApi: apigatewayStack.restApi });
+new CustomerStack(app, "Customer-Stack", { restApi: apigatewayStack.restApi });
+new HandoverStack(app, "Handover-Stack", { restApi: apigatewayStack.restApi });

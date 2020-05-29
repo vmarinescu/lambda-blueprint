@@ -8,7 +8,8 @@ module.exports = {
     "update-lambda": "./dist/update-lambda.js",
   },
   output: {
-    filename: "[name]-bundle.js", // ---> To ./dist
+    libraryTarget: "commonjs",
+    filename:      "[name]-bundle.js", // ---> To ./dist
   },
   ...webpack,
 };
