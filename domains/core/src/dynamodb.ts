@@ -56,7 +56,7 @@ export class CrudRepository<T extends object> {
    * @param keys
    * @param item
    */
-  async update(keys: Partial<T>, item: T): Promise<void> {
+  async update(keys: Partial<T>, item: Partial<T>): Promise<void> {
     const itemKeys = Object.keys(item) as Array<keyof T>;
     if (itemKeys.length === 0) {
       return;

@@ -1,6 +1,4 @@
 import { CrudRepository, Error404 } from "@serverless-blueprint/core";
-import { pipe } from "fp-ts/lib/pipeable";
-import { fold } from "fp-ts/lib/Either";
 import { v4 as uuidv4 } from "uuid";
 import { CreateDto } from "./dtos/create-dto";
 import { CustomerDto } from "./dtos/customer-dto";
@@ -21,6 +19,7 @@ export class Service {
       updatedAt: date.toISOString(),
       ...createDto,
     };
+    await this.crudRepository.put(customer).catch((reason: any) => Promise.reject(reason));
     const { createdAt, updatedAt, ...customerDto } = customer;
     return customerDto;
   }
@@ -38,5 +37,11 @@ export class Service {
     return customerDto;
   }
 
-  async updateCustomer(id: string, updateDto: UpdateDto): Promise<void> {}
+  async updateCustomer(id: string, updateDto: UpdateDto): Promise<void> {
+    const keys: Partial<Customer> = { id: id };
+    const date = new Date();
+
+    const customer: Partial<Customer> = { updatedAt: date.toISOString(), ...updateDto };
+    return this.crudRepository.update(keys, customer);
+  }
 }
