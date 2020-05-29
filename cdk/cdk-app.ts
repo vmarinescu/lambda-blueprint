@@ -10,8 +10,9 @@ export interface SharedStackProps extends cdk.StackProps {
 }
 
 const app = new cdk.App({});
+const ENV = app.node.tryGetContext("ENV");
 
-const apigatewayStack = new ApigatewayStack(app, "apigateway-stack");
+const apigatewayStack = new ApigatewayStack(app, `${ENV}-apigateway-stack`);
 
-new CustomerStack(app, "customer-stack", { restApi: apigatewayStack.restApi });
-new HandoverStack(app, "handover-stack", { restApi: apigatewayStack.restApi });
+new CustomerStack(app, `${ENV}-customer-stack`, { restApi: apigatewayStack.restApi });
+new HandoverStack(app, `${ENV}-handover-stack`, { restApi: apigatewayStack.restApi });
