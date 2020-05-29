@@ -21,15 +21,6 @@ export class Service {
       updatedAt: date.toISOString(),
       ...createDto,
     };
-    await pipe(
-      Customer.decode(customer),
-      fold(
-        // failure handler
-        (reason) => Promise.reject(reason), // Todo?
-        // success handler
-        (result) => this.crudRepository.put(result),
-      ),
-    );
     const { createdAt, updatedAt, ...customerDto } = customer;
     return customerDto;
   }
@@ -47,6 +38,5 @@ export class Service {
     return customerDto;
   }
 
-  // @ts-ignore
-  async updateCustomer(id: string, updateDto: UpdateDto): Promise<CustomerDto> {}
+  async updateCustomer(id: string, updateDto: UpdateDto): Promise<void> {}
 }

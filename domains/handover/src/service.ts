@@ -21,15 +21,6 @@ export class Service {
       updatedAt: date.toISOString(),
       ...createDto,
     };
-    await pipe(
-      Handover.decode(handover),
-      fold(
-        // failure handler
-        (reason) => Promise.reject(reason), // Todo?
-        // success handler
-        (result) => this.crudRepository.put(result),
-      ),
-    );
     const { createdAt, updatedAt, ...handoverDto } = handover;
     return handoverDto;
   }
@@ -47,6 +38,5 @@ export class Service {
     return handoverDto;
   }
 
-  // @ts-ignore
-  async updateHandover(id: string, updateDto: UpdateDto): Promise<HandoverDto> {}
+  async updateHandover(id: string, updateDto: UpdateDto): Promise<void> {}
 }

@@ -22,15 +22,9 @@ export async function entrypoint(
     const either = CreateDto.decode(createDto); // ---> Unknown props will be stripped.
     if (isRight(either)) {
       const handoverDto = await service.createHandover(either.right);
-      return {
-        statusCode: 200,
-        body:       JSON.stringify(handoverDto),
-      };
+      return { statusCode: 200, body: JSON.stringify(handoverDto) };
     } else {
-      return {
-        statusCode: 400,
-        body:       "", // Todo:  Send reasons To our Consumers here?
-      };
+      return { statusCode: 400, body: "" };
     }
   } catch (reason) {
     console.debug(reason);

@@ -24,16 +24,10 @@ export async function entrypoint(
     const either = UpdateDto.decode(updateDto); // ---> Unknown props will be stripped.
     if (isRight(either)) {
       const id = pathParameters["id"];
-      const customerDto = await service.updateCustomer(id, either.right);
-      return {
-        statusCode: 200,
-        body:       JSON.stringify(customerDto),
-      };
+      await service.updateCustomer(id, either.right);
+      return { statusCode: 204, body: "" };
     } else {
-      return {
-        statusCode: 400,
-        body:       "", // Todo: Send our reasons To our Consumers here?
-      };
+      return { statusCode: 400, body: "" };
     }
   } catch (reason) {
     console.debug(reason);
