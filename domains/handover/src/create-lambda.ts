@@ -42,7 +42,7 @@ export async function entrypoint(
         },
       ),
     );
-    return { statusCode: 500, body: "" }; // ??
+    return { statusCode: 500, body: "" }; // Why?
   } catch (reason) {
     return { statusCode: 500, body: "" };
     // Todo: ...
