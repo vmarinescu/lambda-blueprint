@@ -32,7 +32,7 @@ export async function entrypoint(
     } else {
       return {
         statusCode: 400,
-        body:       "", // Todo: Send The reasons To our Consumers here?
+        body:       "", // Todo: Send our reasons To our Consumers here?
       };
     }
   } catch (reason) {
