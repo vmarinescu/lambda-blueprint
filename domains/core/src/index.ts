@@ -7,5 +7,3 @@ export * from "./cors-provider";
 export * from "./envs-provider";
 
 export * from "./dynamodb";
-
-export * from "./response-builder";

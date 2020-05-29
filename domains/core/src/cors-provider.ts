@@ -10,7 +10,7 @@ export function withCors(
 ): APIGatewayProxyResult {
   const allowedOrigins = process.env.ALLOWED_ORIGINS as any || []; // Todo
   if (allowedOrigins.includes(origin)) {}
-  // ...
+  else {}
   console.debug(result);
   return result;
 }
