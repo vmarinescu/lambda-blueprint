@@ -2,10 +2,10 @@ import * as apigateway from "@aws-cdk/aws-apigateway";
 import * as dynamodb from "@aws-cdk/aws-dynamodb";
 import * as lambda from "@aws-cdk/aws-lambda";
 import * as cdk from "@aws-cdk/core";
-import { SharedStackProps } from "../../cdk/cdk-app";
+import { DomainStackProps } from "../../cdk/interfaces/domain-stack-props";
 
 export class CustomerStack extends cdk.Stack {
-  constructor(scope: cdk.App, id: string, props: SharedStackProps) {
+  constructor(scope: cdk.App, id: string, props: DomainStackProps) {
     super(scope, id, props);
 
     const restApi = props.restApi;

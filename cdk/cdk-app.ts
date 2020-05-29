@@ -1,13 +1,7 @@
-import * as apigateway from "@aws-cdk/aws-apigateway";
 import * as cdk from "@aws-cdk/core";
 import { CustomerStack } from "../domains/customer/customer-stack";
 import { HandoverStack } from "../domains/handover/handover-stack";
-import { ApigatewayStack }  from "./apigateway-stack";
-
-export interface SharedStackProps extends cdk.StackProps {
-  restApi: apigateway.RestApi;
-  // ...
-}
+import { ApigatewayStack } from "./apigateway-stack";
 
 const app = new cdk.App({});
 const ENV = app.node.tryGetContext("ENV");
