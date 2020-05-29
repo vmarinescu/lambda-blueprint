@@ -20,7 +20,7 @@ export async function entrypoint(
 
   const createDto = JSON.parse(body);
   try {
-    return pipe(
+    return await pipe(
       CreateDto.decode(createDto), // ---> Unknown props will be stripped.
       fold(
         // failure handler
