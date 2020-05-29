@@ -22,7 +22,7 @@
     "bundle": "lerna run bundle"
   },
   "dependencies": {
-    "aws-sdk": "^2.684.0",
+    "aws-sdk": "^2.686.0",
     "fp-ts": "^2.6.1",
     "io-ts": "^2.2.4"
   },
