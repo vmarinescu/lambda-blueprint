@@ -23,8 +23,7 @@ export async function entrypoint(
     const updateDto = JSON.parse(body);
     const either = UpdateDto.decode(updateDto); // ---> Unknown props will be stripped.
     if (isRight(either)) {
-      const id = pathParameters["id"];
-      await service.updateCustomer(id, either.right);
+      await service.updateCustomer(pathParameters["id"], either.right);
       return { statusCode: 204, body: "" };
     } else {
       return { statusCode: 400, body: "" };
