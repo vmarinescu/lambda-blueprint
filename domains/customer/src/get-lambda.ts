@@ -3,7 +3,7 @@ import { CrudRepository } from "@serverless-blueprint/core";
 import { Customer } from "./entities/customer";
 import { Service } from "./service";
 
-const tableName  = process.env.TABLE_NAME!;
+const tableName  = process.env.TABLE_NAME!; // Todo
 const repository = new CrudRepository<Customer>({ tableName: tableName });
 const service    = new Service(repository);
 
@@ -21,6 +21,6 @@ export async function entrypoint(
   } catch (reason) {
     console.debug(reason);
     return { statusCode: 500, body: "" };
-    // Todo: ...
+    // Todo
   }
 }

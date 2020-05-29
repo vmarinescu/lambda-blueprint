@@ -3,7 +3,7 @@ import { CrudRepository } from "@serverless-blueprint/core";
 import { Handover } from "./entities/handover";
 import { Service } from "./service";
 
-const tableName  = process.env.TABLE_NAME!;
+const tableName  = process.env.TABLE_NAME!; // Todo
 const repository = new CrudRepository<Handover>({ tableName: tableName });
 const service    = new Service(repository);
 
@@ -21,6 +21,6 @@ export async function entrypoint(
   } catch (reason) {
     console.debug(reason);
     return { statusCode: 500, body: "" };
-    // Todo: ...
+    // Todo
   }
 }

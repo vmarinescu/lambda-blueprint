@@ -38,6 +38,6 @@ export async function entrypoint(
   } catch (reason) {
     console.debug(reason);
     return { statusCode: 500, body: "" };
-    // Todo: ...
+    // Todo
   }
 }
