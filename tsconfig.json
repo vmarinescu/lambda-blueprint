@@ -1,5 +1,4 @@
 {
-  "compilerOptions": {
-    "target": "es2020", "module": "commonJS", "strict": true // Todo?
-  }
+  "compilerOptions": { "target": "es2020", "module": "commonJS", "strict": true },
+  "exclude": ["cdk"]
 }
