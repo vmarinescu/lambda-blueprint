@@ -1,11 +1,11 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { isRight } from "fp-ts/lib/Either";
-import { CrudRepository } from "@serverless-blueprint/core";
+import { CrudRepository, handleError } from "@serverless-blueprint/core";
 import { UpdateDto } from "./dtos/update-dto";
 import { Customer } from "./entities/customer";
 import { Service } from "./service";
 
-const tableName  = process.env.TABLE_NAME!; // Todo
+const tableName  = process.env.TABLE_NAME || ""; // Todo
 const repository = new CrudRepository<Customer>({ tableName: tableName });
 const service    = new Service(repository);
 
@@ -29,9 +29,8 @@ export async function entrypoint(
     } else {
       return { statusCode: 400, body: "" };
     }
-  } catch (reason) {
-    console.debug(reason);
-    return { statusCode: 500, body: "" };
+  } catch (error) {
+    return handleError(error);
     // Todo
   }
 }

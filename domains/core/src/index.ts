@@ -1,6 +1,8 @@
 export * from "./errors/error-400";
 export * from "./errors/error-404";
 
+export * from "./error-handler";
+
 export * from "./auditable-entity";
 
 export * from "./cors-provider";
