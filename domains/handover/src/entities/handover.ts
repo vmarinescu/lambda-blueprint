@@ -8,6 +8,6 @@ export const Handover = t.exact(t.intersection([
   // ...
   t.interface({
     id:   t.string, // Partition-Key
-    name: t.string,
+    etag: t.string,
   }),
 ]));

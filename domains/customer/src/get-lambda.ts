@@ -1,5 +1,5 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
-import { CrudRepository } from "@serverless-blueprint/core";
+import { CrudRepository, Error404 } from "@serverless-blueprint/core";
 import { Customer } from "./entities/customer";
 import { Service } from "./service";
 
@@ -19,7 +19,7 @@ export async function entrypoint(
     const customerDto = await service.getCustomer(pathParameters["id"]);
     return { statusCode: 200, body: JSON.stringify(customerDto) };
   } catch (reason) {
-    console.debug(reason);
+    console.debug(reason.constructor === Error404);
     return { statusCode: 500, body: "" };
     // Todo
   }

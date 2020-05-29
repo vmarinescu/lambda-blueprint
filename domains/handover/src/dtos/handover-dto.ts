@@ -4,5 +4,5 @@ export type  HandoverDto = t.TypeOf<typeof HandoverDto>;
 
 export const HandoverDto = t.exact(t.interface({
   id:   t.string,
-  name: t.string,
+  etag: t.string,
 }));

@@ -1,5 +1,5 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
-import { CrudRepository } from "@serverless-blueprint/core";
+import { CrudRepository, Error404 } from "@serverless-blueprint/core";
 import { Handover } from "./entities/handover";
 import { Service } from "./service";
 
@@ -19,7 +19,7 @@ export async function entrypoint(
     const handoverDto = await service.getHandover(pathParameters["id"]);
     return { statusCode: 200, body: JSON.stringify(handoverDto) };
   } catch (reason) {
-    console.debug(reason);
+    console.debug(reason.constructor === Error404);
     return { statusCode: 500, body: "" };
     // Todo
   }
