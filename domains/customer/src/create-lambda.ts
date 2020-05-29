@@ -20,7 +20,7 @@ export async function entrypoint(
 
   const createDto = JSON.parse(body);
   try {
-    await pipe(
+    return pipe(
       CreateDto.decode(createDto), // ---> Unknown props will be stripped.
       fold(
         // failure handler
@@ -28,7 +28,7 @@ export async function entrypoint(
           console.debug(reason);
           return {
             statusCode: 400,
-            body:       "", // Todo: Show reasons To our Consumers.
+            body:       "", // Todo: Show reasons To our Consumers?
           };
         },
         // success handler
@@ -42,7 +42,6 @@ export async function entrypoint(
         },
       ),
     );
-    return { statusCode: 500, body: "" }; // Why?
   } catch (reason) {
     return { statusCode: 500, body: "" };
     // Todo: ...
