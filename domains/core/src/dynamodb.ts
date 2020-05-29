@@ -1,13 +1,16 @@
 import * as DynamoDB from "aws-sdk/clients/dynamodb";
 
-export interface CrudRepositoryOptions {}
+export interface CrudRepositoryOptions {
+  tableName: string;
+  // ...
+}
 
 export class CrudRepository<T extends object> {
   private tableName:      string;
   private documentClient: DynamoDB.DocumentClient;
 
   constructor(options: CrudRepositoryOptions) {
-    this.tableName      = "";
+    this.tableName      = options.tableName;
     this.documentClient = new DynamoDB.DocumentClient({});
   }
 
