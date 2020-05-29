@@ -10,8 +10,8 @@ export class ApigatewayStack extends cdk.Stack {
     this.restApi = new apigateway.RestApi(this, "Test-API", {});
 
     this.restApi.root.addCorsPreflight({
-      allowOrigins: [],
-      allowMethods: [],
+      allowOrigins: [""],
+      allowMethods: [""],
     });
   }
 }
