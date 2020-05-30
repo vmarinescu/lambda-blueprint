@@ -2,12 +2,12 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { CrudRepository, handleError } from "@serverless-blueprint/core";
 import { Handover } from "./entities/handover";
 import { Service } from "./service";
+import { Keys } from "./keys";
 
-const tableName  = process.env.TABLE_NAME || ""; // Todo
+const tableName  = process.env[Keys.TABLE_NAME] || "";
 const repository = new CrudRepository<Handover>({ tableName: tableName });
-/**
- * Initialize outside of entrypoint to keep connections alive.
- */
+
+// Initialize service outside of entrypoint to keep http-connection alive.
 const service = new Service(repository);
 
 export async function entrypoint(
