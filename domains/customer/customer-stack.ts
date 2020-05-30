@@ -5,13 +5,13 @@ import * as cdk from "@aws-cdk/core";
 import { DomainStackProps } from "../../cdk/interfaces/domain-stack-props";
 
 export class CustomerStack extends cdk.Stack {
-  constructor(scope: cdk.App, id: string, props: DomainStackProps) {
-    super(scope, id, props);
+  constructor(scope: cdk.App, env: string, props: DomainStackProps) {
+    super(scope, `${env}-customer-stack`, props);
 
     const restApi = props.restApi;
 
     const dynamoTable = new dynamodb.Table(this, "customers", {
-      tableName: "customers",
+      tableName: `${env}-customers`,
       partitionKey: {
         name: "id",
         type: dynamodb.AttributeType.STRING,

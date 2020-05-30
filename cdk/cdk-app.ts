@@ -4,9 +4,9 @@ import { HandoverStack } from "../domains/handover/handover-stack";
 import { ApigatewayStack } from "./apigateway-stack";
 
 const app = new cdk.App({});
-const ENV = app.node.tryGetContext("ENV");
+const env = app.node.tryGetContext("ENV");
 
-const apigatewayStack = new ApigatewayStack(app, `${ENV}-apigateway-stack`);
+const apigatewayStack = new ApigatewayStack(app, env);
 
-new CustomerStack(app, `${ENV}-customer-stack`, { restApi: apigatewayStack.restApi });
-new HandoverStack(app, `${ENV}-handover-stack`, { restApi: apigatewayStack.restApi });
+new CustomerStack(app, env, { restApi: apigatewayStack.restApi });
+new HandoverStack(app, env, { restApi: apigatewayStack.restApi });
