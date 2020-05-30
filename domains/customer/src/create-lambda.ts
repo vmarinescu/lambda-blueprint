@@ -6,8 +6,8 @@ import { Customer } from "./entities/customer";
 import { Service } from "./service";
 import { Keys } from "./keys";
 
-// @ts-ignore
-process.env = decrypt(process.env); // Todo?
+// @ts-ignore // Todo?
+(async () => { process.env = await decrypt(process.env); })();
 
 const tableName  = process.env[Keys.TABLE_NAME] || "";
 const repository = new CrudRepository<Customer>({ tableName: tableName });
