@@ -1,8 +1,11 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
-import { CrudRepository, handleError } from "@serverless-blueprint/core";
+import { CrudRepository, decrypt, handleError } from "@serverless-blueprint/core";
 import { Handover } from "./entities/handover";
 import { Service } from "./service";
 import { Keys } from "./keys";
+
+// @ts-ignore
+process.env = decrypt(process.env); // Todo?
 
 const tableName  = process.env[Keys.TABLE_NAME] || "";
 const repository = new CrudRepository<Handover>({ tableName: tableName });

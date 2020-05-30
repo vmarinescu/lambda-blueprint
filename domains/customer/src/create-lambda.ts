@@ -1,10 +1,13 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { isRight } from "fp-ts/lib/Either";
-import { CrudRepository, handleError } from "@serverless-blueprint/core";
+import { CrudRepository, decrypt, handleError } from "@serverless-blueprint/core";
 import { CreateDto } from "./dtos/create-dto";
 import { Customer } from "./entities/customer";
 import { Service } from "./service";
 import { Keys } from "./keys";
+
+// @ts-ignore
+process.env = decrypt(process.env); // Todo?
 
 const tableName  = process.env[Keys.TABLE_NAME] || "";
 const repository = new CrudRepository<Customer>({ tableName: tableName });
