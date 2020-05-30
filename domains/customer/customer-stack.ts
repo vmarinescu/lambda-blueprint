@@ -9,6 +9,7 @@ export class CustomerStack extends cdk.Stack {
     super(scope, `${env}-customer-stack`, props);
 
     const restApi = props.restApi;
+    const { parsed } = require("dotenv").config({ path: "domains/customer/.env" });
 
     const dynamoTable = new dynamodb.Table(this, "customers", {
       tableName: `${env}-customers`,
@@ -24,6 +25,7 @@ export class CustomerStack extends cdk.Stack {
       runtime: lambda.Runtime.NODEJS_12_X,
       environment: {
         TABLE_NAME: dynamoTable.tableName,
+        ...parsed,
       }
     });
 
@@ -33,6 +35,7 @@ export class CustomerStack extends cdk.Stack {
       runtime: lambda.Runtime.NODEJS_12_X,
       environment: {
         TABLE_NAME: dynamoTable.tableName,
+        ...parsed,
       }
     });
 
@@ -42,6 +45,7 @@ export class CustomerStack extends cdk.Stack {
       runtime: lambda.Runtime.NODEJS_12_X,
       environment: {
         TABLE_NAME: dynamoTable.tableName,
+        ...parsed,
       }
     });
 
@@ -51,6 +55,7 @@ export class CustomerStack extends cdk.Stack {
       runtime: lambda.Runtime.NODEJS_12_X,
       environment: {
         TABLE_NAME: dynamoTable.tableName,
+        ...parsed,
       }
     });
 

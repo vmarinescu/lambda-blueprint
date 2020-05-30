@@ -9,6 +9,7 @@ export class HandoverStack extends cdk.Stack {
     super(scope, `${env}-handover-stack`, props);
 
     const restApi = props.restApi;
+    const { parsed } = require("dotenv").config({ path: "domains/handover/.env" });
 
     const dynamoTable = new dynamodb.Table(this, "handovers", {
       tableName: `${env}-handovers`,
@@ -24,6 +25,7 @@ export class HandoverStack extends cdk.Stack {
       runtime: lambda.Runtime.NODEJS_12_X,
       environment: {
         TABLE_NAME: dynamoTable.tableName,
+        ...parsed,
       }
     });
 
@@ -33,6 +35,7 @@ export class HandoverStack extends cdk.Stack {
       runtime: lambda.Runtime.NODEJS_12_X,
       environment: {
         TABLE_NAME: dynamoTable.tableName,
+        ...parsed,
       }
     });
 
@@ -42,6 +45,7 @@ export class HandoverStack extends cdk.Stack {
       runtime: lambda.Runtime.NODEJS_12_X,
       environment: {
         TABLE_NAME: dynamoTable.tableName,
+        ...parsed,
       }
     });
 
@@ -51,6 +55,7 @@ export class HandoverStack extends cdk.Stack {
       runtime: lambda.Runtime.NODEJS_12_X,
       environment: {
         TABLE_NAME: dynamoTable.tableName,
+        ...parsed,
       }
     });
 
