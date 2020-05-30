@@ -5,14 +5,14 @@ import * as cdk from "@aws-cdk/core";
 import { DomainStackProps } from "../../cdk/interfaces/domain-stack-props";
 
 export class HandoverStack extends cdk.Stack {
-  constructor(scope: cdk.App, env: string, props: DomainStackProps) {
-    super(scope, `${env}-handover-stack`, props);
+  constructor(scope: cdk.App, props: DomainStackProps) {
+    super(scope, `${props.Env}-handover-stack`, props);
 
     const restApi = props.restApi;
-    const { parsed } = require("dotenv").config({ path: "domains/handover/.env" });
+    const { parsed } = require("dotenv").config({ path: `domains/customer/.env.${props.Env}` });
 
     const dynamoTable = new dynamodb.Table(this, "handovers", {
-      tableName: `${env}-handovers`,
+      tableName: `${props.Env}-handovers`,
       partitionKey: {
         name: "id",
         type: dynamodb.AttributeType.STRING,

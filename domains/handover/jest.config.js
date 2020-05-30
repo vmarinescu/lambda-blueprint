@@ -1,2 +1,2 @@
-const jestConfig = require("../../jest.config.js");
-module.exports = jestConfig;
+const jest = require("../../jest.config.js");
+module.exports = jest;

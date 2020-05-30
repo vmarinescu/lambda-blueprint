@@ -1,7 +1,7 @@
 import * as apigateway from "@aws-cdk/aws-apigateway";
-import * as cdk from "@aws-cdk/core";
+import { SharedStackProps } from "./shared-stack-props";
 
-export interface DomainStackProps extends cdk.StackProps {
+export interface DomainStackProps extends SharedStackProps {
   restApi: apigateway.RestApi;
   // ...
 }

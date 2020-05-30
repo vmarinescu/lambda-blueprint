@@ -5,14 +5,14 @@ import * as cdk from "@aws-cdk/core";
 import { DomainStackProps } from "../../cdk/interfaces/domain-stack-props";
 
 export class CustomerStack extends cdk.Stack {
-  constructor(scope: cdk.App, env: string, props: DomainStackProps) {
-    super(scope, `${env}-customer-stack`, props);
+  constructor(scope: cdk.App, props: DomainStackProps) {
+    super(scope, `${props.Env}-customer-stack`, props);
 
     const restApi = props.restApi;
-    const { parsed } = require("dotenv").config({ path: "domains/customer/.env" });
+    const { parsed } = require("dotenv").config({ path: `domains/customer/.env.${props.Env}` });
 
     const dynamoTable = new dynamodb.Table(this, "customers", {
-      tableName: `${env}-customers`,
+      tableName: `${props.Env}-customers`,
       partitionKey: {
         name: "id",
         type: dynamodb.AttributeType.STRING,
