@@ -2,7 +2,7 @@ import * as DynamoDB from "aws-sdk/clients/dynamodb";
 
 export interface CrudRepositoryOptions {
   tableName: string;
-  // ...
+  // Todo
 }
 
 export class CrudRepository<T extends object> {
@@ -67,6 +67,8 @@ export class CrudRepository<T extends object> {
       TableName: this.tableName,
       Key: keys,
       UpdateExpression: `set ${itemKey0} = :${itemKey0}`,
+      // https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html
+      ExpressionAttributeNames:  {},
       ExpressionAttributeValues: { [`:${itemKey0}`]: item[itemKey0] },
     };
     itemKeys.forEach((itemKeyX) => {
