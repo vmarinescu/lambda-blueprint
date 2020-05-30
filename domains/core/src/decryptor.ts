@@ -1,5 +1,5 @@
 import * as KMS from "aws-sdk/clients/kms";
-const kms = new KMS();
+const kms = new KMS({});
 
 const CIPHER_PREFIX = "{cipher}";
 
