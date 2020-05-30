@@ -1,15 +1,22 @@
-import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
+import { Context, APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { CrudRepository, handleError } from "@serverless-blueprint/core";
 import { Customer } from "./entities/customer";
 import { Service } from "./service";
 
 const tableName  = process.env.TABLE_NAME || ""; // Todo
 const repository = new CrudRepository<Customer>({ tableName: tableName });
-const service    = new Service(repository);
+/**
+ * Initialize outside of handler to keep connections alive.
+ * @see https://docs.atlas.mongodb.com/best-practices-connecting-to-aws-lambda/
+ */
+const service = new Service(repository);
 
 export async function entrypoint(
-  event: APIGatewayProxyEvent
+  event: APIGatewayProxyEvent,
+  context: Context,
 ): Promise<APIGatewayProxyResult> {
+  context.callbackWaitsForEmptyEventLoop = false;
+
   console.debug("Received customer-event: %s", event);
 
   const pathParameters = event.pathParameters;
