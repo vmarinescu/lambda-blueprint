@@ -12,6 +12,7 @@ export class HandoverStack extends cdk.Stack {
 
     const env = {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
+      NODE_ENV:                            props.nodeEnv,
     };
 
     const dynamoTable = new dynamodb.Table(this, "handovers", {
