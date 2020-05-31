@@ -6,9 +6,10 @@ import { SharedStackProps } from "./interfaces/shared-stack-props";
 import { DomainStackProps } from "./interfaces/domain-stack-props";
 
 const app = new cdk.App({});
-const env = app.node.tryGetContext("ENV");
 
-const sharedProps: SharedStackProps = { Env: env };
+const nodeEnv = app.node.tryGetContext("NODE_ENV");
+
+const sharedProps: SharedStackProps = { nodeEnv: nodeEnv };
 
 const apigatewayStack = new ApigatewayStack(app, sharedProps);
 

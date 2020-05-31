@@ -2,7 +2,7 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { isRight } from "fp-ts/lib/Either";
 import { handleError } from "@serverless-blueprint/core";
 import { UpdateDto } from "./dtos/update-dto";
-import { initialize } from "./initializer";
+import { createApplicationContext } from "./service-factory";
 import { Service } from "./service";
 
 let service: Service;
@@ -17,7 +17,7 @@ export async function entrypoint(
 
     if (pathParameters == null || body == null) { return { statusCode: 400, body: "" }; }
 
-    if (!service) { service = await initialize(); }
+    if (!service) { service = await createApplicationContext(); }
 
     const updateDto = JSON.parse(body);
     const either = UpdateDto.decode(updateDto); // ---> Unknown props will be stripped.

@@ -6,15 +6,16 @@ import { DomainStackProps } from "../../cdk/interfaces/domain-stack-props";
 
 export class CustomerStack extends cdk.Stack {
   constructor(scope: cdk.App, props: DomainStackProps) {
-    super(scope, `${props.Env}-customer-stack`, props);
+    super(scope, `${props.nodeEnv}-customer-stack`, props);
 
     const restApi = props.restApi;
 
-    const appConfig = require("dotenv").config({ path: `domains/customer/.env` });
-    const envConfig = require("dotenv").config({ path: `domains/customer/.env.${props.Env}` });
+    const env = {
+      AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
+    };
 
     const dynamoTable = new dynamodb.Table(this, "customers", {
-      tableName: `${props.Env}-customers`,
+      tableName: `${props.nodeEnv}-customers`,
       partitionKey: {
         name: "id",
         type: dynamodb.AttributeType.STRING,
@@ -27,8 +28,7 @@ export class CustomerStack extends cdk.Stack {
       runtime: lambda.Runtime.NODEJS_12_X,
       environment: {
         TABLE_NAME: dynamoTable.tableName,
-        ...appConfig.parsed,
-        ...envConfig.parsed,
+        ...env,
       }
     });
 
@@ -38,8 +38,7 @@ export class CustomerStack extends cdk.Stack {
       runtime: lambda.Runtime.NODEJS_12_X,
       environment: {
         TABLE_NAME: dynamoTable.tableName,
-        ...appConfig.parsed,
-        ...envConfig.parsed,
+        ...env,
       }
     });
 
@@ -49,8 +48,7 @@ export class CustomerStack extends cdk.Stack {
       runtime: lambda.Runtime.NODEJS_12_X,
       environment: {
         TABLE_NAME: dynamoTable.tableName,
-        ...appConfig.parsed,
-        ...envConfig.parsed,
+        ...env,
       }
     });
 
@@ -60,8 +58,7 @@ export class CustomerStack extends cdk.Stack {
       runtime: lambda.Runtime.NODEJS_12_X,
       environment: {
         TABLE_NAME: dynamoTable.tableName,
-        ...appConfig.parsed,
-        ...envConfig.parsed,
+        ...env,
       }
     });
 

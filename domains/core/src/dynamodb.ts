@@ -67,7 +67,6 @@ export class CrudRepository<T extends object> {
       TableName: this.tableName,
       Key: keys,
       UpdateExpression: `set ${itemKey0} = :${itemKey0}`,
-      // https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html
       ExpressionAttributeNames:  {},
       ExpressionAttributeValues: { [`:${itemKey0}`]: item[itemKey0] },
     };
