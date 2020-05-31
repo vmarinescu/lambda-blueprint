@@ -3,9 +3,6 @@ export enum Keys {
 
   ENV = "ENV",
 
-  HASH_KEY = "HASH_KEY",
-  SORT_KEY = "SORT_KEY",
-
   TABLE_NAME = "TABLE_NAME",
 
   // ...
