@@ -1,5 +1,5 @@
 import { CrudRepository } from "@serverless-blueprint/core";
-import { Customer } from "./entities/customer";
+import { Handover } from "../entities/handover";
 import { Service } from "./service";
 import { Keys } from "./keys";
 
@@ -7,7 +7,7 @@ export const createService = async (): Promise<Service> => {
   // Todo: ssm
 
   const tableName  = process.env[Keys.TABLE_NAME] || "";
-  const repository = new CrudRepository<Customer>({ tableName: tableName });
+  const repository = new CrudRepository<Handover>({ tableName: tableName });
 
   return new Service(repository);
 };

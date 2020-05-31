@@ -1,7 +1,7 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { handleError } from "@serverless-blueprint/core";
-import { createService } from "./service-factory";
-import { Service } from "./service";
+import { createService } from "./utils/service-factory";
+import { Service } from "./utils/service";
 
 let service: Service;
 
