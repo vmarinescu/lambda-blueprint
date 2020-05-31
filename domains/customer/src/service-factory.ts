@@ -1,5 +1,5 @@
 import { CrudRepository } from "@serverless-blueprint/core";
-import { Customer } from "./entities/customer";
+import { Customer } from "./customer";
 import { Service } from "./service";
 import { Keys } from "./keys";
 

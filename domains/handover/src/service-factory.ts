@@ -1,5 +1,5 @@
 import { CrudRepository } from "@serverless-blueprint/core";
-import { Handover } from "./entities/handover";
+import { Handover } from "./handover";
 import { Service } from "./service";
 import { Keys } from "./keys";
 
