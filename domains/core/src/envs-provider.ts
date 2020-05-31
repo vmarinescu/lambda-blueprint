@@ -1,1 +1,1 @@
-export function getEnv(): any {} // Todo
+export const getEnv = <T>(key: string): any => {}; // Todo

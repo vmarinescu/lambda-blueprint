@@ -1,7 +1,7 @@
 export enum Keys {
   // ----------------------------------------------------> cdk
 
-  NODE_ENV = "NODE_ENV",
+  ENV = "ENV",
 
   HASH_KEY = "HASH_KEY",
   SORT_KEY = "SORT_KEY",

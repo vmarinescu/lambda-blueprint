@@ -62,15 +62,14 @@ export class CrudRepository<T extends object> {
       return;
     }
     const itemKey0 = itemKeys. shift() as keyof T;
-    // Todo: Flatten?
     const params: DynamoDB.DocumentClient.UpdateItemInput = {
       TableName: this.tableName,
       Key: keys,
       UpdateExpression: `set ${itemKey0} = :${itemKey0}`,
-      ExpressionAttributeNames:  {},
       ExpressionAttributeValues: { [`:${itemKey0}`]: item[itemKey0] },
     };
     itemKeys.forEach((itemKeyX) => {
+      // @ts-ignore
       params.UpdateExpression += `, ${itemKeyX} = :${itemKeyX}`;
       // @ts-ignore
       params.ExpressionAttributeValues[`:${itemKeyX}`] = item[itemKeyX];

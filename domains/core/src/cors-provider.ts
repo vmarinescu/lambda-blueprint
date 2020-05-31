@@ -4,13 +4,13 @@ export const enum CorsResHeader {}
 
 export const enum CorsReqHeader {}
 
-export function withCors(
+export const withCors = (
   result: APIGatewayProxyResult,
   origin: string,
-): APIGatewayProxyResult {
+): APIGatewayProxyResult => {
   const allowedOrigins = process.env.ALLOWED_ORIGINS as any || []; // Todo
   if (allowedOrigins.includes(origin)) {}
   else {}
   console.debug(result);
   return result;
-}
+};

@@ -3,26 +3,25 @@ import * as dynamodb from "@aws-cdk/aws-dynamodb";
 import * as lambda from "@aws-cdk/aws-lambda";
 import * as cdk from "@aws-cdk/core";
 import { DomainStackProps } from "../../cdk/interfaces/domain-stack-props";
+import { Keys } from "./src/utils/keys";
 
 export class HandoverStack extends cdk.Stack {
   constructor(scope: cdk.App, props: DomainStackProps) {
-    super(scope, `${props.nodeEnv}-handover-stack`, props);
+    super(scope, `${props.env}-handover-stack`);
 
     const restApi = props.restApi;
 
-    const dynamoTable = new dynamodb.Table(this, "handovers", {
-      tableName: `${props.nodeEnv}-handovers`,
+    const environment: Record<string, string> = {};
+    environment[Keys.ENV] = props.env;
+
+    const dynamodbTable = new dynamodb.Table(this, "handovers", {
+      tableName: `${props.env}-handovers`,
       partitionKey: {
         name: "id",
         type: dynamodb.AttributeType.STRING,
       },
     });
-
-    const environment = {
-      NODE_ENV:   props.nodeEnv,
-      TABLE_NAME: dynamoTable.tableName,
-      AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
-    };
+    environment[Keys.TABLE_NAME] = dynamodbTable.tableName;
 
     const createLambda = new lambda.Function(this, "createLambda", {
       code:    lambda.AssetCode.fromAsset("domains/handover/dist", { exclude: ["**", "!create-lambda-bundle.js"] }),
@@ -52,10 +51,10 @@ export class HandoverStack extends cdk.Stack {
       environment: environment,
     });
 
-    dynamoTable.grantWriteData(createLambda);
-    dynamoTable.grantWriteData(deleteLambda);
-    dynamoTable.grantReadData(getLambda);
-    dynamoTable.grantWriteData(updateLambda);
+    dynamodbTable.grantWriteData(createLambda);
+    dynamodbTable.grantWriteData(deleteLambda);
+    dynamodbTable.grantReadData(getLambda);
+    dynamodbTable.grantWriteData(updateLambda);
 
     const handovers = restApi.root.addResource("handovers");
 

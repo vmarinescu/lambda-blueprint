@@ -7,7 +7,7 @@ export const Customer = t.exact(t.intersection([
   AuditableEntity,
   // ...
   t.interface({
-    id:   t.string, // Partition-Key
-    uuid: t.string,
+    id:    t.string, // Partition-Key
+    alias: t.string,
   }),
 ]));
