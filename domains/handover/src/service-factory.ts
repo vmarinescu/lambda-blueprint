@@ -3,7 +3,7 @@ import { Handover } from "./entities/handover";
 import { Service } from "./service";
 import { Keys } from "./keys";
 
-export const createApplicationContext = async (): Promise<Service> => {
+export const createService = async (): Promise<Service> => {
   // Todo: ssm
 
   const tableName  = process.env[Keys.TABLE_NAME] || "";
