@@ -10,11 +10,10 @@ export async function entrypoint(
 ): Promise<APIGatewayProxyResult> {
   console.debug("Received handover-event: %s", event);
   try {
-    if (!service) {
-      service = await initialize();
-    }
     const pathParameters = event.pathParameters;
     if (pathParameters == null) { return { statusCode: 400, body: "" }; }
+
+    if (!service) { service = await initialize(); }
 
     await service.deleteHandover(pathParameters["id"]);
     return { statusCode: 204, body: "" };

@@ -12,12 +12,10 @@ export async function entrypoint(
 ): Promise<APIGatewayProxyResult> {
   console.debug("Received handover-event: %s", event);
   try {
-    if (!service) {
-      service = await initialize();
-    }
     const body = event.body;
     if (body == null) { return { statusCode: 400, body: "" }; }
 
+    if (!service) { service = await initialize(); }
     const createDto = JSON.parse(body);
     const either = CreateDto.decode(createDto); // ---> Unknown props will be stripped.
     if (isRight(either)) {

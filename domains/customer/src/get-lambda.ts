@@ -10,11 +10,10 @@ export async function entrypoint(
 ): Promise<APIGatewayProxyResult> {
   console.debug("Received customer-event: %s", event);
   try {
-    if (!service) {
-      service = await initialize();
-    }
     const pathParameters = event.pathParameters;
     if (pathParameters == null) { return { statusCode: 400, body: "" }; }
+
+    if (!service) { service = await initialize(); }
 
     const customerDto = await service.getCustomer(pathParameters["id"]);
     return { statusCode: 200, body: JSON.stringify(customerDto) };
