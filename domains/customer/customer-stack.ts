@@ -10,11 +10,7 @@ export class CustomerStack extends cdk.Stack {
 
     const restApi = props.restApi;
 
-    const env = {
-      NODE_ENV: props.nodeEnv,
-      // https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/node-reusing-connections.html
-      AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
-    };
+    const environment = { NODE_ENV: props.nodeEnv };
 
     const dynamoTable = new dynamodb.Table(this, "customers", {
       tableName: `${props.nodeEnv}-customers`,
@@ -30,7 +26,7 @@ export class CustomerStack extends cdk.Stack {
       runtime: lambda.Runtime.NODEJS_12_X,
       environment: {
         TABLE_NAME: dynamoTable.tableName,
-        ...env,
+        ...environment,
       }
     });
 
@@ -40,7 +36,7 @@ export class CustomerStack extends cdk.Stack {
       runtime: lambda.Runtime.NODEJS_12_X,
       environment: {
         TABLE_NAME: dynamoTable.tableName,
-        ...env,
+        ...environment,
       }
     });
 
@@ -50,7 +46,7 @@ export class CustomerStack extends cdk.Stack {
       runtime: lambda.Runtime.NODEJS_12_X,
       environment: {
         TABLE_NAME: dynamoTable.tableName,
-        ...env,
+        ...environment,
       }
     });
 
@@ -60,7 +56,7 @@ export class CustomerStack extends cdk.Stack {
       runtime: lambda.Runtime.NODEJS_12_X,
       environment: {
         TABLE_NAME: dynamoTable.tableName,
-        ...env,
+        ...environment,
       }
     });
 
