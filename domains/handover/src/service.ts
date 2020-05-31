@@ -1,9 +1,9 @@
 import { CrudRepository, Error404 } from "@serverless-blueprint/core";
 import { v4 as uuidv4 } from "uuid";
-import { CreateDto } from "./create-dto";
-import { HandoverDto } from "./handover-dto";
-import { UpdateDto } from "./update-dto";
-import { Handover } from "./handover";
+import { CreateDto } from "./dtos/create-dto";
+import { HandoverDto } from "./dtos/handover-dto";
+import { UpdateDto } from "./dtos/update-dto";
+import { Handover } from "./entities/handover";
 
 export class Service {
   constructor(
