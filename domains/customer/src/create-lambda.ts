@@ -1,29 +1,23 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { isRight } from "fp-ts/lib/Either";
-import { CrudRepository, decrypt, handleError } from "@serverless-blueprint/core";
+import { handleError } from "@serverless-blueprint/core";
 import { CreateDto } from "./dtos/create-dto";
-import { Customer } from "./entities/customer";
+import { initialize } from "./initializer";
 import { Service } from "./service";
-import { Keys } from "./keys";
 
-// @ts-ignore // Todo?
-(async () => { process.env = await decrypt(process.env); })();
-
-const tableName  = process.env[Keys.TABLE_NAME] || "";
-const repository = new CrudRepository<Customer>({ tableName: tableName });
-
-// Initialize service outside of entrypoint to keep http-connection alive.
-const service = new Service(repository);
+let service: Service;
 
 export async function entrypoint(
   event: APIGatewayProxyEvent,
 ): Promise<APIGatewayProxyResult> {
   console.debug("Received customer-event: %s", event);
-
-  const body = event.body;
-  if (body == null) { return { statusCode: 400, body: "" }; }
-
   try {
+    if (!service) {
+      service = await initialize();
+    }
+    const body = event.body;
+    if (body == null) { return { statusCode: 400, body: "" }; }
+
     const createDto = JSON.parse(body);
     const either = CreateDto.decode(createDto); // ---> Unknown props will be stripped.
     if (isRight(either)) {

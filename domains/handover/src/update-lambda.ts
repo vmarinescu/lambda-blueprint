@@ -1,31 +1,25 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { isRight } from "fp-ts/lib/Either";
-import { CrudRepository, decrypt, handleError } from "@serverless-blueprint/core";
+import { handleError } from "@serverless-blueprint/core";
 import { UpdateDto } from "./dtos/update-dto";
-import { Handover } from "./entities/handover";
+import { initialize } from "./initializer";
 import { Service } from "./service";
-import { Keys } from "./keys";
 
-// @ts-ignore // Todo?
-(async () => { process.env = await decrypt(process.env); })();
-
-const tableName  = process.env[Keys.TABLE_NAME] || "";
-const repository = new CrudRepository<Handover>({ tableName: tableName });
-
-// Initialize service outside of entrypoint to keep http-connection alive.
-const service = new Service(repository);
+let service: Service;
 
 export async function entrypoint(
   event: APIGatewayProxyEvent,
 ): Promise<APIGatewayProxyResult> {
   console.debug("Received handover-event: %s", event);
-
-  const pathParameters = event.pathParameters;
-  const body           = event.body;
-
-  if (pathParameters == null || body == null) { return { statusCode: 400, body: "" }; }
-
   try {
+    if (!service) {
+      service = await initialize();
+    }
+    const pathParameters = event.pathParameters;
+    const body           = event.body;
+
+    if (pathParameters == null || body == null) { return { statusCode: 400, body: "" }; }
+
     const updateDto = JSON.parse(body);
     const either = UpdateDto.decode(updateDto); // ---> Unknown props will be stripped.
     if (isRight(either)) {
