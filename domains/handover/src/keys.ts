@@ -1,5 +1,6 @@
 export enum Keys {
-  // ------------------------------------> CDK
+  // ----------------------------------------------------> cdk
+
   NODE_ENV = "NODE_ENV",
 
   HASH_KEY = "HASH_KEY",
@@ -7,7 +8,12 @@ export enum Keys {
 
   TABLE_NAME = "TABLE_NAME",
 
-  // ------------------------------------> SSM
+  // ...
+
+  // ----------------------------------------------------> ssm
+
   USERNAME = "USERNAME",
   PASSWORD = "PASSWORD",
+
+  // ...
 }
