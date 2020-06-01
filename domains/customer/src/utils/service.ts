@@ -10,7 +10,7 @@ export class Service {
     private crudRepository: CrudRepository<Customer>
   ) {}
 
-  async createCustomer(createDto: CreateDto): Promise<CustomerDto> {
+  async createCustomer(createDto: CreateDto): Promise<string> {
     const date = new Date();
 
     const customer: Customer = {
@@ -20,8 +20,7 @@ export class Service {
       ...createDto,
     };
     await this.crudRepository.put(customer).catch((reason: any) => Promise.reject(reason));
-    const { createdAt, updatedAt, ...customerDto } = customer;
-    return customerDto;
+    return customer.id;
   }
 
   async deleteCustomer(id: string): Promise<void> {

@@ -10,7 +10,7 @@ export class Service {
     private crudRepository: CrudRepository<Handover>
   ) {}
 
-  async createHandover(createDto: CreateDto): Promise<HandoverDto> {
+  async createHandover(createDto: CreateDto): Promise<string> {
     const date = new Date();
 
     const handover: Handover = {
@@ -20,8 +20,7 @@ export class Service {
       ...createDto,
     };
     await this.crudRepository.put(handover).catch((reason: any) => Promise.reject(reason));
-    const { createdAt, updatedAt, ...handoverDto } = handover;
-    return handoverDto;
+    return handover.id;
   }
 
   async deleteHandover(id: string): Promise<void> {

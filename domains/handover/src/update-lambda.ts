@@ -16,11 +16,10 @@ export async function entrypoint(
     const body           = event.body;
 
     if (pathParameters == null || body == null) { return { statusCode: 400, body: "" }; }
-
     if (!service) { service = await createService(); }
 
     const updateDto = JSON.parse(body);
-    const either = UpdateDto.decode(updateDto); // ---> Unknown props will be stripped.
+    const either = UpdateDto.decode(updateDto); // ---> Unknown props stripped.
     if (isRight(either)) {
       await service.updateHandover(pathParameters["id"], either.right);
       return { statusCode: 204, body: "" };
