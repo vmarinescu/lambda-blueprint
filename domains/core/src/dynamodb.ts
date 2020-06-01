@@ -28,8 +28,7 @@ export class CrudRepository<T extends object> {
     try {
       await this.documentClient.put(params).promise();
     } catch (error) {
-      // Todo
-      console.debug(error);
+      console.error(error); // Todo?
       throw error;
     }
   }
@@ -47,8 +46,7 @@ export class CrudRepository<T extends object> {
       const  item = await this.documentClient.get(params).promise();
       return item.Item as T;
     } catch (error) {
-      // Todo
-      console.debug(error);
+      console.error(error); // Todo?
       throw error;
     }
   }
@@ -80,8 +78,7 @@ export class CrudRepository<T extends object> {
     try {
       await this.documentClient.update(params).promise();
     } catch (error) {
-      // Todo
-      console.debug(error);
+      console.error(error); // Todo?
       throw error;
     }
   }
@@ -98,8 +95,7 @@ export class CrudRepository<T extends object> {
     try {
       await this.documentClient.delete(params).promise();
     } catch (error) {
-      // Todo
-      console.debug(error);
+      console.error(error); // Todo?
       throw error;
     }
   }
