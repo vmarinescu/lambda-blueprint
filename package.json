@@ -7,7 +7,8 @@
     "javascript",
     "typescript",
     "monorepo",
-    "ddd"
+    "ddd",
+    "cdk"
   ],
   "scripts": {
     "clean": "lerna run clean && rm -rf node_modules",
