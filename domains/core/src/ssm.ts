@@ -20,7 +20,7 @@ export const getParametersByPath = async (path: string): Promise<Record<string, 
     response.Parameters.forEach((parameter) => { result[parameter.Name] = parameter.Value; });
     return result;
   } catch (error) {
-    console.error(error); // Todo?
+    console.error(error); // Todo ...
     throw error;
   }
 };
