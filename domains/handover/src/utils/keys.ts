@@ -1,4 +1,4 @@
-export enum Keys {
+export const enum Keys {
   // ----------------------------------------------------> cdk
 
   ENV = "ENV",

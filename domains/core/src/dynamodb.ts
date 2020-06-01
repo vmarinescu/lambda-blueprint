@@ -1,3 +1,5 @@
+// https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html
+
 import * as DynamoDB from "aws-sdk/clients/dynamodb";
 
 export interface CrudRepositoryOptions {
@@ -57,6 +59,7 @@ export class CrudRepository<T extends object> {
    * @param item
    */
   async update(keys: Partial<T>, item: Partial<T>): Promise<void> {
+    // Todo ...
     const itemKeys = Object.keys(item) as Array<keyof T>;
     if (itemKeys.length === 0) {
       return;

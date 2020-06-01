@@ -1,1 +1,2 @@
-export const getEnvVar = <T>(key: string): any => {}; // Todo
+// @ts-ignore
+export const getEnvVar = <T>(key: string): T => {}; // Todo

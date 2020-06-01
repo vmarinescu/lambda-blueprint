@@ -3,4 +3,5 @@
 import * as SSM from "aws-sdk/clients/ssm";
 const ssm = new SSM({});
 
-export const loadParams = async (env: string): Promise<void> => {};
+// @ts-ignore
+export const getParams = async (env: string): Promise<Record<string, string>> => {};

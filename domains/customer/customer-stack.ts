@@ -11,9 +11,6 @@ export class CustomerStack extends cdk.Stack {
 
     const restApi = props.restApi;
 
-    const environment: Record<string, string> = {};
-    environment[Keys.ENV] = props.env;
-
     const dynamodbTable = new dynamodb.Table(this, "customers", {
       tableName: `${props.env}-customers`,
       partitionKey: {
@@ -21,7 +18,12 @@ export class CustomerStack extends cdk.Stack {
         type: dynamodb.AttributeType.STRING,
       },
     });
+
+    const environment: Record<string, string> = {};
+
+    environment[Keys.ENV]        = props.env;
     environment[Keys.TABLE_NAME] = dynamodbTable.tableName;
+    // ...
 
     const createLambda = new lambda.Function(this, "createLambda", {
       code:    lambda.AssetCode.fromAsset("domains/customer/dist", { exclude: ["**", "!create-lambda-bundle.js"] }),
