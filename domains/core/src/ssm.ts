@@ -6,7 +6,7 @@ const ssm = new SSM({});
 /**
  * Retrieve names + values of ssm-parameters behind a specific path.
  *
- * @param path e.g. '/qa'
+ * @param path e.g. '/qa/{domain}'
  */
 export const getParametersByPath = async (path: string): Promise<Record<string, string>> => {
   const params: SSM.Types.GetParametersByPathRequest = {
@@ -20,7 +20,7 @@ export const getParametersByPath = async (path: string): Promise<Record<string, 
     response.Parameters.forEach((parameter) => { result[parameter.Name] = parameter.Value; });
     return result;
   } catch (error) {
-    console.error(error); // Todo ...
+    console.error(error); // Todo?
     throw error;
   }
 };
