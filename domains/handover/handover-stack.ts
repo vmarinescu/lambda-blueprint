@@ -26,30 +26,42 @@ export class HandoverStack extends cdk.Stack {
     // ...
 
     const createLambda = new lambda.Function(this, "createLambda", {
-      code:    lambda.AssetCode.fromAsset("domains/handover/dist", { exclude: ["**", "!create-lambda-bundle.js"] }),
       handler: "create-lambda-bundle.entrypoint",
       runtime: lambda.Runtime.NODEJS_12_X,
+      code:    lambda.AssetCode.fromAsset(
+        "domains/handover/dist",
+        { exclude: ["**", "!create-lambda-bundle.js"] },
+      ),
       environment: environment,
     });
 
     const deleteLambda = new lambda.Function(this, "deleteLambda", {
-      code:    lambda.AssetCode.fromAsset("domains/handover/dist", { exclude: ["**", "!delete-lambda-bundle.js"] }),
       handler: "delete-lambda-bundle.entrypoint",
       runtime: lambda.Runtime.NODEJS_12_X,
+      code:    lambda.AssetCode.fromAsset(
+        "domains/handover/dist",
+        { exclude: ["**", "!delete-lambda-bundle.js"] },
+      ),
       environment: environment,
     });
 
     const getLambda = new lambda.Function(this, "getLambda", {
-      code:    lambda.AssetCode.fromAsset("domains/handover/dist", { exclude: ["**", "!get-lambda-bundle.js"] }),
       handler: "get-lambda-bundle.entrypoint",
       runtime: lambda.Runtime.NODEJS_12_X,
+      code:    lambda.AssetCode.fromAsset(
+        "domains/handover/dist",
+        { exclude: ["**", "!get-lambda-bundle.js"] },
+      ),
       environment: environment,
     });
 
     const updateLambda = new lambda.Function(this, "updateLambda", {
-      code:    lambda.AssetCode.fromAsset("domains/handover/dist", { exclude: ["**", "!update-lambda-bundle.js"] }),
       handler: "update-lambda-bundle.entrypoint",
       runtime: lambda.Runtime.NODEJS_12_X,
+      code:    lambda.AssetCode.fromAsset(
+        "domains/handover/dist",
+        { exclude: ["**", "!update-lambda-bundle.js"] },
+      ),
       environment: environment,
     });
 
