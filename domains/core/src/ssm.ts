@@ -1,5 +1,4 @@
 // https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/SSM.html
-
 import * as SSM from "aws-sdk/clients/ssm";
 
 let ssm: SSM;
