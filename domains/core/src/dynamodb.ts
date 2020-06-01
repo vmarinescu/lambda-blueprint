@@ -60,7 +60,7 @@ export class CrudRepository<T extends object> {
    */
   async update(keys: Partial<T>, item: Partial<T>): Promise<void> {
     // Todo ...
-    const itemKeys = Object.keys(item) as Array<keyof T>;
+    const itemKeys = Object.keys(item) as (keyof T)[];
     if (itemKeys.length === 0) {
       return;
     }
