@@ -68,13 +68,5 @@
     ],
     "lint-staged": "^10.2.7",
     "husky": "^4.2.5"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*": ""
   }
 }
