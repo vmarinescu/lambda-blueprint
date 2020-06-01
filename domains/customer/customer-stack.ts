@@ -7,7 +7,7 @@ import { Keys } from "./src/utils/keys";
 
 export class CustomerStack extends cdk.Stack {
   constructor(scope: cdk.App, props: DomainStackProps) {
-    super(scope, `${props.stage}-customer-stack`);
+    super(scope, `${props.stage}-customer-stack`, props);
 
     const restApi = props.restApi;
 

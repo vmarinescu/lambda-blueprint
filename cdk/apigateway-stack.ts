@@ -6,7 +6,7 @@ export class ApigatewayStack extends cdk.Stack {
   restApi: apigateway.RestApi;
 
   constructor(scope: cdk.App, props: SharedStackProps) {
-    super(scope, `${props.stage}-apigateway-stack`);
+    super(scope, `${props.stage}-apigateway-stack`, props);
     // ...
     this.restApi = new apigateway.RestApi(this, `${props.stage}-API`, {});
   }

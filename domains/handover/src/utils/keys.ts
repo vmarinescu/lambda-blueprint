@@ -1,7 +1,7 @@
 export enum Keys {
   // ----------------------------------------------------> cdk
 
-  ENV = "ENV",
+  STAGE = "STAGE",
 
   TABLE_NAME = "TABLE_NAME",
 

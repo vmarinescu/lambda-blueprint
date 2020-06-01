@@ -7,7 +7,7 @@ import { Keys } from "./src/utils/keys";
 
 export class HandoverStack extends cdk.Stack {
   constructor(scope: cdk.App, props: DomainStackProps) {
-    super(scope, `${props.stage}-handover-stack`);
+    super(scope, `${props.stage}-handover-stack`, props);
 
     const restApi = props.restApi;
 
