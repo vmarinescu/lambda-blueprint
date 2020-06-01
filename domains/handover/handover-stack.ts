@@ -7,15 +7,15 @@ import { Keys } from "./src/utils/keys";
 
 export class HandoverStack extends cdk.Stack {
   constructor(scope: cdk.App, props: DomainStackProps) {
-    super(scope, `${props.env}-handover-stack`);
+    super(scope, `${props.stage}-handover-stack`);
 
     const restApi = props.restApi;
 
     const environment: Record<string, string> = {};
-    environment[Keys.ENV] = props.env;
+    environment[Keys.ENV] = props.stage;
 
     const dynamodbTable = new dynamodb.Table(this, "handovers", {
-      tableName: `${props.env}-handovers`,
+      tableName: `${props.stage}-handovers`,
       partitionKey: {
         name: "id",
         type: dynamodb.AttributeType.STRING,

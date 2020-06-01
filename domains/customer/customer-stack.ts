@@ -7,15 +7,15 @@ import { Keys } from "./src/utils/keys";
 
 export class CustomerStack extends cdk.Stack {
   constructor(scope: cdk.App, props: DomainStackProps) {
-    super(scope, `${props.env}-customer-stack`);
+    super(scope, `${props.stage}-customer-stack`);
 
     const restApi = props.restApi;
 
     const environment: Record<string, string> = {};
-    environment[Keys.ENV] = props.env;
+    environment[Keys.ENV] = props.stage;
 
     const dynamodbTable = new dynamodb.Table(this, "customers", {
-      tableName: `${props.env}-customers`,
+      tableName: `${props.stage}-customers`,
       partitionKey: {
         name: "id",
         type: dynamodb.AttributeType.STRING,
