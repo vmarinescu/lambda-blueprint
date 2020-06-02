@@ -1,8 +1,7 @@
 // https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html
 import * as DynamoDB from "aws-sdk/clients/dynamodb";
 
-export type  Entity = Record<string, any>;
-export class EntityNotFoundError extends Error {}
+export type Entity = Record<string, any>;
 
 export interface CrudRepositoryOptions {
   tableName: string;
@@ -39,20 +38,18 @@ export class CrudRepository<T extends Entity> {
    * Gets a single item with the given primary key by delegating to AWS.DynamoDB.DocumentClient.get().
    * @param keys
    */
-  async get(keys: Partial<T>): Promise<T> {
+  async get(keys: Partial<T>): Promise<T | undefined> {
     const params: DynamoDB.DocumentClient.GetItemInput = {
       TableName: this.tableName,
       Key: keys,
     };
-    let item;
     try {
-      item = await this.documentClient.get(params).promise();
+      const  item = await this.documentClient.get(params).promise();
+      return item.Item as T;
     } catch (error) {
       console.error(error); // Todo?
       throw error;
     }
-    if (!item) { throw new EntityNotFoundError(); }
-    return item.Item as T;
   }
 
   /**
@@ -60,11 +57,11 @@ export class CrudRepository<T extends Entity> {
    * @param keys
    * @param item
    */
-  async update(keys: Partial<T>, item: Partial<T>): Promise<void> {
+  async update(keys: Partial<T>, item: Partial<T>): Promise<T | undefined> {
     const itemKeys = Object.keys(item); // Todo?
     const itemKey0 = itemKeys. shift();
     if (!itemKey0) {
-      return;
+      return undefined;
     }
     const params: DynamoDB.DocumentClient.UpdateItemInput = {
       TableName: this.tableName,
@@ -73,19 +70,19 @@ export class CrudRepository<T extends Entity> {
       UpdateExpression: `set #${itemKey0} = :${itemKey0}`,
       ExpressionAttributeNames:  { [`#${itemKey0}`]: itemKey0 },
       ExpressionAttributeValues: { [`:${itemKey0}`]: item[itemKey0] },
+      ReturnValues: "UPDATED_NEW",
     };
     itemKeys.forEach((itemKeyX) => {
       params.UpdateExpression += `, #${itemKeyX} = :${itemKeyX}`;
-      // @ts-ignore
-      params.ExpressionAttributeNames [`#${itemKeyX}`] = itemKeyX;
-      // @ts-ignore
-      params.ExpressionAttributeValues[`:${itemKeyX}`] = item[itemKeyX];
+      params.ExpressionAttributeNames ![`#${itemKeyX}`] = itemKeyX;
+      params.ExpressionAttributeValues![`:${itemKeyX}`] = item[itemKeyX];
     });
     try {
-      await this.documentClient.update(params).promise();
+      const  item = await this.documentClient.update(params).promise();
+      return item.Attributes as T;
     } catch (error) {
       console.error(error); // Todo?
-      if (error.code === "ConditionalCheckFailedException") { throw new EntityNotFoundError(); }
+      if (error.code === "ConditionalCheckFailedException") { return undefined; }
       throw error;
     }
   }
