@@ -4,7 +4,8 @@ import { Service } from "./service";
 import { Keys } from "./keys";
 
 export const createService = async (): Promise<Service> => {
-  const parameters = await getParametersByPath(`/${process.env[Keys.ENV]}-customer/`);
+  const parameters =
+    await getParametersByPath(`/${process.env[Keys.ENV]}-customer/`);
   // Todo ...
 
   const tableName  = process.env[Keys.TABLE_NAME] || "";
