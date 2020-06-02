@@ -1,4 +1,4 @@
-import { CrudRepository, EntityNotFoundError, Error404 } from "@serverless-blueprint/core";
+import { CrudRepository, Error404 } from "@serverless-blueprint/core";
 import { v4 as uuidv4 } from "uuid";
 import { CreateDto } from "../dtos/create-dto";
 import { HandoverDto } from "../dtos/handover-dto";
@@ -10,7 +10,7 @@ export class Service {
     private crudRepository: CrudRepository<Handover>
   ) {}
 
-  async createHandover(createDto: CreateDto): Promise<string> {
+  async createHandover(createDto: CreateDto): Promise<HandoverDto> {
     const date = new Date();
 
     const handover: Handover = {
@@ -20,7 +20,9 @@ export class Service {
       ...createDto,
     };
     await this.crudRepository.put(handover).catch((reason: any) => Promise.reject(reason));
-    return handover.id;
+
+    const { createdAt, updatedAt, ...handoverDto } = handover;
+    return handoverDto;
   }
 
   async deleteHandover(id: string): Promise<void> {
@@ -30,24 +32,20 @@ export class Service {
 
   async getHandover(id: string): Promise<HandoverDto> {
     const keys: Partial<Handover> = { id: id };
-    const handover = await this.crudRepository.get(keys)
-      .catch((reason: any) => {
-        if (reason.constructor === EntityNotFoundError) { throw new Error404(); }
-        throw reason;
-      });
+    const handover = await this.crudRepository.get(keys).catch((reason: any) => Promise.reject(reason));
+    if (!handover) { throw new Error404(); }
     const { createdAt, updatedAt, ...handoverDto } = handover;
     return handoverDto;
   }
 
-  async updateHandover(id: string, updateDto: UpdateDto): Promise<void> {
+  async updateHandover(id: string, updateDto: UpdateDto): Promise<HandoverDto> {
     const keys: Partial<Handover> = { id: id };
     const date = new Date();
 
     const handover: Partial<Handover> = { updatedAt: date.toISOString(), ...updateDto };
-    await this.crudRepository.update(keys, handover)
-      .catch((reason: any) => {
-        if (reason.constructor === EntityNotFoundError) { throw new Error404(); }
-        throw reason;
-      });
+    const hUpdated = await this.crudRepository.update(keys, handover).catch((reason: any) => Promise.reject(reason));
+    if (!hUpdated) { throw new Error404(); }
+    const { createdAt, updatedAt, ...handoverDto } = hUpdated;
+    return handoverDto;
   }
 }

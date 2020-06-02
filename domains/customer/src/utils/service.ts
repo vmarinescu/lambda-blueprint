@@ -1,4 +1,4 @@
-import { CrudRepository, EntityNotFoundError, Error404 } from "@serverless-blueprint/core";
+import { CrudRepository, Error404 } from "@serverless-blueprint/core";
 import { v4 as uuidv4 } from "uuid";
 import { CreateDto } from "../dtos/create-dto";
 import { CustomerDto } from "../dtos/customer-dto";
@@ -10,7 +10,7 @@ export class Service {
     private crudRepository: CrudRepository<Customer>
   ) {}
 
-  async createCustomer(createDto: CreateDto): Promise<string> {
+  async createCustomer(createDto: CreateDto): Promise<CustomerDto> {
     const date = new Date();
 
     const customer: Customer = {
@@ -20,7 +20,9 @@ export class Service {
       ...createDto,
     };
     await this.crudRepository.put(customer).catch((reason: any) => Promise.reject(reason));
-    return customer.id;
+
+    const { createdAt, updatedAt, ...customerDto } = customer;
+    return customerDto;
   }
 
   async deleteCustomer(id: string): Promise<void> {
@@ -30,24 +32,20 @@ export class Service {
 
   async getCustomer(id: string): Promise<CustomerDto> {
     const keys: Partial<Customer> = { id: id };
-    const customer = await this.crudRepository.get(keys)
-      .catch((reason: any) => {
-        if (reason.constructor === EntityNotFoundError) { throw new Error404(); }
-        throw reason;
-      });
+    const customer = await this.crudRepository.get(keys).catch((reason: any) => Promise.reject(reason));
+    if (!customer) { throw new Error404(); }
     const { createdAt, updatedAt, ...customerDto } = customer;
     return customerDto;
   }
 
-  async updateCustomer(id: string, updateDto: UpdateDto): Promise<void> {
+  async updateCustomer(id: string, updateDto: UpdateDto): Promise<CustomerDto> {
     const keys: Partial<Customer> = { id: id };
     const date = new Date();
 
     const customer: Partial<Customer> = { updatedAt: date.toISOString(), ...updateDto };
-    await this.crudRepository.update(keys, customer)
-      .catch((reason: any) => {
-        if (reason.constructor === EntityNotFoundError) { throw new Error404(); }
-        throw reason;
-      });
+    const cUpdated = await this.crudRepository.update(keys, customer).catch((reason: any) => Promise.reject(reason));
+    if (!cUpdated) { throw new Error404(); }
+    const { createdAt, updatedAt, ...customerDto } = cUpdated;
+    return customerDto;
   }
 }
