@@ -20,9 +20,8 @@ export async function entrypoint(
     const createDto = JSON.parse(body);
     const either = CreateDto.decode(createDto); // ---> Unknown props stripped.
     if (isRight(either)) {
-      const id = await service.createCustomer(either.right);
-      const headers = { Location: `.../customers/${id}` }; // Todo
-      return { statusCode: 201, body: "", headers };
+      const customerDto = await service.createCustomer(either.right);
+      return { statusCode: 201, body: JSON.stringify(customerDto) };
     } else {
       return { statusCode: 400, body: "" };
     }

@@ -58,11 +58,8 @@ export class CrudRepository<T extends Entity> {
    * @param item
    */
   async update(keys: Partial<T>, item: Partial<T>): Promise<T | undefined> {
-    const itemKeys = Object.keys(item); // Todo?
-    const itemKey0 = itemKeys. shift();
-    if (!itemKey0) {
-      return undefined;
-    }
+    const itemKeys = Object.keys(item);
+    const itemKey0 = itemKeys[0];
     const params: DynamoDB.DocumentClient.UpdateItemInput = {
       TableName: this.tableName,
       Key: keys,
@@ -72,7 +69,7 @@ export class CrudRepository<T extends Entity> {
       ExpressionAttributeValues: { [`:${itemKey0}`]: item[itemKey0] },
       ReturnValues: "ALL_NEW",
     };
-    itemKeys.forEach((itemKeyX) => {
+    itemKeys.splice(1).forEach((itemKeyX) => {
       params.UpdateExpression += `, #${itemKeyX} = :${itemKeyX}`;
       params.ExpressionAttributeNames ![`#${itemKeyX}`] = itemKeyX;
       params.ExpressionAttributeValues![`:${itemKeyX}`] = item[itemKeyX];

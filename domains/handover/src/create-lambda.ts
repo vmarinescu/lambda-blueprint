@@ -20,9 +20,8 @@ export async function entrypoint(
     const createDto = JSON.parse(body);
     const either = CreateDto.decode(createDto); // ---> Unknown props stripped.
     if (isRight(either)) {
-      const id = await service.createHandover(either.right);
-      const headers = { Location: `.../handovers/${id}` }; // Todo
-      return { statusCode: 201, body: "", headers };
+      const handoverDto = await service.createHandover(either.right);
+      return { statusCode: 201, body: JSON.stringify(handoverDto) };
     } else {
       return { statusCode: 400, body: "" };
     }
