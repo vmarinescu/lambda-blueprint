@@ -3,10 +3,10 @@ import * as DynamoDB from "aws-sdk/clients/dynamodb";
 
 export interface CrudRepositoryOptions {
   tableName: string;
-  // Todo
+  // Todo?
 }
 
-export class CrudRepository<T extends object> {
+export class CrudRepository<T extends Record<string, any>> {
   private tableName:      string;
   private documentClient: DynamoDB.DocumentClient;
 
@@ -56,21 +56,22 @@ export class CrudRepository<T extends object> {
    * @param item
    */
   async update(keys: Partial<T>, item: Partial<T>): Promise<void> {
-    // Todo ...
-    const itemKeys = Object.keys(item) as (keyof T)[];
-    if (itemKeys.length === 0) {
+    const itemKeys = Object.keys(item); // Todo?
+    const itemKey0 = itemKeys. shift();
+    if (!itemKey0) {
       return;
     }
-    const itemKey0 = itemKeys. shift() as keyof T;
     const params: DynamoDB.DocumentClient.UpdateItemInput = {
       TableName: this.tableName,
       Key: keys,
-      UpdateExpression: `set ${itemKey0} = :${itemKey0}`,
+      UpdateExpression: `set #${itemKey0} = :${itemKey0}`,
+      ExpressionAttributeNames:  { [`#${itemKey0}`]: itemKey0 },
       ExpressionAttributeValues: { [`:${itemKey0}`]: item[itemKey0] },
     };
     itemKeys.forEach((itemKeyX) => {
+      params.UpdateExpression += `, #${itemKeyX} = :${itemKeyX}`;
       // @ts-ignore
-      params.UpdateExpression += `, ${itemKeyX} = :${itemKeyX}`;
+      params.ExpressionAttributeNames [`#${itemKeyX}`] = itemKeyX;
       // @ts-ignore
       params.ExpressionAttributeValues[`:${itemKeyX}`] = item[itemKeyX];
     });
