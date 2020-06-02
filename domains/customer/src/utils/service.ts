@@ -1,4 +1,4 @@
-import { CrudRepository, Error404 } from "@serverless-blueprint/core";
+import { CrudRepository, EntityNotFoundError, Error404 } from "@serverless-blueprint/core";
 import { v4 as uuidv4 } from "uuid";
 import { CreateDto } from "../dtos/create-dto";
 import { CustomerDto } from "../dtos/customer-dto";
@@ -30,8 +30,11 @@ export class Service {
 
   async getCustomer(id: string): Promise<CustomerDto> {
     const keys: Partial<Customer> = { id: id };
-    const customer = await this.crudRepository.get(keys).catch((reason: any) => Promise.reject(reason));
-    if (!customer) { throw new Error404(); }
+    const customer = await this.crudRepository.get(keys)
+      .catch((reason: any) => {
+        if (reason.constructor === EntityNotFoundError) { throw new Error404(); }
+        throw reason;
+      });
     const { createdAt, updatedAt, ...customerDto } = customer;
     return customerDto;
   }
@@ -41,6 +44,10 @@ export class Service {
     const date = new Date();
 
     const customer: Partial<Customer> = { updatedAt: date.toISOString(), ...updateDto };
-    return this.crudRepository.update(keys, customer);
+    await this.crudRepository.update(keys, customer)
+      .catch((reason: any) => {
+        if (reason.constructor === EntityNotFoundError) { throw new Error404(); }
+        throw reason;
+      });
   }
 }

@@ -1,7 +1,8 @@
 // https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html
 import * as DynamoDB from "aws-sdk/clients/dynamodb";
 
-export type Entity = Record<string, any>;
+export type  Entity = Record<string, any>;
+export class EntityNotFoundError extends Error {}
 
 export interface CrudRepositoryOptions {
   tableName: string;
@@ -19,6 +20,7 @@ export class CrudRepository<T extends Entity> {
 
   /**
    * Puts a single item with the given primary key by delegating to AWS.DynamoDB.DocumentClient.put().
+   *
    * @param item
    */
   async put(item: T): Promise<void> {
@@ -36,32 +38,40 @@ export class CrudRepository<T extends Entity> {
 
   /**
    * Gets a single item with the given primary key by delegating to AWS.DynamoDB.DocumentClient.get().
+   *
    * @param keys
+   *
+   * @throws {EntityNotFoundError}
    */
-  async get(keys: Partial<T>): Promise<T | undefined> {
+  async get(keys: Partial<T>): Promise<T> {
     const params: DynamoDB.DocumentClient.GetItemInput = {
       TableName: this.tableName,
       Key: keys,
     };
+    let item;
     try {
-      const  item = await this.documentClient.get(params).promise();
-      return item.Item as T;
+      item = await this.documentClient.get(params).promise();
     } catch (error) {
       console.error(error); // Todo?
       throw error;
     }
+    if (!item) { throw new EntityNotFoundError(); } // Todo: Modify behaviour?
+    return item.Item as T;
   }
 
   /**
    * Updates a single item with the given primary key by delegating to AWS.DynamoDB.DocumentClient.update().
+   *
    * @param keys
    * @param item
+   *
+   * @throws {EntityNotFoundError}
    */
-  async update(keys: Partial<T>, item: Partial<T>): Promise<T | undefined> {
+  async update(keys: Partial<T>, item: Partial<T>): Promise<void> {
     const itemKeys = Object.keys(item); // Todo?
     const itemKey0 = itemKeys. shift();
     if (!itemKey0) {
-      return undefined;
+      return;
     }
     const params: DynamoDB.DocumentClient.UpdateItemInput = {
       TableName: this.tableName,
@@ -70,7 +80,6 @@ export class CrudRepository<T extends Entity> {
       UpdateExpression: `set #${itemKey0} = :${itemKey0}`,
       ExpressionAttributeNames:  { [`#${itemKey0}`]: itemKey0 },
       ExpressionAttributeValues: { [`:${itemKey0}`]: item[itemKey0] },
-      ReturnValues: "UPDATED_NEW",
     };
     itemKeys.forEach((itemKeyX) => {
       params.UpdateExpression += `, #${itemKeyX} = :${itemKeyX}`;
@@ -78,12 +87,11 @@ export class CrudRepository<T extends Entity> {
       params.ExpressionAttributeValues![`:${itemKeyX}`] = item[itemKeyX];
     });
     try {
-      const  item = await this.documentClient.update(params).promise();
-      return item.Attributes as T;
+      await this.documentClient.update(params).promise();
     } catch (error) {
       console.error(error); // Todo?
       if (error.code === "ConditionalCheckFailedException") {
-        return undefined;
+        throw new EntityNotFoundError();
       }
       throw error;
     }
@@ -91,6 +99,7 @@ export class CrudRepository<T extends Entity> {
 
   /**
    * Deletes a single item with the given primary key by delegating to AWS.DynamoDB.DocumentClient.delete().
+   *
    * @param keys
    */
   async delete(keys: Partial<T>): Promise<void> {

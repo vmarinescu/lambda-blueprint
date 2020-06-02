@@ -1,4 +1,4 @@
-import { CrudRepository, Error404 } from "@serverless-blueprint/core";
+import { CrudRepository, EntityNotFoundError, Error404 } from "@serverless-blueprint/core";
 import { v4 as uuidv4 } from "uuid";
 import { CreateDto } from "../dtos/create-dto";
 import { HandoverDto } from "../dtos/handover-dto";
@@ -30,8 +30,11 @@ export class Service {
 
   async getHandover(id: string): Promise<HandoverDto> {
     const keys: Partial<Handover> = { id: id };
-    const handover = await this.crudRepository.get(keys).catch((reason: any) => Promise.reject(reason));
-    if (!handover) { throw new Error404(); }
+    const handover = await this.crudRepository.get(keys)
+      .catch((reason: any) => {
+        if (reason.constructor === EntityNotFoundError) { throw new Error404(); }
+        throw reason;
+      });
     const { createdAt, updatedAt, ...handoverDto } = handover;
     return handoverDto;
   }
@@ -41,6 +44,10 @@ export class Service {
     const date = new Date();
 
     const handover: Partial<Handover> = { updatedAt: date.toISOString(), ...updateDto };
-    return this.crudRepository.update(keys, handover);
+    await this.crudRepository.update(keys, handover)
+      .catch((reason: any) => {
+        if (reason.constructor === EntityNotFoundError) { throw new Error404(); }
+        throw reason;
+      });
   }
 }
