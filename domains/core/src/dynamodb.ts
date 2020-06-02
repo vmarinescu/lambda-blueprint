@@ -64,6 +64,7 @@ export class CrudRepository<T extends Entity> {
     const params: DynamoDB.DocumentClient.UpdateItemInput = {
       TableName: this.tableName,
       Key: keys,
+      ReturnValues: "NONE",
       ConditionExpression: Object.keys(keys).map((key) => `attribute_exists(${key})`).join(" and "),
       UpdateExpression: `set #${itemKey0} = :${itemKey0}`,
       ExpressionAttributeNames:  { [`#${itemKey0}`]: itemKey0 },
