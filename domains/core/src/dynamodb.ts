@@ -36,7 +36,8 @@ export class CrudRepository<T extends Entity> {
 
   /**
    * Gets a single item with the given primary key by delegating to AWS.DynamoDB.DocumentClient.get().
-   * @param keys
+   * @param  keys
+   * @return {Promise<T | undefined>}
    */
   async get(keys: Partial<T>): Promise<T | undefined> {
     const params: DynamoDB.DocumentClient.GetItemInput = {
@@ -54,8 +55,9 @@ export class CrudRepository<T extends Entity> {
 
   /**
    * Updates a single item with the given primary key by delegating to AWS.DynamoDB.DocumentClient.update().
-   * @param keys
-   * @param item
+   * @param  keys
+   * @param  item
+   * @return {Promise<T | undefined>}
    */
   async update(keys: Partial<T>, item: Partial<T>): Promise<T | undefined> {
     const itemKeys = Object.keys(item);
