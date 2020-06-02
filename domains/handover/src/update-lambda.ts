@@ -5,6 +5,7 @@ import { UpdateDto } from "./dtos/update-dto";
 import { createService } from "./utils/service-factory";
 import { Service } from "./utils/service";
 
+// Keep outside to re-use it for subsequent invocations.
 let service: Service;
 
 export async function entrypoint(
