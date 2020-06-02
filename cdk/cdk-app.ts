@@ -8,7 +8,7 @@ import { DomainStackProps } from "./interfaces/domain-stack-props";
 const app = new cdk.App({});
 
 const env = app.node.tryGetContext("ENV");
-if (!env) { throw new Error("Value for 'ENV' is missing."); }
+if (!env) { throw new Error("You missed a value for 'ENV'"); }
 
 const sharedProps: SharedStackProps = { env: env };
 

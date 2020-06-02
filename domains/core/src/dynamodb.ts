@@ -37,8 +37,7 @@ export class CrudRepository<T extends Entity> {
 
   /**
    * Gets a single item with the given primary key by delegating to AWS.DynamoDB.DocumentClient.get().
-   * @param  keys
-   * @return {Promise<T | undefined>}
+   * @param keys
    */
   async get(keys: Partial<T>): Promise<T | undefined> {
     const params: DynamoDB.DocumentClient.GetItemInput = {
@@ -56,11 +55,10 @@ export class CrudRepository<T extends Entity> {
 
   /**
    * Updates a single item with the given primary key by delegating to AWS.DynamoDB.DocumentClient.update().
-   * @param  keys
-   * @param  item
-   * @return {Promise<T | undefined>}
+   * @param keys
+   * @param item
    */
-  async update(keys: Partial<T>, item: Partial<T>): Promise<T | undefined> {
+  async update(keys: Partial<T>, item: Partial<T>): Promise<void> {
     const itemKeys = Object.keys(item);
     const itemKey0 = itemKeys[0];
     const params: DynamoDB.DocumentClient.UpdateItemInput = {
@@ -70,7 +68,6 @@ export class CrudRepository<T extends Entity> {
       UpdateExpression: `set #${itemKey0} = :${itemKey0}`,
       ExpressionAttributeNames:  { [`#${itemKey0}`]: itemKey0 },
       ExpressionAttributeValues: { [`:${itemKey0}`]: item[itemKey0] },
-      ReturnValues: "ALL_NEW",
     };
     itemKeys.splice(1).forEach((itemKeyX) => {
       params.UpdateExpression += `, #${itemKeyX} = :${itemKeyX}`;
@@ -78,12 +75,11 @@ export class CrudRepository<T extends Entity> {
       params.ExpressionAttributeValues![`:${itemKeyX}`] = item[itemKeyX];
     });
     try {
-      const  item = await this.documentClient.update(params).promise();
-      return item.Attributes as T;
+      await this.documentClient.update(params).promise();
     } catch (error) {
       console.error(error); // Todo?
       if (error.code === "ConditionalCheckFailedException") {
-        return undefined;
+        throw new EntityNotFoundError();
       }
       throw error;
     }

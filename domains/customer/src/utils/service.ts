@@ -10,7 +10,7 @@ export class Service {
     private crudRepository: CrudRepository<Customer>
   ) {}
 
-  async createCustomer(createDto: CreateDto): Promise<CustomerDto> {
+  async createCustomer(createDto: CreateDto): Promise<string> {
     const date = new Date();
 
     const customer: Customer = {
@@ -20,9 +20,7 @@ export class Service {
       ...createDto,
     };
     await this.crudRepository.put(customer).catch((reason: any) => Promise.reject(reason));
-
-    const { createdAt, updatedAt, ...customerDto } = customer;
-    return customerDto;
+    return customer.id;
   }
 
   async deleteCustomer(id: string): Promise<void> {
@@ -38,14 +36,6 @@ export class Service {
     return customerDto;
   }
 
-  async updateCustomer(id: string, updateDto: UpdateDto): Promise<CustomerDto> {
-    const keys: Partial<Customer> = { id: id };
-    const date = new Date();
-
-    const customer: Partial<Customer> = { updatedAt: date.toISOString(), ...updateDto };
-    const cUpdated = await this.crudRepository.update(keys, customer).catch((reason: any) => Promise.reject(reason));
-    if (!cUpdated) { throw new Error404(); }
-    const { createdAt, updatedAt, ...customerDto } = cUpdated;
-    return customerDto;
-  }
+  // Todo?
+  async updateCustomer(id: string, updateDto: UpdateDto): Promise<void> {}
 }

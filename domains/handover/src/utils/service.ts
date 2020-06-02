@@ -10,7 +10,7 @@ export class Service {
     private crudRepository: CrudRepository<Handover>
   ) {}
 
-  async createHandover(createDto: CreateDto): Promise<HandoverDto> {
+  async createHandover(createDto: CreateDto): Promise<string> {
     const date = new Date();
 
     const handover: Handover = {
@@ -20,9 +20,7 @@ export class Service {
       ...createDto,
     };
     await this.crudRepository.put(handover).catch((reason: any) => Promise.reject(reason));
-
-    const { createdAt, updatedAt, ...handoverDto } = handover;
-    return handoverDto;
+    return handover.id;
   }
 
   async deleteHandover(id: string): Promise<void> {
@@ -38,14 +36,6 @@ export class Service {
     return handoverDto;
   }
 
-  async updateHandover(id: string, updateDto: UpdateDto): Promise<HandoverDto> {
-    const keys: Partial<Handover> = { id: id };
-    const date = new Date();
-
-    const handover: Partial<Handover> = { updatedAt: date.toISOString(), ...updateDto };
-    const hUpdated = await this.crudRepository.update(keys, handover).catch((reason: any) => Promise.reject(reason));
-    if (!hUpdated) { throw new Error404(); }
-    const { createdAt, updatedAt, ...handoverDto } = hUpdated;
-    return handoverDto;
-  }
+  // Todo?
+  async updateHandover(id: string, updateDto: UpdateDto): Promise<void> {}
 }

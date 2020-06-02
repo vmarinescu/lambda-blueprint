@@ -22,9 +22,8 @@ export async function entrypoint(
     const updateDto = JSON.parse(body);
     const either = UpdateDto.decode(updateDto); // ---> Unknown props stripped.
     if (isRight(either)) {
-      const id = pathParameters["id"];
-      const handoverDto = await service.updateHandover(id, either.right);
-      return { statusCode: 200, body: JSON.stringify(handoverDto) };
+      await service.updateHandover(pathParameters["id"], either.right);
+      return { statusCode: 204, body: "" };
     } else {
       return { statusCode: 400, body: "" };
     }
