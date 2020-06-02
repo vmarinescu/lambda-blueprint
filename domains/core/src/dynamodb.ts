@@ -39,18 +39,20 @@ export class CrudRepository<T extends Entity> {
    * Gets a single item with the given primary key by delegating to AWS.DynamoDB.DocumentClient.get().
    * @param keys
    */
-  async get(keys: Partial<T>): Promise<T | undefined> {
+  async get(keys: Partial<T>): Promise<T> {
     const params: DynamoDB.DocumentClient.GetItemInput = {
       TableName: this.tableName,
       Key: keys,
     };
+    let item;
     try {
-      const  item = await this.documentClient.get(params).promise();
-      return item.Item as T;
+      item = await this.documentClient.get(params).promise();
     } catch (error) {
       console.error(error); // Todo?
       throw error;
     }
+    if (!item) { throw new EntityNotFoundError(); }
+    return item.Item as T;
   }
 
   /**
@@ -67,6 +69,7 @@ export class CrudRepository<T extends Entity> {
     const params: DynamoDB.DocumentClient.UpdateItemInput = {
       TableName: this.tableName,
       Key: keys,
+      ConditionExpression: Object.keys(keys).map((key) => `attribute_exists(${key})`).join(" and "),
       UpdateExpression: `set #${itemKey0} = :${itemKey0}`,
       ExpressionAttributeNames:  { [`#${itemKey0}`]: itemKey0 },
       ExpressionAttributeValues: { [`:${itemKey0}`]: item[itemKey0] },
@@ -82,6 +85,7 @@ export class CrudRepository<T extends Entity> {
       await this.documentClient.update(params).promise();
     } catch (error) {
       console.error(error); // Todo?
+      if (error.code === "ConditionalCheckFailedException") { throw new EntityNotFoundError(); }
       throw error;
     }
   }
