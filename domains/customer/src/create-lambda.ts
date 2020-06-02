@@ -23,7 +23,7 @@ export async function entrypoint(
       const customerDto = await service.createCustomer(either.right);
       return { statusCode: 201, body: JSON.stringify(customerDto) };
     } else {
-      return { statusCode: 400, body: "" };
+      return { statusCode: 400, body: "" }; // Todo
     }
   } catch (error) {
     return handleError(error);
