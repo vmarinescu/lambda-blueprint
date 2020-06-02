@@ -11,7 +11,7 @@
     "cdk"
   ],
   "scripts": {
-    "clean": "lerna run clean && rm -rf dist node_modules",
+    "clean": "lerna run clean && rm -rf node_modules",
     "build": "lerna bootstrap",
     "test:unit": "lerna run test:unit",
     "test:intr": "lerna run test:intr",
