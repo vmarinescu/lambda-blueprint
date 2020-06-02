@@ -1,7 +1,8 @@
 // https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html
 import * as DynamoDB from "aws-sdk/clients/dynamodb";
 
-export type Entity = Record<string, any>;
+export type  Entity = Record<string, any>;
+export class EntityNotFoundError extends Error {}
 
 export interface CrudRepositoryOptions {
   tableName: string;
