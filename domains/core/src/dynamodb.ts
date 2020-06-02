@@ -82,7 +82,9 @@ export class CrudRepository<T extends Entity> {
       return item.Attributes as T;
     } catch (error) {
       console.error(error); // Todo?
-      if (error.code === "ConditionalCheckFailedException") { return undefined; }
+      if (error.code === "ConditionalCheckFailedException") {
+        return undefined;
+      }
       throw error;
     }
   }
