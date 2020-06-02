@@ -1,5 +1,4 @@
 // https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html
-
 import * as DynamoDB from "aws-sdk/clients/dynamodb";
 
 export interface CrudRepositoryOptions {

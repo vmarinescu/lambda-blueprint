@@ -36,11 +36,11 @@
     "//2": [
       "---------------> devDependencies for IaC"
     ],
-    "@aws-cdk/core": "^1.42.0",
-    "@aws-cdk/aws-lambda": "^1.42.0",
-    "@aws-cdk/aws-dynamodb": "^1.42.0",
-    "@aws-cdk/aws-apigateway": "^1.42.0",
-    "aws-cdk": "^1.42.0",
+    "@aws-cdk/core": "^1.42.1",
+    "@aws-cdk/aws-lambda": "^1.42.1",
+    "@aws-cdk/aws-dynamodb": "^1.42.1",
+    "@aws-cdk/aws-apigateway": "^1.42.1",
+    "aws-cdk": "^1.42.1",
     "//3": [
       "---------------> devDependencies for bundler"
     ],
