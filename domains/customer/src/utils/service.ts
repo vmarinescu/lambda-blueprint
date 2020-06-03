@@ -36,6 +36,6 @@ export class Service {
     return customerDto;
   }
 
-  // Todo?
+  // Todo: dynamodb - updateItem vs getItem + putItem?
   async updateCustomer(id: string, updateDto: UpdateDto): Promise<void> {}
 }

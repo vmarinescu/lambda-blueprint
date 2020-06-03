@@ -9,8 +9,8 @@ export const enum Keys {
 
   // ----------------------------------------------------> ssm
 
-  USERNAME = "USERNAME",
-  PASSWORD = "PASSWORD",
+  SECRET1 = "SECRET1",
+  SECRET2 = "SECRET2",
 
   // ...
 }
