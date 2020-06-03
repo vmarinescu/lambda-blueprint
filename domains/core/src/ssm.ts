@@ -22,7 +22,7 @@ export class ParameterStore {
       }
       return result;
     } catch (error) {
-      console.error(error); // Todo ...
+      console.error(error); // Todo
       throw error;
     }
   }

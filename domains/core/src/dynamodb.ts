@@ -1,21 +1,15 @@
 // https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html
 import * as DynamoDB from "aws-sdk/clients/dynamodb";
 
-export type  Entity = Record<string, any>;
-export class EntityNotFoundError extends Error {}
-
-export interface CrudRepositoryOptions {
-  tableName: string;
-  // Todo?
-}
+export type Entity = Record<string, any>;
 
 export class CrudRepository<T extends Entity> {
   private tableName:      string;
   private documentClient: DynamoDB.DocumentClient;
 
-  constructor(options: CrudRepositoryOptions) {
-    this.tableName      = options.tableName;
-    this.documentClient = new DynamoDB.DocumentClient({});
+  constructor(tableName: string, options?: DynamoDB.Types.ClientConfiguration) {
+    this.tableName      = tableName;
+    this.documentClient = new DynamoDB.DocumentClient(options);
   }
 
   /**
@@ -30,7 +24,7 @@ export class CrudRepository<T extends Entity> {
     try {
       await this.documentClient.put(params).promise();
     } catch (error) {
-      console.error(error); // Todo?
+      console.error(error); // Todo
       throw error;
     }
   }
@@ -48,7 +42,7 @@ export class CrudRepository<T extends Entity> {
       const  item = await this.documentClient.get(params).promise();
       return item.Item as T;
     } catch (error) {
-      console.error(error); // Todo?
+      console.error(error); // Todo
       throw error;
     }
   }
@@ -64,7 +58,6 @@ export class CrudRepository<T extends Entity> {
     const params: DynamoDB.DocumentClient.UpdateItemInput = {
       TableName: this.tableName,
       Key: keys,
-      ReturnValues: "NONE",
       ConditionExpression: Object.keys(keys).map((key) => `attribute_exists(${key})`).join(" and "),
       UpdateExpression: `set #${itemKey0} = :${itemKey0}`,
       ExpressionAttributeNames:  { [`#${itemKey0}`]: itemKey0 },
@@ -78,10 +71,7 @@ export class CrudRepository<T extends Entity> {
     try {
       await this.documentClient.update(params).promise();
     } catch (error) {
-      console.error(error); // Todo?
-      if (error.code === "ConditionalCheckFailedException") {
-        throw new EntityNotFoundError();
-      }
+      console.error(error); // Todo
       throw error;
     }
   }
@@ -98,7 +88,7 @@ export class CrudRepository<T extends Entity> {
     try {
       await this.documentClient.delete(params).promise();
     } catch (error) {
-      console.error(error); // Todo?
+      console.error(error); // Todo
       throw error;
     }
   }

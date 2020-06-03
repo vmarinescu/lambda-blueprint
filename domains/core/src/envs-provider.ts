@@ -1,1 +1,1 @@
-export const getEnvVar = <T>(key: string): T => { throw new Error(); }; // Todo
+export const getEnvVar = <T>(key: string): T | undefined => { throw new Error(); }; // Todo
