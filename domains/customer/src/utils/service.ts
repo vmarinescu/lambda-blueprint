@@ -37,6 +37,5 @@ export class Service {
   }
 
   // Todo: dynamodb - updateItem vs getItem + putItem?
-  // tslint:disable-next-line:no-empty
   async updateCustomer(id: string, updateDto: UpdateDto): Promise<void> {}
 }
