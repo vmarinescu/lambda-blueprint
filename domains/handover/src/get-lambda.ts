@@ -16,7 +16,7 @@ export async function entrypoint(
 
     if (!service) { service = await createService(); }
 
-    const handoverDto = await service.getHandover(pathParameters["id"]);
+    const handoverDto = await service.getHandover(pathParameters.id);
     return { statusCode: 200, body: JSON.stringify(handoverDto) };
   } catch (error) {
     return handleError(error);

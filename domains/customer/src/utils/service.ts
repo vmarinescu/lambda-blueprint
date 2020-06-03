@@ -24,12 +24,12 @@ export class Service {
   }
 
   async deleteCustomer(id: string): Promise<void> {
-    const keys: Partial<Customer> = { id: id };
+    const keys: Partial<Customer> = { id };
     return this.crudRepository.delete(keys);
   }
 
   async getCustomer(id: string): Promise<CustomerDto> {
-    const keys: Partial<Customer> = { id: id };
+    const keys: Partial<Customer> = { id };
     const customer = await this.crudRepository.get(keys).catch((reason: any) => Promise.reject(reason));
     if (!customer) { throw new Error404(); }
     const { createdAt, updatedAt, ...customerDto } = customer;
@@ -37,5 +37,6 @@ export class Service {
   }
 
   // Todo: dynamodb - updateItem vs getItem + putItem?
+  // tslint:disable-next-line:no-empty
   async updateCustomer(id: string, updateDto: UpdateDto): Promise<void> {}
 }

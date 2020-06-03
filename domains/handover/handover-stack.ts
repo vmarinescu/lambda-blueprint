@@ -32,7 +32,7 @@ export class HandoverStack extends cdk.Stack {
         "domains/handover/dist",
         { exclude: ["**", "!create-lambda-bundle.js"] },
       ),
-      environment: environment,
+      environment,
     });
 
     const deleteLambda = new lambda.Function(this, "deleteLambda", {
@@ -42,7 +42,7 @@ export class HandoverStack extends cdk.Stack {
         "domains/handover/dist",
         { exclude: ["**", "!delete-lambda-bundle.js"] },
       ),
-      environment: environment,
+      environment,
     });
 
     const getLambda = new lambda.Function(this, "getLambda", {
@@ -52,7 +52,7 @@ export class HandoverStack extends cdk.Stack {
         "domains/handover/dist",
         { exclude: ["**", "!get-lambda-bundle.js"] },
       ),
-      environment: environment,
+      environment,
     });
 
     const updateLambda = new lambda.Function(this, "updateLambda", {
@@ -62,7 +62,7 @@ export class HandoverStack extends cdk.Stack {
         "domains/handover/dist",
         { exclude: ["**", "!update-lambda-bundle.js"] },
       ),
-      environment: environment,
+      environment,
     });
 
     dynamodbTable.grantWriteData(createLambda);

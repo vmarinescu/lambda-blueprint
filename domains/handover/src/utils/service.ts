@@ -24,12 +24,12 @@ export class Service {
   }
 
   async deleteHandover(id: string): Promise<void> {
-    const keys: Partial<Handover> = { id: id };
+    const keys: Partial<Handover> = { id };
     return this.crudRepository.delete(keys);
   }
 
   async getHandover(id: string): Promise<HandoverDto> {
-    const keys: Partial<Handover> = { id: id };
+    const keys: Partial<Handover> = { id };
     const handover = await this.crudRepository.get(keys).catch((reason: any) => Promise.reject(reason));
     if (!handover) { throw new Error404(); }
     const { createdAt, updatedAt, ...handoverDto } = handover;
@@ -37,5 +37,6 @@ export class Service {
   }
 
   // Todo: dynamodb - updateItem vs getItem + putItem?
+  // tslint:disable-next-line:no-empty
   async updateHandover(id: string, updateDto: UpdateDto): Promise<void> {}
 }

@@ -11,7 +11,7 @@
     "cdk"
   ],
   "scripts": {
-    "clean": "lerna run clean && rm -rf node_modules",
+    "clean": "lerna run clean && rm -rf dist node_modules",
     "build": "lerna bootstrap",
     "test:unit": "lerna run test:unit",
     "test:intr": "lerna run test:intr",
@@ -20,6 +20,7 @@
     "remove:qa": "cdk destroy '*' -c ENV=qa",
     "deploy:prod": "cdk deploy  '*' -c ENV=prod",
     "remove:prod": "cdk destroy '*' -c ENV=prod",
+    "tslint": "tslint -e '**/dist/**' -e '**/node_modules/**' --fix '{cdk,domains}/**/*.{js,ts}'",
     "test:e2e": "lerna run test:e2e"
   },
   "dependencies": {

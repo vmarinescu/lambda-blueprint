@@ -16,7 +16,7 @@ export async function entrypoint(
 
     if (!service) { service = await createService(); }
 
-    await service.deleteCustomer(pathParameters["id"]);
+    await service.deleteCustomer(pathParameters.id);
     return { statusCode: 204, body: "" };
   } catch (error) {
     return handleError(error);

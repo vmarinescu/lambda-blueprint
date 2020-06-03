@@ -10,11 +10,11 @@ const app = new cdk.App({});
 const env = app.node.tryGetContext("ENV");
 if (!env) { throw new Error("You missed a value for 'ENV'. Run 'cdk <command> -c ENV=<value>'"); }
 
-const sharedProps: SharedStackProps = { env: env };
+const sharedProps: SharedStackProps = { env };
 
 const apigatewayStack = new ApigatewayStack(app, sharedProps);
 
 const domainProps: DomainStackProps = { ...sharedProps, restApi: apigatewayStack.restApi };
 
-new CustomerStack(app, domainProps);
-new HandoverStack(app, domainProps);
+(() => new CustomerStack(app, domainProps))();
+(() => new HandoverStack(app, domainProps))();

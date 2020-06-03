@@ -16,7 +16,7 @@ export async function entrypoint(
 
     if (!service) { service = await createService(); }
 
-    await service.deleteHandover(pathParameters["id"]);
+    await service.deleteHandover(pathParameters.id);
     return { statusCode: 204, body: "" };
   } catch (error) {
     return handleError(error);

@@ -16,7 +16,7 @@ export async function entrypoint(
 
     if (!service) { service = await createService(); }
 
-    const customerDto = await service.getCustomer(pathParameters["id"]);
+    const customerDto = await service.getCustomer(pathParameters.id);
     return { statusCode: 200, body: JSON.stringify(customerDto) };
   } catch (error) {
     return handleError(error);
