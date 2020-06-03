@@ -1,8 +1,9 @@
 {
-  "name": "serverless-blueprint",
+  "name": "lambda-blueprint",
   "private": true,
   "keywords": [
     "aws",
+    "lambda",
     "serverless",
     "javascript",
     "typescript",

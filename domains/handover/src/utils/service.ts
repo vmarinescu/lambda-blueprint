@@ -1,4 +1,4 @@
-import { CrudRepository, Error404 } from "@serverless-blueprint/core";
+import { CrudRepository, Error404 } from "@lambda-blueprint/core";
 import { v4 as uuidv4 } from "uuid";
 import { CreateDto } from "../dtos/create-dto";
 import { HandoverDto } from "../dtos/handover-dto";

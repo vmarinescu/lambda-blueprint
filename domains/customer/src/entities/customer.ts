@@ -1,4 +1,4 @@
-import { AuditableEntity } from "@serverless-blueprint/core";
+import { AuditableEntity } from "@lambda-blueprint/core";
 import * as t from "io-ts";
 
 export type  Customer = t.TypeOf<typeof Customer>;

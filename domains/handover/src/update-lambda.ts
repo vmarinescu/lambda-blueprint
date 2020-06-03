@@ -1,6 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { isRight } from "fp-ts/lib/Either";
-import { handleError } from "@serverless-blueprint/core";
+import { handleError } from "@lambda-blueprint/core";
 import { UpdateDto } from "./dtos/update-dto";
 import { createService } from "./utils/service-factory";
 import { Service } from "./utils/service";

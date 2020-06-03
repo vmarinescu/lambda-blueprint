@@ -1,5 +1,5 @@
 {
-  "name": "@serverless-blueprint/customer",
+  "name": "@lambda-blueprint/customer",
   "private": true,
   "scripts": {
     "test:unit": "jest /unit --passWithNoTests",
@@ -10,10 +10,10 @@
     "prepare": "tsc"
   },
   "devDependencies": {
-    "@serverless-blueprint/test": "0.0.0"
+    "@lambda-blueprint/test": "0.0.0"
   },
   "dependencies": {
-    "@serverless-blueprint/core": "0.0.0",
+    "@lambda-blueprint/core": "0.0.0",
     "uuid": "^8.1.0"
   }
 }
