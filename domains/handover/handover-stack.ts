@@ -1,6 +1,7 @@
 import * as apigateway from "@aws-cdk/aws-apigateway";
 import * as dynamodb from "@aws-cdk/aws-dynamodb";
 import * as lambda from "@aws-cdk/aws-lambda";
+import * as iam from "@aws-cdk/aws-iam";
 import * as cdk from "@aws-cdk/core";
 import { DomainStackProps } from "../../cdk/interfaces/domain-stack-props";
 import { Keys } from "./src/utils/keys";
@@ -24,6 +25,8 @@ export class HandoverStack extends cdk.Stack {
     environment[Keys.ENV]        = props.env;
     environment[Keys.TABLE_NAME] = dynamodbTable.tableName;
     // ...
+
+    // Todo: build ssm-role and attach it ...
 
     const createLambda = new lambda.Function(this, "createLambda", {
       handler: "create-lambda-bundle.entrypoint",
