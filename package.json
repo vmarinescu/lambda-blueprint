@@ -49,6 +49,7 @@
     "//4": [
       "---------------> devDependencies for linting"
     ],
+    "tslint": "^6.1.2",
     "//5": [
       "---------------> devDependencies for testing"
     ],
