@@ -5,9 +5,7 @@ export const mergeDeep = (...objects: any[]): any => {
     Object.keys(currObject).forEach((key) => {
       const prevValue = prevObject[key];
       const currValue = currObject[key];
-      if (Array.isArray(prevValue) && Array.isArray(currValue)) {
-        prevObject[key] = prevValue.concat(...currValue);
-      } else if (isObject(prevValue) && isObject(currValue)) {
+      if (isObject(prevValue) && isObject(currValue)) {
         prevObject[key] = mergeDeep(prevValue, currValue);
       } else {
         prevObject[key] = currValue;
