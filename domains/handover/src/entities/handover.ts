@@ -7,7 +7,11 @@ export const Handover = t.exact(t.intersection([
   AuditableEntity,
   // ...
   t.interface({
-    id:   t.string, // Partition-Key
-    name: t.string,
+    id:        t.string, // Partition-Key
+    property1: t.string,
+    property2: t.string,
+    property3: t.string,
+    property4: t.string,
+    property5: t.string,
   }),
 ]));

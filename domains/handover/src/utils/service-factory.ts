@@ -5,8 +5,10 @@ import { Keys } from "./keys";
 
 export const createService = async (): Promise<Service> => {
   const parameterStore = new ParameterStore({});
+  /*
   const parameters =
     await parameterStore.getParametersByPath(`/${process.env[Keys.ENV]}-handover/`);
+  */
   // Todo
 
   const tableName  = process.env[Keys.TABLE_NAME] || "";
