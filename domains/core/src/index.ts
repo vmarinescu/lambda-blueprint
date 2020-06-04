@@ -10,4 +10,6 @@ export * from "./envs-provider";
 
 export * from "./dynamodb";
 
+export * from "./utils";
+
 export * from "./ssm";
