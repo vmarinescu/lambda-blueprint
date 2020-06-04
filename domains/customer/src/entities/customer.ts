@@ -3,10 +3,10 @@ import * as t from "io-ts";
 
 export type  Customer = t.TypeOf<typeof Customer>;
 
-export const Customer = t.exact(t.intersection([
+export const Customer = t.intersection([
   AuditableEntity,
   // ...
-  t.interface({
+  t.strict({
     id:        t.string, // Partition-Key
     property1: t.string,
     property2: t.string,
@@ -14,9 +14,9 @@ export const Customer = t.exact(t.intersection([
     property4: t.string,
     property5: t.string,
 
-    property6: t.interface({
+    property6: t.strict({
       property1: t.string,
       property2: t.string,
     }),
   }),
-]));
+]);

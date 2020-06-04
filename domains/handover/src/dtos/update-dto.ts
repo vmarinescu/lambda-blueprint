@@ -9,8 +9,8 @@ export const UpdateDto = t.exact(t.partial({
   property4: t.string,
   property5: t.string,
 
-  property6: t.partial({
+  property6: t.exact(t.partial({
     property1: t.string,
     property2: t.string,
-  }),
+  })),
 }));
