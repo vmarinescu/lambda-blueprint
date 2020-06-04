@@ -13,9 +13,7 @@ export async function entrypoint(
   try {
     const pathParameters = event.pathParameters;
     if (pathParameters == null) { return { statusCode: 400, body: "" }; }
-
     if (!service) { service = await createService(); }
-
     const handoverDto = await service.getHandover(pathParameters.id);
     return { statusCode: 200, body: JSON.stringify(handoverDto) };
   } catch (error) {

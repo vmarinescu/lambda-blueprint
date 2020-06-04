@@ -13,9 +13,7 @@ export async function entrypoint(
   try {
     const pathParameters = event.pathParameters;
     if (pathParameters == null) { return { statusCode: 400, body: "" }; }
-
     if (!service) { service = await createService(); }
-
     const customerDto = await service.getCustomer(pathParameters.id);
     return { statusCode: 200, body: JSON.stringify(customerDto) };
   } catch (error) {

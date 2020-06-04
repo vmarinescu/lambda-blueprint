@@ -1,4 +1,4 @@
-import { CrudRepository, Error404 } from "@lambda-blueprint/core";
+import { CrudRepository, Error404, mergeDeep } from "@lambda-blueprint/core";
 import { v4 as uuidv4 } from "uuid";
 import { CreateDto } from "../dtos/create-dto";
 import { CustomerDto } from "../dtos/customer-dto";
@@ -13,6 +13,7 @@ export class Service {
   async createCustomer(createDto: CreateDto): Promise<string> {
     const date = new Date();
 
+    // Todo
     const customer: Customer = {
       id: uuidv4(),
       createdAt: date.toISOString(),
@@ -36,6 +37,11 @@ export class Service {
     return customerDto;
   }
 
-  // Todo: dynamodb - updateItem vs getItem + putItem?
-  async updateCustomer(id: string, updateDto: UpdateDto): Promise<void> {}
+  async updateCustomer(id: string, updateDto: UpdateDto): Promise<void> {
+    const keys: Partial<Customer> = { id };
+    const customer = await this.crudRepository.get(keys).catch((reason: any) => Promise.reject(reason));
+    if (!customer) { throw new Error404(); }
+    const customerUpdated = mergeDeep(customer, updateDto); // Todo
+    return this.crudRepository.put(customerUpdated);
+  }
 }

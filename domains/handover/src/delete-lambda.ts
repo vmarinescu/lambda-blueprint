@@ -13,9 +13,7 @@ export async function entrypoint(
   try {
     const pathParameters = event.pathParameters;
     if (pathParameters == null) { return { statusCode: 400, body: "" }; }
-
     if (!service) { service = await createService(); }
-
     await service.deleteHandover(pathParameters.id);
     return { statusCode: 204, body: "" };
   } catch (error) {

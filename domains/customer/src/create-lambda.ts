@@ -15,7 +15,6 @@ export async function entrypoint(
   try {
     const body = event.body;
     if (body == null) { return { statusCode: 400, body: "" }; }
-
     if (!service) { service = await createService(); }
     const createDto = JSON.parse(body);
     const either = CreateDto.decode(createDto); // ---> Unknown props stripped.

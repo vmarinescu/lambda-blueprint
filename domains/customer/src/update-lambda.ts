@@ -15,10 +15,8 @@ export async function entrypoint(
   try {
     const pathParameters = event.pathParameters;
     const body           = event.body;
-
     if (pathParameters == null || body == null) { return { statusCode: 400, body: "" }; }
     if (!service) { service = await createService(); }
-
     const updateDto = JSON.parse(body);
     const either = UpdateDto.decode(updateDto); // ---> Unknown props stripped.
     if (isRight(either)) {
