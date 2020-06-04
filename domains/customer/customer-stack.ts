@@ -26,6 +26,10 @@ export class CustomerStack extends cdk.Stack {
     environment[Keys.TABLE_NAME] = dynamodbTable.tableName;
     // ...
 
+    // https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/node-reusing-connections.html
+    environment["AWS_NODEJS_CONNECTION_REUSE_ENABLED"] = "1";
+    // ...
+
     // Todo: build ssm-role and attach it ...
 
     const createLambda = new lambda.Function(this, "createLambda", {
