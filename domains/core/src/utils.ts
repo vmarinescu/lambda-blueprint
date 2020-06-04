@@ -1,19 +1,19 @@
 export const mergeDeep = (...objects: any[]): any => {
-  const isObject = (objc: any) => objc && typeof objc === "object";
+  const isObject = (obj: any) => obj && typeof obj === "object";
 
-  return objects.reduce((prev, objc) => {
-    Object.keys(objc).forEach((key) => {
-      const pVal = prev[key];
-      const oVal = objc[key];
+  return objects.reduce((pre, res) => {
+    Object.keys(res).forEach((key) => {
+      const pVal = pre[key];
+      const oVal = res[key];
 
       if (Array.isArray(pVal) && Array.isArray(oVal)) {
-        prev[key] = pVal.concat(...oVal);
+        pre[key] = pVal.concat(...oVal);
       } else if (isObject(pVal) && isObject(oVal)) {
-        prev[key] = mergeDeep(pVal, oVal);
+        pre[key] = mergeDeep(pVal, oVal);
       } else {
-        prev[key] = oVal;
+        pre[key] = oVal;
       }
     });
-    return prev;
+    return pre;
   }, {});
 };
