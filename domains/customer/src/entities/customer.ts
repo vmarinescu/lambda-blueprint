@@ -13,5 +13,10 @@ export const Customer = t.exact(t.intersection([
     property3: t.string,
     property4: t.string,
     property5: t.string,
+
+    property6: t.interface({
+      property1: t.string,
+      property2: t.string,
+    }),
   }),
 ]));
