@@ -1,8 +1,8 @@
 import * as cdk from "@aws-cdk/core";
 import { SharedStackProps } from "./interfaces/shared-stack-props";
 import { DomainStackProps } from "./interfaces/domain-stack-props";
-import { CustomerStack } from "../domains/customer/customer-stack";
-import { HandoverStack } from "../domains/handover/handover-stack";
+import { CustomerStack } from "../../domains/customer/customer-stack";
+import { HandoverStack } from "../../domains/handover/handover-stack";
 import { ApigatewayStack } from "./apigateway-stack";
 
 const app = new cdk.App({});
