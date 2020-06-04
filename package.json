@@ -28,7 +28,7 @@
     "io-ts": "^2.2.4"
   },
   "devDependencies": {
-    "typescript": "^3.9.3",
+    "typescript": "^3.9.5",
     "//1": [
       "---------------> devDependencies for Mono-Repo"
     ],
