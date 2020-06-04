@@ -3,7 +3,7 @@ import * as dynamodb from "@aws-cdk/aws-dynamodb";
 import * as lambda from "@aws-cdk/aws-lambda";
 import * as iam from "@aws-cdk/aws-iam";
 import * as cdk from "@aws-cdk/core";
-import { DomainStackProps } from "../../cdk/interfaces/domain-stack-props";
+import { DomainStackProps } from "../../cdk/src/interfaces/domain-stack-props";
 import { Keys } from "./src/utils/keys";
 
 export class CustomerStack extends cdk.Stack {
