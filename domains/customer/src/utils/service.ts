@@ -1,4 +1,4 @@
-import { CrudRepository, Error404, mergeDeep } from "@lambda-blueprint/core";
+import { CrudRepository, Error404, deepMerge } from "@lambda-blueprint/core";
 import { v4 as uuidv4 } from "uuid";
 import { CreateDto } from "../dtos/create-dto";
 import { CustomerDto } from "../dtos/customer-dto";
@@ -41,7 +41,8 @@ export class Service {
     const keys: Partial<Customer> = { id };
     const customer = await this.crudRepository.get(keys).catch((reason: any) => Promise.reject(reason));
     if (!customer) { throw new Error404(); }
-    const customerUpdated = mergeDeep(customer, updateDto); // Todo
+    customer.updatedAt = new Date().toISOString();
+    const customerUpdated = deepMerge(customer, updateDto); // Todo
     return this.crudRepository.put(customerUpdated);
   }
 }

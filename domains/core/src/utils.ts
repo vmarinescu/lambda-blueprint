@@ -1,16 +1,19 @@
-export const mergeDeep = (...objects: any[]): any => {
+export const deepMerge = <T1 extends Record<string, any>, T2 extends Record<string, any>>(
+  target: T1,
+  source: T2,
+): T1 => {
   const isObject = (object: any) => object && typeof object === "object";
 
-  return objects.reduce((prevObject , currObject) => {
-    Object.keys(currObject).forEach((key) => {
-      const prevValue = prevObject[key];
-      const currValue = currObject[key];
-      if (isObject(prevValue) && isObject(currValue)) {
-        prevObject[key] = mergeDeep(prevValue, currValue);
-      } else {
-        prevObject[key] = currValue;
-      }
-    });
-    return prevObject;
-  }, {});
+  Object.keys(source).forEach((key) => {
+    const targetValue = target[key];
+    const sourceValue = source[key];
+    if (isObject(targetValue) && isObject(sourceValue)) {
+      // @ts-ignore
+      target[key] = deepMerge<T1, T2>(targetValue, sourceValue);
+    } else {
+      // @ts-ignore
+      target[key] = sourceValue;
+    }
+  });
+  return target;
 };

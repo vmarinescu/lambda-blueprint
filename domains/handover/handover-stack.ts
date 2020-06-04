@@ -71,7 +71,7 @@ export class HandoverStack extends cdk.Stack {
     dynamodbTable.grantWriteData(createLambda);
     dynamodbTable.grantWriteData(deleteLambda);
     dynamodbTable.grantReadData(getLambda);
-    dynamodbTable.grantWriteData(updateLambda);
+    dynamodbTable.grantReadWriteData(updateLambda);
 
     const handovers = restApi.root.addResource("handovers");
 

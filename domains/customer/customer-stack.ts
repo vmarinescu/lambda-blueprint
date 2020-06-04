@@ -71,7 +71,7 @@ export class CustomerStack extends cdk.Stack {
     dynamodbTable.grantWriteData(createLambda);
     dynamodbTable.grantWriteData(deleteLambda);
     dynamodbTable.grantReadData(getLambda);
-    dynamodbTable.grantWriteData(updateLambda);
+    dynamodbTable.grantReadWriteData(updateLambda);
 
     const customers = restApi.root.addResource("customers");
 
