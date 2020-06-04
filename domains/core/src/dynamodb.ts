@@ -4,12 +4,14 @@ import * as DynamoDB from "aws-sdk/clients/dynamodb";
 export type Entity = Record<string, any>;
 
 export class CrudRepository<T extends Entity> {
-  private tableName:      string;
   private documentClient: DynamoDB.DocumentClient;
+  private tableName:      string;
 
   constructor(tableName: string, options?: DynamoDB.Types.ClientConfiguration) {
+    const https = require("https");
+    const agent = new https.Agent({ keepAlive: true });
+    this.documentClient = new DynamoDB.DocumentClient({ ...options, httpOptions: { agent } });
     this.tableName      = tableName;
-    this.documentClient = new DynamoDB.DocumentClient(options);
   }
 
   /**
