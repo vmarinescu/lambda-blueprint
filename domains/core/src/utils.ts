@@ -2,7 +2,7 @@ export const deepMerge = <T1 extends Record<string, any>, T2 extends Record<stri
   target: T1,
   source: T2,
 ): T1 => {
-  const isObject = (object: any) => object && typeof object === "object";
+  const isObject = (object: any) => object && typeof object === "object" && object.constructor === Object;
 
   Object.keys(source).forEach((key) => {
     const targetValue = target[key];
