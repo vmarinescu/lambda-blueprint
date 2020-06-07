@@ -13,7 +13,7 @@ describe("customer-stack", () => {
     const app = new cdk.App({});
     const sharedProps: SharedStackProps = { env: "local" };
     const apigatewayStack = new ApigatewayStack(app, sharedProps);
-    const domainProps: DomainStackProps = { ...sharedProps, restApi: apigatewayStack.restApi };
+    const domainProps: DomainStackProps = { ...sharedProps, restApi: apigatewayStack.restApi }; // Todo: Mock?
     const stack = new HandoverStack(app, domainProps, "dist");
     expect(assert.SynthUtils.toCloudFormation(stack)).toMatchSnapshot();
   });
