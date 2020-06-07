@@ -1,0 +1,656 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`customer-stack test 1`] = `
+Object {
+  "Outputs": Object {
+    "ExportsOutputFnGetAttcreateLambda327A7376Arn505586C9": Object {
+      "Export": Object {
+        "Name": "local-handover-stack:ExportsOutputFnGetAttcreateLambda327A7376Arn505586C9",
+      },
+      "Value": Object {
+        "Fn::GetAtt": Array [
+          "createLambda327A7376",
+          "Arn",
+        ],
+      },
+    },
+    "ExportsOutputFnGetAttdeleteLambda64E16E5CArn5C6E4DBF": Object {
+      "Export": Object {
+        "Name": "local-handover-stack:ExportsOutputFnGetAttdeleteLambda64E16E5CArn5C6E4DBF",
+      },
+      "Value": Object {
+        "Fn::GetAtt": Array [
+          "deleteLambda64E16E5C",
+          "Arn",
+        ],
+      },
+    },
+    "ExportsOutputFnGetAttgetLambda0E45CF34Arn12A2311A": Object {
+      "Export": Object {
+        "Name": "local-handover-stack:ExportsOutputFnGetAttgetLambda0E45CF34Arn12A2311A",
+      },
+      "Value": Object {
+        "Fn::GetAtt": Array [
+          "getLambda0E45CF34",
+          "Arn",
+        ],
+      },
+    },
+    "ExportsOutputFnGetAttupdateLambda2E646683ArnE6EC4AF9": Object {
+      "Export": Object {
+        "Name": "local-handover-stack:ExportsOutputFnGetAttupdateLambda2E646683ArnE6EC4AF9",
+      },
+      "Value": Object {
+        "Fn::GetAtt": Array [
+          "updateLambda2E646683",
+          "Arn",
+        ],
+      },
+    },
+  },
+  "Parameters": Object {
+    "AssetParameters612c65cc95b62953969c00d19020163f7f2d45fec661ef1e672c10043e01bdb6ArtifactHashA3EBD759": Object {
+      "Description": "Artifact hash for asset \\"612c65cc95b62953969c00d19020163f7f2d45fec661ef1e672c10043e01bdb6\\"",
+      "Type": "String",
+    },
+    "AssetParameters612c65cc95b62953969c00d19020163f7f2d45fec661ef1e672c10043e01bdb6S3BucketDEFFD7B1": Object {
+      "Description": "S3 bucket for asset \\"612c65cc95b62953969c00d19020163f7f2d45fec661ef1e672c10043e01bdb6\\"",
+      "Type": "String",
+    },
+    "AssetParameters612c65cc95b62953969c00d19020163f7f2d45fec661ef1e672c10043e01bdb6S3VersionKey6DB2A398": Object {
+      "Description": "S3 key for asset version \\"612c65cc95b62953969c00d19020163f7f2d45fec661ef1e672c10043e01bdb6\\"",
+      "Type": "String",
+    },
+    "AssetParameterscf02d9b41920c94e6a1270201054b7f482d2d88785e4a9059e3d38fc26ad5813ArtifactHash89FA485F": Object {
+      "Description": "Artifact hash for asset \\"cf02d9b41920c94e6a1270201054b7f482d2d88785e4a9059e3d38fc26ad5813\\"",
+      "Type": "String",
+    },
+    "AssetParameterscf02d9b41920c94e6a1270201054b7f482d2d88785e4a9059e3d38fc26ad5813S3BucketB12E334E": Object {
+      "Description": "S3 bucket for asset \\"cf02d9b41920c94e6a1270201054b7f482d2d88785e4a9059e3d38fc26ad5813\\"",
+      "Type": "String",
+    },
+    "AssetParameterscf02d9b41920c94e6a1270201054b7f482d2d88785e4a9059e3d38fc26ad5813S3VersionKey02821A10": Object {
+      "Description": "S3 key for asset version \\"cf02d9b41920c94e6a1270201054b7f482d2d88785e4a9059e3d38fc26ad5813\\"",
+      "Type": "String",
+    },
+    "AssetParametersd4c70a63a218d219921af3d7206314212f09094cf66f391ee7b5f51ec8ba2293ArtifactHash44B44AC3": Object {
+      "Description": "Artifact hash for asset \\"d4c70a63a218d219921af3d7206314212f09094cf66f391ee7b5f51ec8ba2293\\"",
+      "Type": "String",
+    },
+    "AssetParametersd4c70a63a218d219921af3d7206314212f09094cf66f391ee7b5f51ec8ba2293S3Bucket034A9049": Object {
+      "Description": "S3 bucket for asset \\"d4c70a63a218d219921af3d7206314212f09094cf66f391ee7b5f51ec8ba2293\\"",
+      "Type": "String",
+    },
+    "AssetParametersd4c70a63a218d219921af3d7206314212f09094cf66f391ee7b5f51ec8ba2293S3VersionKey2BF60BDE": Object {
+      "Description": "S3 key for asset version \\"d4c70a63a218d219921af3d7206314212f09094cf66f391ee7b5f51ec8ba2293\\"",
+      "Type": "String",
+    },
+    "AssetParametersdc13e79edbff8e0cf44daf648d9ae7691c65090591adbdfaeec9730fdd65d837ArtifactHash59AF2C78": Object {
+      "Description": "Artifact hash for asset \\"dc13e79edbff8e0cf44daf648d9ae7691c65090591adbdfaeec9730fdd65d837\\"",
+      "Type": "String",
+    },
+    "AssetParametersdc13e79edbff8e0cf44daf648d9ae7691c65090591adbdfaeec9730fdd65d837S3Bucket4DA29CC5": Object {
+      "Description": "S3 bucket for asset \\"dc13e79edbff8e0cf44daf648d9ae7691c65090591adbdfaeec9730fdd65d837\\"",
+      "Type": "String",
+    },
+    "AssetParametersdc13e79edbff8e0cf44daf648d9ae7691c65090591adbdfaeec9730fdd65d837S3VersionKeyEBB50395": Object {
+      "Description": "S3 key for asset version \\"dc13e79edbff8e0cf44daf648d9ae7691c65090591adbdfaeec9730fdd65d837\\"",
+      "Type": "String",
+    },
+  },
+  "Resources": Object {
+    "createLambda327A7376": Object {
+      "DependsOn": Array [
+        "createLambdaServiceRoleDefaultPolicy7FCD0D30",
+        "createLambdaServiceRole20E8740B",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParameterscf02d9b41920c94e6a1270201054b7f482d2d88785e4a9059e3d38fc26ad5813S3BucketB12E334E",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameterscf02d9b41920c94e6a1270201054b7f482d2d88785e4a9059e3d38fc26ad5813S3VersionKey02821A10",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameterscf02d9b41920c94e6a1270201054b7f482d2d88785e4a9059e3d38fc26ad5813S3VersionKey02821A10",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Environment": Object {
+          "Variables": Object {
+            "ENV": "local",
+            "TABLE_NAME": Object {
+              "Ref": "handovers6CB80F9B",
+            },
+          },
+        },
+        "Handler": "create-lambda-bundle.entrypoint",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "createLambdaServiceRole20E8740B",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs12.x",
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "createLambdaServiceRole20E8740B": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "createLambdaServiceRoleDefaultPolicy7FCD0D30": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "handovers6CB80F9B",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Ref": "AWS::NoValue",
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "createLambdaServiceRoleDefaultPolicy7FCD0D30",
+        "Roles": Array [
+          Object {
+            "Ref": "createLambdaServiceRole20E8740B",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "deleteLambda64E16E5C": Object {
+      "DependsOn": Array [
+        "deleteLambdaServiceRoleDefaultPolicy770F9D88",
+        "deleteLambdaServiceRole44BC2A4A",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParametersdc13e79edbff8e0cf44daf648d9ae7691c65090591adbdfaeec9730fdd65d837S3Bucket4DA29CC5",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParametersdc13e79edbff8e0cf44daf648d9ae7691c65090591adbdfaeec9730fdd65d837S3VersionKeyEBB50395",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParametersdc13e79edbff8e0cf44daf648d9ae7691c65090591adbdfaeec9730fdd65d837S3VersionKeyEBB50395",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Environment": Object {
+          "Variables": Object {
+            "ENV": "local",
+            "TABLE_NAME": Object {
+              "Ref": "handovers6CB80F9B",
+            },
+          },
+        },
+        "Handler": "delete-lambda-bundle.entrypoint",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "deleteLambdaServiceRole44BC2A4A",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs12.x",
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "deleteLambdaServiceRole44BC2A4A": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "deleteLambdaServiceRoleDefaultPolicy770F9D88": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "handovers6CB80F9B",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Ref": "AWS::NoValue",
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "deleteLambdaServiceRoleDefaultPolicy770F9D88",
+        "Roles": Array [
+          Object {
+            "Ref": "deleteLambdaServiceRole44BC2A4A",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "getLambda0E45CF34": Object {
+      "DependsOn": Array [
+        "getLambdaServiceRoleDefaultPolicy76D4F95E",
+        "getLambdaServiceRoleAF88CB09",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParametersd4c70a63a218d219921af3d7206314212f09094cf66f391ee7b5f51ec8ba2293S3Bucket034A9049",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParametersd4c70a63a218d219921af3d7206314212f09094cf66f391ee7b5f51ec8ba2293S3VersionKey2BF60BDE",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParametersd4c70a63a218d219921af3d7206314212f09094cf66f391ee7b5f51ec8ba2293S3VersionKey2BF60BDE",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Environment": Object {
+          "Variables": Object {
+            "ENV": "local",
+            "TABLE_NAME": Object {
+              "Ref": "handovers6CB80F9B",
+            },
+          },
+        },
+        "Handler": "get-lambda-bundle.entrypoint",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "getLambdaServiceRoleAF88CB09",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs12.x",
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "getLambdaServiceRoleAF88CB09": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "getLambdaServiceRoleDefaultPolicy76D4F95E": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "handovers6CB80F9B",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Ref": "AWS::NoValue",
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "getLambdaServiceRoleDefaultPolicy76D4F95E",
+        "Roles": Array [
+          Object {
+            "Ref": "getLambdaServiceRoleAF88CB09",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "handovers6CB80F9B": Object {
+      "DeletionPolicy": "Retain",
+      "Properties": Object {
+        "AttributeDefinitions": Array [
+          Object {
+            "AttributeName": "id",
+            "AttributeType": "S",
+          },
+        ],
+        "KeySchema": Array [
+          Object {
+            "AttributeName": "id",
+            "KeyType": "HASH",
+          },
+        ],
+        "ProvisionedThroughput": Object {
+          "ReadCapacityUnits": 5,
+          "WriteCapacityUnits": 5,
+        },
+        "TableName": "local-handovers",
+      },
+      "Type": "AWS::DynamoDB::Table",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "updateLambda2E646683": Object {
+      "DependsOn": Array [
+        "updateLambdaServiceRoleDefaultPolicyCD1BE1A0",
+        "updateLambdaServiceRole660E4971",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParameters612c65cc95b62953969c00d19020163f7f2d45fec661ef1e672c10043e01bdb6S3BucketDEFFD7B1",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters612c65cc95b62953969c00d19020163f7f2d45fec661ef1e672c10043e01bdb6S3VersionKey6DB2A398",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters612c65cc95b62953969c00d19020163f7f2d45fec661ef1e672c10043e01bdb6S3VersionKey6DB2A398",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Environment": Object {
+          "Variables": Object {
+            "ENV": "local",
+            "TABLE_NAME": Object {
+              "Ref": "handovers6CB80F9B",
+            },
+          },
+        },
+        "Handler": "update-lambda-bundle.entrypoint",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "updateLambdaServiceRole660E4971",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs12.x",
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "updateLambdaServiceRole660E4971": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "updateLambdaServiceRoleDefaultPolicyCD1BE1A0": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "handovers6CB80F9B",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Ref": "AWS::NoValue",
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "updateLambdaServiceRoleDefaultPolicyCD1BE1A0",
+        "Roles": Array [
+          Object {
+            "Ref": "updateLambdaServiceRole660E4971",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+  },
+}
+`;

@@ -1,5 +1,5 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": { "rootDir": "src", "outDir": "dist", "resolveJsonModule": true },
-  "exclude": ["dist", "test", "customer-stack.ts"]
+  "exclude": ["dist", "test", "customer-stack.ts", "customer-stack.test.ts"]
 }

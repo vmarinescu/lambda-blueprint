@@ -7,7 +7,7 @@ import { DomainStackProps } from "../../cdk/src/interfaces/domain-stack-props";
 import { Keys } from "./src/utils/keys";
 
 export class CustomerStack extends cdk.Stack {
-  constructor(scope: cdk.App, props: DomainStackProps) {
+  constructor(scope: cdk.App, props: DomainStackProps, path: string) {
     super(scope, `${props.env}-customer-stack`);
 
     const restApi = props.restApi;
@@ -32,7 +32,7 @@ export class CustomerStack extends cdk.Stack {
       handler: "create-lambda-bundle.entrypoint",
       runtime: lambda.Runtime.NODEJS_12_X,
       code:    lambda.AssetCode.fromAsset(
-        "domains/customer/dist",
+        path,
         { exclude: ["**", "!create-lambda-bundle.js"] },
       ),
       environment,
@@ -42,7 +42,7 @@ export class CustomerStack extends cdk.Stack {
       handler: "delete-lambda-bundle.entrypoint",
       runtime: lambda.Runtime.NODEJS_12_X,
       code:    lambda.AssetCode.fromAsset(
-        "domains/customer/dist",
+        path,
         { exclude: ["**", "!delete-lambda-bundle.js"] },
       ),
       environment,
@@ -52,7 +52,7 @@ export class CustomerStack extends cdk.Stack {
       handler: "get-lambda-bundle.entrypoint",
       runtime: lambda.Runtime.NODEJS_12_X,
       code:    lambda.AssetCode.fromAsset(
-        "domains/customer/dist",
+        path,
         { exclude: ["**", "!get-lambda-bundle.js"] },
       ),
       environment,
@@ -62,7 +62,7 @@ export class CustomerStack extends cdk.Stack {
       handler: "update-lambda-bundle.entrypoint",
       runtime: lambda.Runtime.NODEJS_12_X,
       code:    lambda.AssetCode.fromAsset(
-        "domains/customer/dist",
+        path,
         { exclude: ["**", "!update-lambda-bundle.js"] },
       ),
       environment,

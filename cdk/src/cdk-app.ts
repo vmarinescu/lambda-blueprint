@@ -16,5 +16,5 @@ const apigatewayStack = new ApigatewayStack(app, sharedProps);
 
 const domainProps: DomainStackProps = { ...sharedProps, restApi: apigatewayStack.restApi };
 
-(() => new CustomerStack(app, domainProps))();
-(() => new HandoverStack(app, domainProps))();
+(() => new CustomerStack(app, domainProps, "domains/customer/dist"))();
+(() => new HandoverStack(app, domainProps, "domains/handover/dist"))();
