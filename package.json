@@ -32,7 +32,7 @@
     "//1": [
       "---------------> devDependencies for Mono-Repo"
     ],
-    "lerna": "^3.22.0",
+    "lerna": "^3.22.1",
     "//2": [
       "---------------> devDependencies for cdk"
     ],
