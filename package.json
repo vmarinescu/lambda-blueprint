@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "aws-sdk": "^2.691.0",
-    "fp-ts": "^2.6.1",
+    "fp-ts": "^2.6.3",
     "io-ts": "^2.2.4"
   },
   "devDependencies": {
