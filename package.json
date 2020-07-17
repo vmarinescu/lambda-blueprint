@@ -25,7 +25,7 @@
   "dependencies": {
     "aws-sdk": "^2.694.0",
     "fp-ts": "^2.6.5",
-    "io-ts": "^2.2.4"
+    "io-ts": "^2.2.9"
   },
   "devDependencies": {
     "typescript": "^3.9.5",
