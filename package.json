@@ -23,7 +23,7 @@
     "test:e2e": "lerna run test:e2e"
   },
   "dependencies": {
-    "aws-sdk": "^2.694.0",
+    "aws-sdk": "^2.725.0",
     "fp-ts": "^2.6.5",
     "io-ts": "^2.2.4"
   },
