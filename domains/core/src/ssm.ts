@@ -9,17 +9,25 @@ export class ParameterStore {
   }
 
   async getParametersByPath(path: string): Promise<Record<string, string>> {
-    const request: SSM.Types.GetParametersByPathRequest = {
-      Path:           path,
-      WithDecryption: true,
-    };
     try {
-      const response = await this.ssm.getParametersByPath(request).promise();
       const result: Record<string, string> = {};
-      if (response.Parameters) {
-        // @ts-ignore
-        response.Parameters.forEach((parameter) => { result[parameter.Name] = parameter.Value; });
-      }
+      let nextToken: SSM.Types.NextToken | undefined;
+      do{
+        // noinspection JSUnusedAssignment
+        const request: SSM.Types.GetParametersByPathRequest = {
+          Path:           path,
+          WithDecryption: true,
+          NextToken: nextToken
+        };
+        const response = await this.ssm.getParametersByPath(request).promise();
+
+        if (response.Parameters) {
+          // @ts-ignore
+          response.Parameters.forEach((parameter) => {result[parameter.Name] = parameter.Value;});
+        }
+        nextToken = response.NextToken;
+      } while (nextToken)
+
       return result;
     } catch (error) {
       console.error(error); // Todo
